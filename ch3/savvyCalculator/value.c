@@ -13,8 +13,9 @@
 
 struct Type {
 	char *name;
+	char rank,rpar;
 	void *(*new)(va_list ap);
-	double (*exec)(const void *tree);
+	double (*exec)(const void *tree,int rank,int par);
 	void (*delete)(void *tree);
 };
 
@@ -78,40 +79,74 @@ static void freeUnary (void *tree)
 	free(tree);
 }
 
-static double exec (const void *tree)
+static double exec (const void *tree,int rank,int par)
 {
 	assert(tree && (struct Type**)tree
 			&& (*(struct Type **)tree)->exec);
 
-	return (*(struct Type **)tree)->exec(tree);
+	return (*(struct Type **)tree)->exec(tree,rank,par);
 }
 
-static double doVal (const void *tree)
+static double doVal (const void *tree,int rank,int par)
 {
+	printf(" %g",((struct Val*)tree)->value);
 	return ((struct Val*)tree)->value;
 }
 
-static double doAdd (const void *tree)
+
+static double doAdd (const void *tree,int rank,int par)
 {
-	return exec(((struct Bin*)tree)->left)+
-	exec(((struct Bin*)tree)->right);
+	const struct Type *type = *(struct Type**)tree;
+
+	par = type->rank<rank || (par && type->rank == rank);
+	if(par)putchar('(');
+	double a=exec(((struct Bin*)tree)->left,type->rank,0);
+
+	printf(" %s",type->name);
+
+	double b=exec(((struct Bin*)tree)->right,type->rank,type->rpar);
+
+	if(par)putchar(')');
+
+	return a+b;
 }
 
-static double doSub (const void *tree)
+static double doSub (const void *tree,int rank,int par)
 {
-	return exec(((struct Bin*)tree)->left)-
-	exec(((struct Bin*)tree)->right);
+	const struct Type *type = *(struct Type**)tree;
+
+	par = type->rank<rank || (par && type->rank == rank);
+	if(par)putchar('(');
+	double a=exec(((struct Bin*)tree)->left,type->rank,0);
+
+	printf(" %s",type->name);
+
+	double b=exec(((struct Bin*)tree)->right,type->rank,type->rpar);
+
+	if(par)putchar(')');
+
+	return a-b;
 }
 
-static double doUnary (const void *tree)
+static double doUnary (const void *tree,int rank,int par)
 {
-	return -exec(((struct Unary*)tree)->center);
+	const struct Type *type = *(struct Type**)tree;
+
+	par = type->rank<rank || (par && type->rank == rank);
+	if(par)putchar('(');
+	printf(" -");
+
+	double a=exec(((struct Unary*)tree)->center,type->rank,type->rpar);
+
+	if(par)putchar(')');
+
+	return -a;
 }
 
-static struct Type _Value = {"",mkVal,doVal,free};
-static struct Type _Add = {"+",mkBin,doAdd,freeBin};
-static struct Type _Sub = {"-",mkBin,doSub,freeBin};
-static struct Type _Minus ={"",mkUnary,doUnary,freeUnary};
+static struct Type _Value = {"",0,0,mkVal,doVal,free};
+static struct Type _Add = {"+",1,0,mkBin,doAdd,freeBin};
+static struct Type _Sub = {"-",1,1,mkBin,doSub,freeBin};
+static struct Type _Minus ={"",2,1,mkUnary,doUnary,freeUnary};
 
 const void *Value = &_Value;
 const void *Add = &_Add;
@@ -141,5 +176,5 @@ void delete (void *tree)
 
 void process (const void *tree)
 {
-	printf("\t%g\n",exec(tree));
+	printf("\t= %g\n",exec(tree,0,0));
 }
