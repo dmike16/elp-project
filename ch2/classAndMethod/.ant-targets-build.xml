@@ -2,3 +2,5 @@ Ant
 clean
 compile
 debug
+native
+run

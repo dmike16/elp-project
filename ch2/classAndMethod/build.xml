@@ -3,8 +3,9 @@
     Ant build File for my project
   </description>
 
-  <property name="src" location="src"/>
-  <property name="bin" location="bin"/>
+  <property name="src"  location="src"/>
+  <property name="h_jni" location="src/src_c/h_jni"/>
+  <property name="bin"  location="bin"/>
   <property name="dist" location="debug"/>
 
   <target name="init">
@@ -15,6 +16,14 @@
   <target name="compile" depends="init" description="compile the
     source code">
     <javac srcdir="${src}" destdir="${bin}" includeantruntime="false"/>
+  </target>
+
+  <target name="native" description="Generate jni header file">
+    <mkdir dir="${h_jni}"/>
+    <javah destdir="${h_jni}">
+	   <class  name="dmike16.javaprogramming.celestialBody"/>
+	   <classpath  path="${bin}"/>
+    </javah>
   </target>
 
   <target name="debug" depends="compile" description="genereta the jar
@@ -29,8 +38,33 @@
     </jar>
   </target>
 
+  <target name="check-shared-lib" unless="lib.exists">
+    <available property="lib.exists" file="${src}/src_c/libhelloBody.so"/>
+  </target>
+
+  <target name="help-me" depends="check-shared-lib"
+	  unless="lib.exists">
+    <echo>
+      Not Shared Libray present, necessary for native method.
+      Follow the instraction:
+      gcc -I[path-to]/jni.h -I[path-to]/linux/include -fPIC -c
+      [source].c
+      gcc -shared -Wl,-soname,lib[name].so.1 -o lib[name].so.1.0
+      [obj-files]
+      cp lib[name].so.1 lib[name].so
+      export LD_LIBRARY_PATH=[path-to lib[name].so]:${LD_LIBRARY:PATH}
+    </echo>
+
+  </target>
+
+  <target name="run" depends="help-me,compile,native" 
+	  description="Run the  jar" if="lib.exists">
+    <java jar="${dist}/lib/celestialBody-${DSTAMP}.jar" fork="true"/>
+  </target>
+
   <target name="clean" description="clean up">
     <delete dir="${bin}" />
     <delete dir="${dist}"/>
+    <delete dir="${h_jni}"/>
   </target>
 </project>
