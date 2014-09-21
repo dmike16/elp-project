@@ -1,0 +1,41 @@
+<project name="VeichleClass" default="debug" basedir=".">
+  <description>
+    Ant build File for my project
+  </description>
+
+  <property name="src"  location="src"/>
+  <property name="bin"  location="bin"/>
+  <property name="dist" location="debug"/>
+
+  <target name="init">
+    <tstamp/>
+    <mkdir dir="${bin}"/>
+  </target>
+
+  <target name="compile" depends="init" description="compile the
+    source code">
+    <javac srcdir="${src}" destdir="${bin}" includeantruntime="false"/>
+  </target>
+
+   <target name="debug" depends="compile" description="genereta the jar
+						      file">
+    <mkdir dir="${dist}/lib"/>
+    <jar jarfile="${dist}/lib/veichle-${DSTAMP}.jar"
+	 basedir="${bin}">
+      <manifest>
+	<attribute name="Main-Class"
+		   value="dmike.javaprogramming.Vehicle"/>
+      </manifest>
+    </jar>
+  </target>
+
+  <target name="run" depends="compile" 
+	  description="Run the  jar">
+    <java jar="${dist}/lib/veichle-${DSTAMP}.jar" fork="true"/>
+  </target>
+
+  <target name="clean" description="clean up">
+    <delete dir="${bin}" />
+    <delete dir="${dist}"/>
+  </target>
+</project>
