@@ -18,7 +18,7 @@ class GasTank extends EnergySource{
 	private final static String startType="Gas";
 }
 
-class VehicleBox {	
+class VehicleBox implements Cloneable{ 	
 	VehicleBox(){
 		ID=nextID++;
 	}
@@ -56,7 +56,23 @@ class VehicleBox {
 		type = source;
 		System.out.println(ID +": Energy Start Type: "+ type.startSource());
 	}
+	
+	public VehicleBox twoObj(){
+		try{
+			return clone();
+			}catch(CloneNotSupportedException e){
+				throw new InternalError(e.toString());
+			}
 		
+	}
+	
+	protected VehicleBox clone()throws CloneNotSupportedException{
+			VehicleBox nObj = (VehicleBox)super.clone();
+			nObj.owner = new String(this.owner);
+			return nObj;
+	}
+	
+	
 	private float currentSpeed=0;
 	private String owner="<unnamed>";
 	private final int ID;
@@ -84,6 +100,11 @@ class PassengerVehicle extends VehicleBox {
 	public long getSeats(){
 		return numbSeats;
 	}
+	
+	public PassengerVehicle clone() throws CloneNotSupportedException{
+		throw new CloneNotSupportedException();
+	}
+	
 	private long numbSeats=0;
 }
 
@@ -97,6 +118,8 @@ public class Vehicle {
 		BMW.setSpeed(230);
 		pass.setSpeed(130);
 		BMW.Start(new Battery());
+		VehicleBox nBMW = BMW.twoObj();
+		VehicleBox pss2 = pass.twoObj();
 		
 		System.out.println("ID: "+ Volvo.getID()+" Owner: "+ 
 		Volvo.getOwner()+ " Speed: "+Volvo.getSpeed());
@@ -106,5 +129,8 @@ public class Vehicle {
 				pass.getOwner()+ " Speed: "+pass.getSpeed()+
 				" N.Seats: "+ pass.getSeats());
 		System.out.println("NextID: "+ VehicleBox.getNextID());
+		System.out.println("ID: "+ nBMW.getID()+" Owner: "+ 
+			nBMW.getOwner()+ " Speed: "+nBMW.getSpeed());
 	}
+
 }
