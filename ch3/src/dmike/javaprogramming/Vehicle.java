@@ -1,17 +1,22 @@
 package dmike.javaprogramming;
 
-abstract class EnergySource{
-	abstract String startSource();
+//  abstract class EnergySource{
+//  abstract String startSource();
+//}
+
+
+interface EnergySource{
+	String startSource();
 }
 
-class Battery extends EnergySource{
+class Battery implements EnergySource{
 	public String startSource(){
 		return startType;
 	}
 	private final static String startType="Battery";
 }
 
-class GasTank extends EnergySource{
+class GasTank implements EnergySource{
 	public String startSource(){
 		return startType;
 	}
@@ -119,7 +124,7 @@ public class Vehicle {
 		pass.setSpeed(130);
 		BMW.Start(new Battery());
 		VehicleBox nBMW = BMW.twoObj();
-		VehicleBox pss2 = pass.twoObj();
+		//VehicleBox pss2 = pass.twoObj();
 		
 		System.out.println("ID: "+ Volvo.getID()+" Owner: "+ 
 		Volvo.getOwner()+ " Speed: "+Volvo.getSpeed());
