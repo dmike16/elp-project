@@ -11,7 +11,8 @@
 #include "mirror.hpp"
 
 //extern Mirror& thirdObj();
-extern Mirror* thirdObj();
+//extern Mirror* thirdObj();
+extern Mirror& thirdObj();
 
 
 #endif /* OBJ3_HPP_ */

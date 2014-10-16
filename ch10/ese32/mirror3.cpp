@@ -18,11 +18,16 @@
 #include "obj2.hpp"
 #include "obj3.hpp"
 
-Mirror* thirdObj(){
+
+Mirror& thirdObj(){
+	static Mirror obj3(secondObj());
+	return obj3;
+}
+/*Mirror* thirdObj(){
 	static Mirror obj3(secondObj());
 	return &obj3;
 }
-
+*/
 /*
  * Mirror& thirdObj(){
 	static Mirror obj3(secondObj());

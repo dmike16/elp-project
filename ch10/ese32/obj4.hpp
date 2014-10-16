@@ -11,7 +11,8 @@
 #include "mirror.hpp"
 
 //extern Mirror& forthObj();
-extern Mirror* forthObj();
+//extern Mirror* forthObj();
+extern Mirror& forthObj();
 
 
 

@@ -11,7 +11,8 @@
 #include "mirror.hpp"
 
 //extern Mirror& fifthObj();
-extern Mirror* fifthObj();
+//extern Mirror* fifthObj();
+extern Mirror& fifthObj();
 
 
 

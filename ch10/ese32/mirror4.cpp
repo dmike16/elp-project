@@ -18,11 +18,15 @@
 #include "obj3.hpp"
 #include "obj4.hpp"
 
-Mirror* forthObj(){
+Mirror& forthObj(){
+	static Mirror obj4(thirdObj());
+	return obj4;
+}
+/*Mirror* forthObj(){
 	static Mirror obj4(thirdObj());
 	return &obj4;
 }
-
+*/
 /*
  * Mirror& forthObj(){
 	static Mirror obj4(thirdObj());

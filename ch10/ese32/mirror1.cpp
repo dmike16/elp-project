@@ -15,11 +15,15 @@
 
 // Second solution use function to initialiate the static Object
 #include "obj.hpp"
-Mirror* firstObj(){
+/*Mirror* firstObj(){
 	static Mirror obj;
 	return &obj;
-}
+	}*/
 /*Mirror& firstObj(){
 	static Mirror obj;
 	return obj;
 }*/
+Mirror& firstObj(){
+	static Mirror obj;
+	return obj;
+}

@@ -15,9 +15,9 @@ public:
 		std::cout<< "In default init"<<std::endl;
 		mir = 0;
 	}
-	Mirror(Mirror *obj): status(false){
+	Mirror(Mirror& obj): status(false){
 		std::cout <<" in second init\n";
-		mir =obj;
+		mir =&obj;
 	}
 	~Mirror(){
 		std::cout<< "Performing clean up: "<< status<<std::endl;

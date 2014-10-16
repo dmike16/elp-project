@@ -20,11 +20,15 @@ using namespace std;
 #include "obj4.hpp"
 #include "obj5.hpp"
 
-Mirror* fifthObj(){
+Mirror& fifthObj(){
+	static Mirror obj5(forthObj());
+	return obj5;
+}
+/*Mirror* fifthObj(){
 	static Mirror obj5(forthObj());
 	return &obj5;
 }
-
+*/
 /*
  * Mirror& fifthObj(){
 	static Mirror obj5(forthObj());
@@ -35,9 +39,9 @@ Mirror* fifthObj(){
 int main(){
 	cout<< "in main"<<endl;
 	//cout<< "The result is: "<<obj5->test()<<endl;
-	//cout<< "The result is: "<<fifthObj().test()<<endl;
+	cout<< "The result is: "<<fifthObj().test()<<endl;
 	//cout<< "The status is:" <<fifthObj().get_status()<<endl;
-	cout<< "The result is: "<<fifthObj()->test()<<endl;
+	//cout<< "The result is: "<<fifthObj()->test()<<endl;
 	cout<<"leaving main"<<endl;
 	return 0;
 }
