@@ -1,0 +1,4 @@
+set(src mirror1.cpp mirror2.cpp mirror3.cpp mirror4.cpp mirror5.cpp
+  mirror.cpp)
+add_library(mirr OBJECT ${src})
+target_include_directories(include)

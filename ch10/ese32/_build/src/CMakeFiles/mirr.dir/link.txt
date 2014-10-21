@@ -1,0 +1,2 @@
+/usr/bin/ar cr libmirr.a  CMakeFiles/mirr.dir/mirror1.cpp.o CMakeFiles/mirr.dir/mirror2.cpp.o CMakeFiles/mirr.dir/mirror3.cpp.o CMakeFiles/mirr.dir/mirror4.cpp.o CMakeFiles/mirr.dir/mirror5.cpp.o
+/usr/bin/ranlib libmirr.a

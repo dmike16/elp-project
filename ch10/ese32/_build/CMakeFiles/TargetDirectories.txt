@@ -1,0 +1,3 @@
+/home/dmike/Development/elp-project/ch10/ese32/_build/CMakeFiles/Mirror.dir
+/home/dmike/Development/elp-project/ch10/ese32/_build/src/CMakeFiles/mirr.dir
+/home/dmike/Development/elp-project/ch10/ese32/_build/src/CMakeFiles/mirrIN.dir

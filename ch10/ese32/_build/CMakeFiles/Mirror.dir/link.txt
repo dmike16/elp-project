@@ -1,0 +1,1 @@
+/usr/bin/c++       src/CMakeFiles/mirr.dir/mirror.cpp.o  -o Mirror -rdynamic src/libmirrIN.a 
