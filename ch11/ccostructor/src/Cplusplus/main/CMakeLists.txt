@@ -1,0 +1,4 @@
+project(ccopy CXX)
+add_executable(${PROJECT_NAME} main.cpp howmany.cpp) 
+install(TARGETS ${PROJECT_NAME} 
+	RUNTIME DESTINATION bin)
