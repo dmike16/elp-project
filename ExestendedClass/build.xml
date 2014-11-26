@@ -1,0 +1,94 @@
+<project name="Stem" default="jar" basedir=".">
+  <description>
+    Ant build File for my project
+  </description>
+
+  <property file="project.properties"/>
+
+  <target name="init">
+    <tstamp/>
+    <mkdir dir="${built}"/>
+  </target>
+
+  <target name="compile" depends="init" description="compile the
+    source code">
+    <mkdir dir="${built.classesJava}"/>
+    <javac srcdir="${src.java}" destdir="${built.classesJava}" includeantruntime="false"/>
+  </target>
+
+   <target name="jar" depends="compile" description="genereta the jar
+						      file">
+    <mkdir dir="${built.jar}"/>
+    <jar jarfile="${built.jar}/${ant.project.name}-${version}.jar"
+	 basedir="${built.classesJava}">
+      <manifest>
+	<attribute name="Implementation-Title"
+		   value="Java Learing example"/>
+      </manifest>
+    </jar>
+  </target>
+  
+  <target name="compile-test" depends="jar"
+	  description="Compile the test source code">
+    
+    <mkdir dir="${built.classesTest}"/>
+    <echo file="${src.test}/${name.junit}.java">
+
+import org.junit.runner.JUnitCore;
+import org.junit.runner.Result;
+import org.junit.runner.notification.Failure;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
+import d.mike.test.SomeTest;
+
+public class ${name.junit} {
+  public static void main(String[] args){
+     Result result=JUnitCore.runClasses(SomeTest.class);
+     for (Failure failure : result.getFailures()){
+         System.out.println(failure.toString());
+      }
+      
+      System.out.println(result.wasSuccessful());
+  }
+}
+    </echo>
+    <javac srcdir="${src.test}" destdir="${built.classesTest}"
+	   includeantruntime="false">
+      <classpath>
+	<pathelement
+	    location="${built.jar}/${ant.project.name}-${version}.jar"/>
+	<pathelement
+	    location="/home/dmike/Development/Gradle_Home/gradle-2.1/lib/plugins/junit-4.11.jar"/>
+      </classpath>
+    </javac>
+
+  </target>
+
+    <target name="test" depends="compile-test"
+	  description="Test the  jar">
+      <echo message="Begin RUn"/>
+     <java classname="${name.junit}"
+	fork="true">
+      <classpath>
+	<pathelement
+	    location="/home/dmike/Development/Gradle_Home/gradle-2.1/lib/plugins/junit-4.11.jar"/>
+	<pathelement
+	    location="/home/dmike/Development/Gradle_Home/gradle-2.1/lib/plugins/hamcrest-core-1.3.jar"/>
+	<pathelement
+	    location="${built.jar}/${ant.project.name}-${version}.jar"/>
+	<pathelement 
+	    path="${built.classesTest}"/>
+      </classpath>
+    </java>
+    <delete file="${src.test}/${name.junit}"/>
+  </target>
+
+  <target name="dmJavadocs" description="Generating Documentation">
+	<mkdir dir="${built.docs}"/>
+	<javadoc sourcepath="${src.java}" destdir="${built.docs}"/>	
+  </target>	
+
+  <target name="clean" description="clean up">
+    <delete dir="${built}" />
+  </target>
+</project>

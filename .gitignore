@@ -46,3 +46,7 @@ pvmcm.creator.user
 
 #File Created
 arch/
+
+#IntelliJ IDEA file
+*.iml
+.idea/
