@@ -1,2 +1,2 @@
-add_subdirectory(Cplusplus)
+add_subdirectory(main)
 
