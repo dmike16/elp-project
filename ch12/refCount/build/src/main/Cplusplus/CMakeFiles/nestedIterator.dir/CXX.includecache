@@ -1,0 +1,22 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/dmike/Development/elp-project/ch12/refCount/src/main/Cplusplus/Dog.h
+iostream
+-
+string
+-
+
+/home/dmike/Development/elp-project/ch12/refCount/src/main/Cplusplus/doghouse.h
+Dog.h
+/home/dmike/Development/elp-project/ch12/refCount/src/main/Cplusplus/Dog.h
+
+/home/dmike/Development/elp-project/ch12/refCount/src/main/Cplusplus/main.cpp
+doghouse.h
+/home/dmike/Development/elp-project/ch12/refCount/src/main/Cplusplus/doghouse.h
+
