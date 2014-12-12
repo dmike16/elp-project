@@ -27,12 +27,20 @@ h1{
 	border: 1px solid #0000FF;
 }
 
-header{
+header  {
 	height:119px;
-	padding:119px 16px 0px;
+	padding:119px 40px 0px;
+	background-color:#00bcd4;
 }
-header{background-color:#00bcd4;}
-header .header-title{
+
+header .wrapper {
+background-color:#00bcd4;
+	z-index:1;
+	/*top: 190px;
+	right: 150px;*/
+	/*position: fixed;*/
+	/*box-shadow: 0 2px 5px rgba(0,0,0,26);*/}
+header .wrapper .header-title{
 	color:#fff;
 	font-size:56px;
 	font-weight:400;
@@ -41,6 +49,11 @@ header .header-title{
 	overflow:hidden;
 	width:1160px;
 	white-space:nowrap;
+	*left:0;
+	right:0;
+	/*top: 155px;*/
+	/*position: fixed;*/
+	z-index: 2;
 }
 header .header-title span {
 	float: left;
@@ -48,4 +61,11 @@ header .header-title span {
 ul {
 	list-style-type: none;
 }
-
+footer .footer-grid{
+	clear:left;
+	background-color: #fff;
+	text-align: left;
+	padding: 20px;
+	height: 1%;
+	font-size: 0.75em;
+}
