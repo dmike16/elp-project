@@ -1,0 +1,1 @@
+/usr/bin/c++       CMakeFiles/MemoryAllocator.dir/main.cpp.o CMakeFiles/MemoryAllocator.dir/framis.cpp.o  -o MemoryAllocator -rdynamic 

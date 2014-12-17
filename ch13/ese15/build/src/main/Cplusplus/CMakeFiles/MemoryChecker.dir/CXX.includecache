@@ -1,0 +1,30 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/dmike/Development/elp-project/ch13/ese15/src/main/Cplusplus/main.cpp
+fstream
+-
+iostream
+-
+widget.h
+/home/dmike/Development/elp-project/ch13/ese15/src/main/Cplusplus/widget.h
+memorycheker.h
+/home/dmike/Development/elp-project/ch13/ese15/src/main/Cplusplus/memorycheker.h
+
+/home/dmike/Development/elp-project/ch13/ese15/src/main/Cplusplus/memorycheker.h
+widget.h
+/home/dmike/Development/elp-project/ch13/ese15/src/main/Cplusplus/widget.h
+
+/home/dmike/Development/elp-project/ch13/ese15/src/main/Cplusplus/widget.h
+fstream
+-
+new
+-
+vector
+-
+

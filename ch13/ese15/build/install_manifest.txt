@@ -1,0 +1,3 @@
+/usr/local/bin/MemoryChecker
+/usr/local/include/memorycheker.h
+/usr/local/include/widget.h

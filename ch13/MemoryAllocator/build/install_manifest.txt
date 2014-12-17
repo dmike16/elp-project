@@ -1,0 +1,2 @@
+/usr/local/bin/MemoryAllocator
+/usr/local/include/framis.h

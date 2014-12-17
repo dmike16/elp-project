@@ -1,0 +1,28 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/dmike/Development/elp-project/ch13/MemoryAllocator/src/main/Cplusplus/framis.cpp
+framis.h
+/home/dmike/Development/elp-project/ch13/MemoryAllocator/src/main/Cplusplus/framis.h
+
+/home/dmike/Development/elp-project/ch13/MemoryAllocator/src/main/Cplusplus/framis.h
+cstddef
+-
+fstream
+-
+new
+-
+
+/home/dmike/Development/elp-project/ch13/MemoryAllocator/src/main/Cplusplus/main.cpp
+fstream
+-
+iostream
+-
+framis.h
+/home/dmike/Development/elp-project/ch13/MemoryAllocator/src/main/Cplusplus/framis.h
+

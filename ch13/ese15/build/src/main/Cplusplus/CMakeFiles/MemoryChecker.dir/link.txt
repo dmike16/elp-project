@@ -1,0 +1,1 @@
+/usr/bin/c++       CMakeFiles/MemoryChecker.dir/main.cpp.o CMakeFiles/MemoryChecker.dir/memorycheker.cpp.o CMakeFiles/MemoryChecker.dir/widget.cpp.o  -o MemoryChecker -rdynamic 
