@@ -32,12 +32,12 @@ h1{
 header{
     height: 256px;
     padding: 115px 16px 0;
-    background-color: #C13B3B; /*#00bcd4;*/
+    background-color: #FF47B6; /*#C13B3B; /*#00bcd4;*/
 }
 
 .header-wrapper {
     padding-left: 240px;
-    background-color: #C13B3B; /*#00bcd4;*/
+    background-color: #FF47B6; /*#C13B3B; /*#00bcd4;*/
 }
 
 .header-wrapper .header-title{
@@ -88,7 +88,7 @@ footer .footer-grid{
     transition-delay: 0.1s;
     transition-duration: 0.2s;
     transition-property: transform;
-    transition-timing-function: cubic-beizer(0.4,0.2,1);
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .side-nav-wrapper {
@@ -107,17 +107,96 @@ footer .footer-grid{
 #side-nav #logo{
     border-bottom: 1px solid #e0e0e0;
     display: block;
+    height: 64px;
     position: relative;
     margin: auto;
-    padding: 12px 24px 10px 24px;
-    box-shadow: 0px 1px 5px rgba(0,0,0,26); 
+    padding: 12px 24px 10px 24px; 
 }
 
 #side-nav nav{
     font-size: 13px;
     padding: 12px 0 10px 0;
+    -webkit-transform: translateZ(0);
+    -moz-transform: translateZ(0);
+    -ms-transform: translateZ(0);
+    -o-transform: translateZ(0);
+    transform: translateZ(0);
+}
+#side-nav nav dt:focus{
+	background-color:#eee;
+	outline: 0;
+}
+/*#side-nav nav dt:focus + [role="tabpannel"]{
+	display: block;
+	visibility:visible;
+}*/
+#side-nav nav dt:focus + [role="tabpannel"]>dd{
+	display: block;
+	visibility:visible;
+	margin-top: 0px;
 }
 
+#side-nav nav .pannel  dd {
+    margin-top: -99px;
+    transition-delay: 0.1s;
+    transition-duration: 0.2s;
+    transition-property: margin-top;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.4, 1);
+}
+/*.pannel{
+	display:none;
+	visibility: hidden;
+}*/
+#side-nav nav dl dt {
+	border-left: 2px solid transparent;
+	color: #333;
+	font-weight: 700;
+	margin-top: 0;
+	padding: 15px 0 15px 22px;
+	cursor: pointer;
+}
+
+dl{
+	line-height: 1em;
+}
+dt{
+	display: block;
+}
+dl dd {
+    margin:0;
+}
+#side-nav nav a.nav_selected{
+	color: #C13B3B;
+	font-weight:500;
+	letter-spacing: 0.1px;
+}
+#side-nav nav a{
+	border-left: 2px solid transparent;
+	display: block;
+	padding: 10px 24px 10px 46px;
+	white-space: nowrap;
+}
+
+a{
+    text-decoration: none;
+    background: transparent;
+    cursor: auto;
+}
+
+.side-nav-wrapper .legal {
+    border-top: 1px solid #e0e0e0;
+    bottom: 0;
+    color: #212121;
+    font-size: 13px;
+    height: 96px;
+    line-height: 24px;
+    padding:24px;
+    position: absolute;
+    width: 100%;
+}
+.side-nav-wrapper .license{
+    margin: 0;
+}
 html,body{
     backgroung-color: #f9f9f9;
     color: #212121;
