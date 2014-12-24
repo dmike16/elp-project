@@ -37,7 +37,6 @@ header{
 
 .header-wrapper {
     padding-left: 240px;
-    background-color: #FF47B6; /*#C13B3B; /*#00bcd4;*/
 }
 
 .header-wrapper .header-title{
@@ -56,14 +55,130 @@ header{
 ul {
 	list-style-type: none;
 }
-footer .footer-grid{
-	clear:left;
-	background-color: #fff;
-	text-align: left;
-	padding: 20px;
-	height: 1%;
-	font-size: 0.75em;
+footer{
+    padding-left: 0;
+    z-index: 0;
 }
+
+footer{
+    clear: left;
+    height: 96px;
+    padding-left: 0;
+    position: relative;
+    width: 100%;
+    -webkit-transition: padding-left 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    -moz-transition: padding-left 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: padding-left 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+footer .footer-grid{
+	width: 1160px;
+	height: 100%;
+	margin:auto;
+	z-index: 20;
+}
+
+footer .footer-L {
+    -webkit-transform: translateX(0px);
+    -moz-transform: translateX(0px);
+    -ms-transform: translateX(0px);
+    -o-transform: translateX(0px);
+    transform: translateX(0px);
+}
+
+footer .footer-L {
+    height: 100%;
+    left: 0px;
+    position: absolute;
+    top: 0;
+    width: 50.1%;
+    z-index: -1;
+    -webkit-transform: translateX(120px);
+    -moz-transform: translateX(120px);
+    -ms-transform: translateX(120px);
+    -o-transform: translateX(120px);
+    transform: translateX(120px);
+    -webkit-transition: -webkit-transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    -moz-transition: -moz-transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+footer, .footer-L , .footer-R{
+    background-color: #FF47B6;
+}
+footer .footer-grid .footer-grid-L {
+    height: 100%;
+    float: left;
+    width: 50%;
+}
+
+footer .footer-R {
+    -webkit-transform: translateX(0px);
+    -moz-transform: translateX(0px);
+    -ms-transform: translateX(0px);
+    -o-transform: translateX(0px);
+    transform: translateX(0px);
+}
+
+footer .footer-R {
+    float: left;
+    height: 100%;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 50%;
+    z-index: -1;
+    -webkit-transform: translateX(120px);
+    -moz-transform: translateX(120px);
+    -ms-transform: translateX(120px);
+    -o-transform: translateX(120px);
+    transform: translateX(120px);
+    -webkit-transition: -webkit-transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    -moz-transition: -moz-transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+footer .footer-grid .footer-grid-R {
+    height: 100%;
+    float: right;
+    text-align: right;
+    width: 50%;
+}
+footer .footer-grid .footer-grid-R .footer-text {
+    display: inline-block;
+    font-size: 20px;
+    font-weight: 500;
+    -webkit-font-smoothing: antialiased;
+    height: 100%;
+    padding-top: 24px;
+    line-height: 24px;
+    width: 100%;
+    color: #fff;
+}
+
+footer .footer-grid .footer-grid-R .footer-text span {
+    font-size:15px;
+    line-height: 18px;
+    margin-bottom: 1px;
+    color: rgba(255,255,255,0,55);
+}
+
+footer .footer-grid .footer-grid-R .footer-text img {
+    float: right;
+    margin-left: 10px;
+    padding-top: 23px;
+    width: 24px;
+}
+img {
+    margin: 0;
+    max-widht: 100%;
+    border: 0;
+}
+
+a:active, a:hover {
+    outline: 0;
+}
+
 #side-nav {
     bottom: 0;
     display:block;
@@ -72,6 +187,7 @@ footer .footer-grid{
     top: 0;
     color: #333;
     background: #fff;
+    box-shadow:0.6px 0px 5px rgba(0,0,0,26);
     border-right: 1px solid rgba(0,0,0,0.14);
     z-index: 1;
     position:fixed;
@@ -200,7 +316,8 @@ a{
 html,body{
     backgroung-color: #f9f9f9;
     color: #212121;
-    overflow: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
 }
@@ -208,4 +325,20 @@ html,body{
 *{
     -moz-box-sizing: preserv-3d;
     box-sizing:border-box;
+}
+
+@media screen and (max-width: 1280px){
+    #side-nav {
+	-webkit-transform: translateX(-240px);
+	-moz-transform: translateX(-240px);
+	-ms-transform: translateX(-240px);
+	transform: translateX(-240px);
+	-webkit-transform-style: preserve-3d;
+	-moz-transform-style: preserve-3d;
+	-ms-transform-style: preserve-3d;
+	transform-style: preserve-3d;
+	}
+    .header-wrapper {
+	padding-left: 0;
+    }
 }
