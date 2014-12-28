@@ -2,6 +2,7 @@
 <html>
   <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1, width=device-width">
     <title>HTML Learning | Index Page</title>
     <link rel="stylesheet" type="text/css" href="style.css">
     <link rel="stylesheet" type="text/css" href="RobotoDraft.css">
@@ -14,7 +15,7 @@
     <header>
       <div class="header-wrapper">
 	  <div class="header-title">
-	    <span> LaTex Class</span>
+	    <span> Filtering Algorithm</span>
 	  </div>
       </div>
     </header>
@@ -30,7 +31,8 @@
 	  <dl role="tablist">
 	    
 	    <!-- First Tab --> 
-	    <dt id="tab1" tabindex="0" role="tab" aria-controls="pannel1" aria-expanded="false"> dmCV Template </dt>
+	    <dt id="tab1" tabindex="0" role="tab"
+	    aria-controls="pannel1" aria-expanded="false"> Filtering Algorithm </dt>
 	    <div id="pannel1" class="pannel" role="tabpannel" aria-labeledby="tab1" style="overflow:hidden;">
 	      <dd >
 	  	<a class="nav_selected" href="#">Introduction</a>
@@ -38,36 +40,51 @@
 	    </div>
 
 	 <!-- Second Tab -->   
-	    <dt id="tab1" tabindex="0" role="tab" aria-controls="pannel2" aria-expanded="false"> What is dmCV? </dt>
+	    <dt id="tab1" tabindex="0" role="tab"
+	    aria-controls="pannel2" aria-expanded="false"> Geometric Background </dt>
 	    <div id="pannel2" class="pannel" role="tabpannel" aria-labeledby="tab2" style="overflow:hidden;">
 	      <dd>
 	  	<a class="nav_selected"
-	  	   href="#"> Name Origin</a>
+	  	   href="#"> Name Chapter 1</a>
 	  	<a class="nav_selected"
-	  	   href="#"> Programming
-	  	  Language Used</a>
+	  	   href="#"> Name Chapter 2</a>
 	  	<a class="nav_selected"
-	  	   href="#"> Why did you made it?</a>
+	  	   href="#"> Name Chapter 3</a>
 	      </dd>
 	    </div>
 
 	    <!-- Third Tab -->
 	    <dt id="tab3" tabindex="0" role="tab"
-	    aria-controls="pannel3" aria-expanded="false"> Style </dt>
+	    aria-controls="pannel3" aria-expanded="false"> Viscosity Solution </dt>
 	    <div id="pannel3" class="pannel" role="tabpannel" aria-labeledby="tab3" style="overflow:hidden;">
 	      <dd>
-	  	    <a class="nav_selected" href="#">Layout Concepts</a>
+	  	    <a class="nav_selected" href="#">Name Chapter 1</a>
+	      	    <a class="nav_selected" href="#">Name Chapter 2</a>
+	       	    <a class="nav_selected" href="#">Name Chapter 3</a>
 	      </dd>
 	    </div>
 	    
 	    <!-- Forth -->
 	    <dt id="tab4" tabindex="0" role="tab"
-	    aria-controls="pannel4" aria-expanded="false"> How Use It</dt>
+	    aria-controls="pannel4" aria-expanded="false">
+	    Semi-Lagrangian Scheme</dt>
 	    <div id="pannel4" class="pannel" role="tabpannel" aria-labeledby="tab4" style="overflow:hidden;">
 	      <dd >
-		<a class="nav_selected" href="#">Options</a>	
-	  	<a class="nav_selected" href="#">Commands</a>
-		<a class="nav_selected" href="#">Enviroments</a>
+		<a class="nav_selected" href="#">1</a>	
+	  	<a class="nav_selected" href="#">2</a>
+		<a class="nav_selected" href="#">3</a>
+	      </dd>
+	    </div>
+
+	    <!-- Fifth -->
+	    <dt id="tab5" tabindex="0" role="tab"
+	    aria-controls="pannel5" aria-expanded="false">
+	    Numerical Tests</dt>
+	    <div id="pannel5" class="pannel" role="tabpannel" aria-labeledby="tab5" style="overflow:hidden;">
+	      <dd >
+		<a class="nav_selected" href="#">1</a>	
+	  	<a class="nav_selected" href="#">2</a>
+		<a class="nav_selected" href="#">3</a>
 	      </dd>
 	    </div>
 
@@ -83,8 +100,171 @@
 
     <!-- Chapter Content -->
     <div id="grid-cont">
-      <section class="">
-	 &nbsp
+      <section class="grid_outer chapter">
+	 <h1 class="chapter-title">Introduction</h1>
+	 <div class="chapter-content">
+	   <div class="chapter-intro">
+	     Un campo della matematica che in questi anni si sta sviluppando
+	     notevolmente, è quello che si occupa del trattamento delle immagini
+	     sia 2D che 3D. Se da un lato sono migliorati gli strumenti di
+	     acquisizione delle stesse (come  scanner 2D/3D), dall'altro si sta
+	     sviluppando sempre più l'idea, già da anni consolidata,
+	     di utilizzare 
+	     equazioni alle derivate parziali (PDE) nel trattamento delle
+	     immagini.   
+	   </div>
+	   <nav class="chapter-toc">
+	     <h1>Contents</h1>
+	     <ul>
+	       <li>
+		 <a href="#thesisIdea">Idea</a>
+	       </li>
+	       <li>
+		 <a href="#thesisStructure">Strutture Test</a>
+	       </li>
+	     </ul>
+	     </nav>
+	   <div class="article-list">
+	     <div id="thesisIdea" class="article">
+	       <h2 class="article-title">Idea Principale</h2>
+	       <div class="article-content">
+		 <div class="module-list">
+		   <div>
+		     <section class="moduleA1">
+		       <div class="module-body">
+			 <p>
+			   L'idea si basa sul concetto di <em>
+			     scale-space</em> o  
+			   <em>rappresentazione multiscala</em>, in
+			   cui l'immagine 
+			   iniziale <i>u<sub>0</sub>(x)</i> viene
+			   racchiusa in una 
+			     famiglia <i>u(x,t)</i>, con 
+	     <i>t&#8712 R<sup>+</sup></i> parametrizzante la
+	     scala, attraverso 
+	     l'azione di un 
+	     <em>kernel</em> (filtro) <i>K(&#8901,t)</i>. Uno dei filtri più
+	     usati  e studiati è quello <em>gaussiano</em>, in questo
+	     caso  <i>u(x,t)</i> 
+	     è definita dalla convoluzione del filtro con $u_0(x)$ e può essere
+	     vista come la soluzione dell'equazione del calore con
+	     dato iniziale <i>u<sub>0</sub>(x)</i> 
+	     <br>
+	     <i>u<sub>t</sub>=&#916 u</i>.
+	     <br>
+	     Quindi il fatto chiave è che uno <em>scale-space</em> può essere
+	     ottenuto come una soluzione di un'equazione di evoluzione alle
+	     derivate parziali. Questo concetto è alla base di molte
+	     applicazioni 
+	     nella computer grafica e nell'analisi dell'immagini, in modo
+	     particolare può essere usato per processi di
+	     <em>denoising</em> di un immagine.    
+ 	     E' noto che quando acquisiamo o inviamo un'immagine questa
+	     si può deteriorare, cioè  viene aggiunto del
+	     <em>rumore</em>, e quindi 
+	     abbiamo bisogno di filtrarla per eliminare le discontinuità. Il
+	     modello di filtraggio per immagini 3D che presentiamo in questo
+	     lavoro, si basa su uno dei flussi più studiati nella
+	     letteratura, il 
+	     flusso per curvatura media. Questo, tuttavia presenta dei
+	     limiti, in 
+	     quanto è stato dimostrato che superfici convesse evolvono
+	     in un punto, 
+	     mentre superfici non convesse possono subire dei
+	     cambiamenti topologici 
+	     generando delle singolarità. Il colasso in un punto è, come si può
+	     intuire, un aspetto limitante nel denoising soprattutto
+	     quando abbiamo 
+	     a che fare con rumore che per essere eliminato necessita
+	     di molte iterazioni 
+	     di filtraggio. Nel lavoro di Sapiro \cite[][]{gui:sapiro}, il
+	     flusso per curvatura media è stato riscritto in modo tale da
+	     conservare il volume, riuscendo a superare il collasso in un
+	     punto. Tramite la rappresentaizone \emph{level-set} delle superfici
+	     introdotta da Oscher e Sethian, abbiamo riscritto l'equazione per
+	     curvatura media che preserva il volume ottenendo un PDE
+	     parabolico non 
+	     lineare, con  flusso formato da due termini di cui uno
+	     descrive l'evoluzione  per curvatura media e l'altro è un
+	     termine di 
+	     trasporto che conserva il volume. Il problema risulta ben
+	     posto nella 
+	     classe  delle soluzioni viscose; anche se, eccezion
+	     fatta per alcuni casi particolari, ancora non sono stati raggiunti
+
+             risultati definitivi sull'esistenza e unicità delle
+	     soluzioni nel caso della nostra equazione. 
+	     Discretizzando tale equazione con uno schema 
+	     Semi-Lagrangiano e un schema <em>ad hoc</em> nel caso di gradiente 
+	     nullo abbiamo ralizzato un algoritmo di filtraggio (scritto
+in <em>C-Language</em>) che preserva il volume. Abbiamo iniziato a
+	     testarlo sull'evoluzione di superfici geometriche, prive di rumore,
+	     confrontandolo con lo schema del moto
+per curvatura media classico (MCM) e verificando che il volume viene
+	     preservato. Una volta constatato il correto funzionamento
+	     del metodo, 
+	     siamo passati al filtraggio di superfici 3D, su cui è
+	     stato aggiunto 
+	     del rumore, simulato sia con una distribuzione gaussiana (tecnica
+	     standard) sia con una funzione che aggiunge dei dischi di rumore
+random. Nel caso di superfici geometriche, si riesce a ripulire la
+	     figura superando i limiti dello schema classico, tra cui
+	     il collasso 
+	     in un punto di superfici convesse ed a ritardare i
+	     cambiamenti topologici che 
+	     emergono per quelle non convesse, come nel caso del
+	     manubrio; mentre 
+	     sono rimasti i fenomeni di smussamento dei contorni tipici di MCM.
+	     Nel caso dell'immagine reale, su cui l'abbiamo testato, non sono
+emerse troppe differenze a causa dell'impossibilità di effettuare troppe
+	     iterazioni.
+			 </p>
+		       </div>
+		     </section>
+		   </div>
+		 </div>
+	       </div>
+	     </div>
+	     </div>
+	   <div id="thesisStructure" class="article">
+	     <h2 class="article-title">Struttura della Tesi</h2>
+	     <div class="article-content">
+	       <div class="module-list">
+		 <div>
+		   <section class="moduleA1">
+		     <div class="module-body">
+		       <p>
+			 La tesi è strutturata come segue: nel Capitolo
+	     <span> <a href="#chapterOne">§1</a></span> abbiamo 
+	     richiamato alcune nozioni sulle superfici in forma level-set,
+	     presentato l'equazione di evoluzione per curvatura media,
+	     calcolato il termine che ci conserva il volume e
+	     riscritto il tutto in formulazione level-set.    
+	     Nel Capitolo <span> <a href="#chapterTwo">§2</a></span>,
+	     abbiamo esposto i concetti 
+	     realitivi a soluzioni di viscosità, riportando alcuni teoremi di
+	     esistenza e unicità in casi particolari, necessari per fornire un
+	     robusto background teorico alla nostra equazione. Lo
+	     schema MCM e la sua 
+	     versione che preserva il volume (VPMCM) sono stati ottenuti nel
+	     Capitolo <span> <a href="#chapterThree">§3</a></span>,
+	     riportando anche il conto per la 
+	     consistanza di MCM e di una versione semplificata di
+	     VPMCM. Infine nel 
+	     Capitolo <span> <a href="#chapterFour">§4</a></span>
+	     abbiamo sia mostato il buon comportamento 
+	     dello schema VPMCM nel caso di superfici geometriche, sia
+	     in presenza 
+	     che in assenza di rumore, e testato su di un'immagine
+	     reale riportando le dovute considerazioni.
+			 </p>
+		     </div>
+		   </section>
+		 </div>
+	       </div>
+	     </div>
+	   </div>
+	 </div>
       </section>
     </div>
     <!-- Footer -->
@@ -98,7 +278,7 @@
 	    <img class="arrow-L" alt src="arrow.svg">
 	    <span>Next</span>
 	    <div>
-	      What is dmCV ?
+	      Geometric Background
 	    </div>
 	  </a>
 	</div>
