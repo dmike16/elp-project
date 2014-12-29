@@ -32,7 +32,7 @@ h1{
 header{
     height: 256px;
     padding: 115px 16px 0;
-    background-color: /*#FF47B6;*/ #C13B3B; /*#00bcd4;*/
+    background-color: #C13B3B;
 }
 
 .header-wrapper {
@@ -57,6 +57,49 @@ header{
 }
 ul {
 	list-style-type: none;
+}
+
+button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    -o-appearance: none;
+    appearance: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select:none;
+    cursor: pointer;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+button {
+    -webkit-font-smoothing: antialiased;
+    font-size: 1em;
+    font-weight: bold;
+    line-height: 1em;
+    text-transform: none;
+    padding: 1px 6px;
+}
+
+.clubSandwich-button{
+    background: transparent center center no-repeat;
+    background-size: 24px 24px;
+    border: 0;
+    display: block;
+    height: 48px;
+    overflow: hidden;
+    text-indent: -9999px;
+    top: 8px;
+    width: 48px;
+    z-index:2;
+    position:absolute;
+}
+
+.clubSandwich-button {
+    background-image: url("clubSandwich.svg");
+    left: 12px;
 }
 
 footer{
@@ -456,6 +499,7 @@ li{
 }
 @media screen and (max-width: 1479px){
     #side-nav {
+	visibility: hidden;
 	-webkit-transform: translateX(-240px);
 	-moz-transform: translateX(-240px);
 	-ms-transform: translateX(-240px);
@@ -592,6 +636,10 @@ li{
 	width: 360px;
 	margin-top: 40px;
     }
+    .clubSandwich-button {
+	left: 4px;
+	top: 4px;
+    }
 }
 
 @media screen and (max-width: 360px){
@@ -627,5 +675,10 @@ li{
 	margin-top: 40px;
 	padding-left:10px;
 	padding-right:10px;
+    }
+}
+@medi screen and (min-width:1480px){
+    .clubSandwich-button {
+	display: none;
     }
 }
