@@ -529,6 +529,7 @@ li{
 	visibility:visible;
     }
     .clubSandwich-button:focus{
+    box-shadow: 2px 1px rgba(0,0,0,0.26);
 	-webkit-transform: rotate(90deg);
 	-moz-transform: rotate(90deg);
 	-ms-transform: rotate(90deg);
