@@ -76,6 +76,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, 
     float: left;
     padding-left: 256px;
     padding-bottom: 56px;
+    overflow: hidden;
 
 }
 .grid-content .chapter {
