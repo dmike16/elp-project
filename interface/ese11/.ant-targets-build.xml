@@ -1,0 +1,7 @@
+Ant
+clean
+compile
+compile-test
+dmJavadocs
+jar
+test
