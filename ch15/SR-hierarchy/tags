@@ -1,0 +1,56 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+Link	src/main/Cplusplus/OStack.hpp	/^            Link(Object* dat,Link* nxt): data(dat),next(nxt){}$/;"	f	struct:Stack::Link	access:public	signature:(Object* dat,Link* nxt)
+Link	src/main/Cplusplus/OStack.hpp	/^        struct Link{$/;"	s	class:Stack	access:private
+MyString	src/main/Cplusplus/main.cpp	/^        MyString(string s): string(s){}$/;"	f	class:MyString	access:public	signature:(string s)
+MyString	src/main/Cplusplus/main.cpp	/^class MyString: public string, public Object{$/;"	c	file:	inherits:string,Object
+MyString::MyString	src/main/Cplusplus/main.cpp	/^        MyString(string s): string(s){}$/;"	f	class:MyString	access:public	signature:(string s)
+MyString::endl	src/main/Cplusplus/main.cpp	/^            cout<<"deleting string:"<<*this<<endl;$/;"	l
+MyString::~MyString	src/main/Cplusplus/main.cpp	/^        ~MyString(){$/;"	f	class:MyString	access:public	signature:()
+OSTACK_H	src/main/Cplusplus/OStack.hpp	20;"	d
+Object	src/main/Cplusplus/OStack.hpp	/^class Object {$/;"	c
+Object::~Object	src/main/Cplusplus/OStack.cpp	/^Object::~Object(){}$/;"	f	class:Object	signature:()
+Object::~Object	src/main/Cplusplus/OStack.hpp	/^        virtual ~Object()=0;$/;"	p	class:Object	access:public	signature:()
+Stack	src/main/Cplusplus/OStack.hpp	/^        Stack(): head(0){}$/;"	f	class:Stack	access:public	signature:()
+Stack	src/main/Cplusplus/OStack.hpp	/^class Stack{$/;"	c
+Stack::Link	src/main/Cplusplus/OStack.hpp	/^        struct Link{$/;"	s	class:Stack	access:private
+Stack::Link::Link	src/main/Cplusplus/OStack.hpp	/^            Link(Object* dat,Link* nxt): data(dat),next(nxt){}$/;"	f	struct:Stack::Link	access:public	signature:(Object* dat,Link* nxt)
+Stack::Link::data	src/main/Cplusplus/OStack.hpp	/^            Object *data;$/;"	m	struct:Stack::Link	access:public
+Stack::Link::next	src/main/Cplusplus/OStack.hpp	/^            Link* next;$/;"	m	struct:Stack::Link	access:public
+Stack::Stack	src/main/Cplusplus/OStack.hpp	/^        Stack(): head(0){}$/;"	f	class:Stack	access:public	signature:()
+Stack::head	src/main/Cplusplus/OStack.hpp	/^        }* head;$/;"	m	class:Stack	typeref:struct:Stack::Link	access:private
+Stack::peek	src/main/Cplusplus/OStack.cpp	/^Object* Stack::peek()const{$/;"	f	class:Stack	signature:() const
+Stack::peek	src/main/Cplusplus/OStack.hpp	/^        Object* peek() const;$/;"	p	class:Stack	access:public	signature:() const
+Stack::pop	src/main/Cplusplus/OStack.cpp	/^Object* Stack::pop(){$/;"	f	class:Stack	signature:()
+Stack::pop	src/main/Cplusplus/OStack.hpp	/^        Object* pop();$/;"	p	class:Stack	access:public	signature:()
+Stack::push	src/main/Cplusplus/OStack.cpp	/^void Stack::push(Object* dat){$/;"	f	class:Stack	signature:(Object* dat)
+Stack::push	src/main/Cplusplus/OStack.hpp	/^        void push(Object *dat);$/;"	p	class:Stack	access:public	signature:(Object *dat)
+Stack::~Stack	src/main/Cplusplus/OStack.hpp	/^        ~Stack(){$/;"	f	class:Stack	access:public	signature:()
+data	src/main/Cplusplus/OStack.hpp	/^            Object *data;$/;"	m	struct:Stack::Link	access:public
+endl	src/main/Cplusplus/main.cpp	/^            cout<<"deleting string:"<<*this<<endl;$/;"	l
+endl	src/main/Cplusplus/main.cpp	/^            cout<<*s<<endl;$/;"	l
+endl	src/main/Cplusplus/main.cpp	/^        cout << "Letting the decostructor do the rest:"<<endl;$/;"	l
+endl	src/main/Cplusplus/main.cpp	/^        cout<<"Wrong nmb Arguments"<<endl;$/;"	l
+head	src/main/Cplusplus/OStack.hpp	/^        }* head;$/;"	m	class:Stack	typeref:struct:Stack::Link	access:private
+in	src/main/Cplusplus/main.cpp	/^        ifstream in(argv[1]);$/;"	p	file:	signature:(argv[1])
+line	src/main/Cplusplus/main.cpp	/^        string line;$/;"	l
+main	src/main/Cplusplus/main.cpp	/^int main(int argc, char* argv[]){$/;"	f	signature:(int argc, char* argv[])
+next	src/main/Cplusplus/OStack.hpp	/^            Link* next;$/;"	m	struct:Stack::Link	access:public
+oldHead	src/main/Cplusplus/OStack.cpp	/^    Link* oldHead = head;$/;"	l
+peek	src/main/Cplusplus/OStack.cpp	/^Object* Stack::peek()const{$/;"	f	class:Stack	signature:() const
+peek	src/main/Cplusplus/OStack.hpp	/^        Object* peek() const;$/;"	p	class:Stack	access:public	signature:() const
+pop	src/main/Cplusplus/OStack.cpp	/^Object* Stack::pop(){$/;"	f	class:Stack	signature:()
+pop	src/main/Cplusplus/OStack.hpp	/^        Object* pop();$/;"	p	class:Stack	access:public	signature:()
+push	src/main/Cplusplus/OStack.cpp	/^void Stack::push(Object* dat){$/;"	f	class:Stack	signature:(Object* dat)
+push	src/main/Cplusplus/OStack.hpp	/^        void push(Object *dat);$/;"	p	class:Stack	access:public	signature:(Object *dat)
+push	src/main/Cplusplus/main.cpp	/^            text.push(new MyString(line));$/;"	p	file:	signature:(new MyString(line))
+s	src/main/Cplusplus/main.cpp	/^        MyString* s;$/;"	l
+text	src/main/Cplusplus/main.cpp	/^        Stack text;$/;"	l
+~MyString	src/main/Cplusplus/main.cpp	/^        ~MyString(){$/;"	f	class:MyString	access:public	signature:()
+~Object	src/main/Cplusplus/OStack.cpp	/^Object::~Object(){}$/;"	f	class:Object	signature:()
+~Object	src/main/Cplusplus/OStack.hpp	/^        virtual ~Object()=0;$/;"	p	class:Object	access:public	signature:()
+~Stack	src/main/Cplusplus/OStack.hpp	/^        ~Stack(){$/;"	f	class:Stack	access:public	signature:()
