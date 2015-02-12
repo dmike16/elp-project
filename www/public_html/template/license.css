@@ -336,7 +336,7 @@ footer .footer-grid .footer-grid-R .footer-text span {
     -moz-transform-style: preserve-3d;
     -ms-transform-style: preserve-3d;
     transform-style: preserve-3d;
-    margin-top: -150px;
+    margin-top: -150%;
     transition: margin-top 0.2s 0.1s cubic-bezier(0.4, 0, 0.2, 1);
     -webkit-transition: margin-top 0.2s 0.1s cubic-bezier(0.4,0,0.2,1);
 }
@@ -347,7 +347,7 @@ footer .footer-grid .footer-grid-R .footer-text span {
 .chapter button.open-Me:focus{
     box-shadow: none;
     outline:0;
-    text-indent: -9999px;
+    text-indent: -99px;
 }
 button::-moz-focus-inner{
     border: 0;

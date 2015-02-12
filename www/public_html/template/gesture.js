@@ -1,4 +1,5 @@
 /* JavaScript Learning*/
+/* Class Example
 function Polygon(iSides){
     this.sides=iSides;
     if(typeof Polygon._initialized == "undefined"){
@@ -41,3 +42,59 @@ alert(tri.getArea());
 
 alert(rec.sides);
 alert(rec.getArea());
+*/
+
+/*
+ * Popup window
+var oNewWin=window.open("license.html","_blank","height=150,width=300i,resizable=yes");
+oNewWin.moveTo(0,0);
+oNewWin.resizeTo(300,500);*/
+
+
+/*
+ * Confirm Popup
+ if(confirm("Are you sure")){
+    alert("I'm so glad you're sure");
+}else{
+    alert("i'm sorry !!!!!");
+}*/
+
+/* prompt
+var sResult = prompt("What's your name",",");
+if(sResult != null){
+    alert("welcom, " + sResult);
+}*/
+
+
+/* Status bar
+window.status="You ar createa";
+*/
+/* Timeout and Interval
+//var iTimeoutId = setTimeout(function(){alert("Hello ZIO"); },2000);
+//clearTimeout(iTimeoutId);
+var iNum = 0;
+var iMax = 10;
+var iIntervalID;
+
+function incNum(){
+    iNum++;
+    
+    if(iNum == iMax){
+        clearInterval(iIntervalID);
+    }
+    alert("Bella zio");
+}
+iIntervalID = setInterval(incNum, 1000);
+*/
+
+/* History
+alert(window.history.lenght);
+*/
+
+/* Open and Write on*/
+var oNewWin = window.open("about::blank", "newwindow","height=150,width=300,top=10,left=10,resizable=yes");
+
+oNewWin.document.open();
+oNewWin.document.write("<html><head><title>New Window</title></head>");
+oNewWin.document.write("<body>This is a Nea Window</body></html>");
+oNewWin.document.close();
