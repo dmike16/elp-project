@@ -357,74 +357,110 @@ if(isMoz){
 
 var fnClick = function (){
     //alert(arguments[0].type);
-    var oSideNav = document.getElementById("side-nav");
-    var oMask = document.getElementsByClassName("mask-modal")[0];
+    
+    var doc = document, oHTML = doc.documentElement
+    ,oSideNav = doc.getElementById("side-nav")
+    ,oMask = doc.getElementsByClassName("mask-modal")[0];
+
+    oHTML.setAttribute("style","overflow:hidden;");
     oSideNav.setAttribute("style","transform:translateX(0px);visibility:visible");
     oMask.setAttribute("style","visibility:visible;opacity:1.0;transition-delay:0;overflow:hidden;");
     oMask.addEventListener("wheel",fnDisable,false);
+    oMask = null,oSideNav=null,oHTML=null;
 };
 var fnClick1 = function (oEvent){
     oEvent.preventDefault();
-    var oSideNav = document.getElementById("side-nav");
-    var oMask = document.getElementsByClassName("mask-modal")[0];
+    var doc=document,oSideNav = doc.getElementById("side-nav")
+    ,oMask = doc.getElementsByClassName("mask-modal")[0]
+    ,oHTML=doc.documentElement;
 
+    oHTML.removeAttribute("style");
     oSideNav.removeAttribute("style");
     oMask.removeAttribute("style");
     oMask.removeEventListener("wheel",fnDisable,false);
+    oMask = null,oSideNav = null,oHTML=null;
 
 };
+
 var fnDisable = function (oEvent){
     oEvent.preventDefault();
 };
+
 var flag=0;
-var win = document.defaultView;
+var iOutHeight = this.outerHeight;
+var iLowBoundary = Math.floor((iOutHeight/100)*15)
+,iUpBoundary = Math.floor((iOutHeight/100)*25);
 
 var fnScroll = function (oEvent){
-   // oEvent.preventDefault();
+    oEvent.preventDefault();
 
-    var aHeader,oHeader,oHeaderWrap,oHeaderWrap1,oHeaderTitle;
-    var iScrollY = window.scrollY;
-   // console.log(flag + " " + iScrollY);
-        if(flag !== 2 || iScrollY<=155){
-        oHeaderTitle = document.getElementsByClassName("header-title")[0];
-        aHeader = document.getElementsByTagName("header");
+    var win=window;
+    var iScrollY = win.scrollY;
+    var iLb = iLowBoundary,iUb = iUpBoundary;
+
+    win.scrollTo(0,iScrollY);
+
+    if((flag !== 2 || iScrollY<=iUb)){
+        var doc,aHeader,oHeader,oHeader2,oHeaderWrap,oHeaderWrap1,oHeaderTitle;
+
+        doc=document;
+        oHeaderTitle = doc.getElementsByClassName("header-title")[0];
+        aHeader = doc.getElementsByTagName("header");
         oHeader = aHeader[0]; oHeader2=aHeader[1];
         oHeaderWrap = oHeader.firstElementChild;
         oHeaderWrap1= oHeader2.firstElementChild;
-    }
-        if(iScrollY > 75 && flag === 0){
+
+        if(iScrollY > iLb && iScrollY<=iUb && flag === 0){
             flag=1;
             oHeaderWrap.setAttribute("style","height:64px;left:72px;right:72px;top:0px;z-index:2;position:fixed;");
             oHeaderTitle.setAttribute("style","font-size:24px;line-height:64px;width:100%;");
             oHeaderWrap1.setAttribute("style","display:block;");
-        } else if(iScrollY > 155 && flag === 1){
-            flag = 2;
-            oHeader2.setAttribute("style","display:block;");
-            oHeader.setAttribute("style","box-shadow:0px 2px 5px rgba(0,0,0,0.26);left:0px;right:0px;top:-192px;z-index:1;position:fixed;");
-        
-    } else if(iScrollY <= 155 && iScrollY >75 && flag===2){
+        } else if(iScrollY > iUb){
+            if(flag===0){
+                flag =2;
+                oHeaderWrap.setAttribute("style","height:64px;left:72px;right:72px;top:0px;z-index:2;position:fixed;");
+                oHeaderTitle.setAttribute("style","font-size:24px;line-height:64px;width:100%;");
+                oHeaderWrap1.setAttribute("style","display:block;");
+                oHeader2.setAttribute("style","display:block;");
+                oHeader.setAttribute("style","box-shadow:0px 2px 5px rgba(0,0,0,0.26);left:0px;right:0px;top:-192px;z-index:1;position:fixed;");
+            } else  if (flag ===1){
+                flag = 2;
+                oHeader2.setAttribute("style","display:block;");
+                oHeader.setAttribute("style","box-shadow:0px 2px 5px rgba(0,0,0,0.26);left:0px;right:0px;top:-192px;z-index:1;position:fixed;");
+    }   
+    } else if(iScrollY <= iUb && iScrollY >iLb && flag===2){
             flag=1;
             oHeader.removeAttribute("style");
             oHeader2.removeAttribute("style");
-    } else if (iScrollY <=75 && flag===1){
-        flag=0;
-        oHeaderWrap.removeAttribute("style");
-        oHeaderTitle.removeAttribute("style");
+    } else if (iScrollY <=iLb){
+        if(flag === 2){
+            flag=0;
+            oHeader.removeAttribute("style");
+            oHeader2.removeAttribute("style");
+            oHeaderWrap.removeAttribute("style");
+            oHeaderTitle.removeAttribute("style");
+        } else if(flag ===1){
+            flag = 0;
+            oHeaderWrap.removeAttribute("style");
+            oHeaderTitle.removeAttribute("style");
+        }
+    }
+    oHeader=null,oHeader2=null,oHeaderWrap=null,oHeaderWrap1=null,oHeaderTitle =null;
    }
-   aHeader=null;oHeader=null;oHeaderWrap=null;oHeaderWrap1=null;oHeaderTitle=null;
 };
-var fnInit = function (){
+function AppInit(){
     var oButton = document.getElementsByClassName("clubSandwich-button")[0];
     var oMask = document.getElementsByClassName("mask-modal")[0];
+    var win=window;
 
     oButton.addEventListener("click",fnClick,false);
     oMask.addEventListener("click",fnClick1,false);
     oMask.addEventListener("touchstart",fnClick1,false);
-};
-win.addEventListener("load",fnInit,false);
-win.addEventListener("load",fnScroll,false);
-win.addEventListener("scroll",fnScroll,false);
-win = null;
+    oMask =null;oButton=null;
+
+    win.addEventListener("scroll",fnScroll,false);
+    win = null;
+}
 /*var My_app = My_app || {};
 My_app.module=(function(){
         var c = 5;
