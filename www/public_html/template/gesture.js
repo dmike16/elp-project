@@ -366,7 +366,7 @@ var fnClick = function (){
     oSideNav.setAttribute("style","transform:translateX(0px);visibility:visible");
     oMask.setAttribute("style","visibility:visible;opacity:1.0;transition-delay:0;overflow:hidden;");
     oMask.addEventListener("wheel",fnDisable,false);
-    oMask = null,oSideNav=null,oHTML=null;
+    oMask = null;oSideNav=null;oHTML=null;
 };
 var fnClick1 = function (oEvent){
     oEvent.preventDefault();
@@ -378,7 +378,7 @@ var fnClick1 = function (oEvent){
     oSideNav.removeAttribute("style");
     oMask.removeAttribute("style");
     oMask.removeEventListener("wheel",fnDisable,false);
-    oMask = null,oSideNav = null,oHTML=null;
+    oMask = null;oSideNav = null;oHTML=null;
 
 };
 
@@ -386,67 +386,74 @@ var fnDisable = function (oEvent){
     oEvent.preventDefault();
 };
 
-var flag=0;
+var flag=1;
 var iOutHeight = this.outerHeight;
-var iLowBoundary = Math.floor((iOutHeight/100)*15)
-,iUpBoundary = Math.floor((iOutHeight/100)*25);
+var iLowBoundary = Math.floor((iOutHeight/100)*12)
+,iUpBoundary = Math.floor((iOutHeight/100)*15);
+var doc=document;
+var oHeaderTitleg = doc.getElementsByClassName("header-title")[0];
+var aHeaderg = doc.getElementsByTagName("header");
+var oHeaderg = aHeaderg[0]; oHeader2g=aHeaderg[1];
+var oHeaderWrapg = oHeaderg.firstElementChild;
+var oHeaderWrap1g= oHeader2g.firstElementChild;
+aHeaderg=null;
 
-var fnScroll = function (oEvent){
-    oEvent.preventDefault();
+var fnHeaderTransition = function (bLB,aUPB,mB,fON,sON,tON){
+    
+        var oHeader=oHeaderg,oHeader2=oHeader2g
+        ,oHeaderWrap=oHeaderWrapg,oHeaderWrap1=oHeaderWrap1g
+        ,oHeaderTitle=oHeaderTitleg;
 
-    var win=window;
-    var iScrollY = win.scrollY;
-    var iLb = iLowBoundary,iUb = iUpBoundary;
-
-    win.scrollTo(0,iScrollY);
-
-    if((flag !== 2 || iScrollY<=iUb)){
-        var doc,aHeader,oHeader,oHeader2,oHeaderWrap,oHeaderWrap1,oHeaderTitle;
-
-        doc=document;
-        oHeaderTitle = doc.getElementsByClassName("header-title")[0];
-        aHeader = doc.getElementsByTagName("header");
-        oHeader = aHeader[0]; oHeader2=aHeader[1];
-        oHeaderWrap = oHeader.firstElementChild;
-        oHeaderWrap1= oHeader2.firstElementChild;
-
-        if(iScrollY > iLb && iScrollY<=iUb && flag === 0){
-            flag=1;
-            oHeaderWrap.setAttribute("style","height:64px;left:72px;right:72px;top:0px;z-index:2;position:fixed;");
-            oHeaderTitle.setAttribute("style","font-size:24px;line-height:64px;width:100%;");
-            oHeaderWrap1.setAttribute("style","display:block;");
-        } else if(iScrollY > iUb){
-            if(flag===0){
-                flag =2;
-                oHeaderWrap.setAttribute("style","height:64px;left:72px;right:72px;top:0px;z-index:2;position:fixed;");
-                oHeaderTitle.setAttribute("style","font-size:24px;line-height:64px;width:100%;");
-                oHeaderWrap1.setAttribute("style","display:block;");
-                oHeader2.setAttribute("style","display:block;");
-                oHeader.setAttribute("style","box-shadow:0px 2px 5px rgba(0,0,0,0.26);left:0px;right:0px;top:-192px;z-index:1;position:fixed;");
-            } else  if (flag ===1){
-                flag = 2;
-                oHeader2.setAttribute("style","display:block;");
-                oHeader.setAttribute("style","box-shadow:0px 2px 5px rgba(0,0,0,0.26);left:0px;right:0px;top:-192px;z-index:1;position:fixed;");
+        if(mB && fON){
+            flag <<= 1;
+            oHeaderWrap.style.cssText="height:64px;left:72px;right:72px;top:0px;z-index:2;position:fixed;";
+            oHeaderTitle.style.cssText="font-size:24px;line-height:64px;width:100%;";
+            oHeaderWrap1.style.cssText="display:block;";
+        } else if(aUPB){
+            if(fON){
+                flag <<=2;
+                oHeader.style.display ="none";
+                oHeaderWrap.style.cssText="height:64px;left:72px;right:72px;top:0px;z-index:2;position:fixed;";
+                oHeaderTitle.style.cssText="font-size:24px;line-height:64px;width:100%;";
+                oHeaderWrap1.style.display="block";
+                oHeader2.style.display="block";
+                oHeader.style.cssText="box-shadow:0px 2px 5px rgba(0,0,0,0.26);left:0px;right:0px;top:-192px;z-index:1;position:fixed;";
+            } else  if (sON){
+                flag <<=1;
+                oHeader2.style.display="block";
+                oHeader.style.cssText="box-shadow:0px 2px 5px rgba(0,0,0,0.26);left:0px;right:0px;top:-192px;z-index:1;position:fixed;";
     }   
-    } else if(iScrollY <= iUb && iScrollY >iLb && flag===2){
-            flag=1;
-            oHeader.removeAttribute("style");
-            oHeader2.removeAttribute("style");
-    } else if (iScrollY <=iLb){
-        if(flag === 2){
-            flag=0;
-            oHeader.removeAttribute("style");
-            oHeader2.removeAttribute("style");
-            oHeaderWrap.removeAttribute("style");
-            oHeaderTitle.removeAttribute("style");
-        } else if(flag ===1){
-            flag = 0;
-            oHeaderWrap.removeAttribute("style");
-            oHeaderTitle.removeAttribute("style");
+    } else if(mB && tON){
+            flag >>=1;
+            oHeader.style.cssText="";
+            oHeader2.style.cssText="";
+    } else if (bLB){
+        if(tON){
+            flag>>=2;
+            oHeader.style.display="none";
+            oHeaderWrap.style.cssText="";
+            oHeaderTitle.style.cssText="";
+            oHeader.style.cssText="";
+            oHeader2.style.cssText="";
+            } else if(sON){
+                flag>>=1;
+            oHeaderWrap.style.cssText="";
+            oHeaderTitle.style.cssText="";
         }
     }
-    oHeader=null,oHeader2=null,oHeaderWrap=null,oHeaderWrap1=null,oHeaderTitle =null;
-   }
+};
+var fnScroll = function(evt){
+    var iScrollY = window.scrollY;
+    var iLb = iLowBoundary,iUb = iUpBoundary;
+    var bLb = iScrollY <= iLb, bUb = iScrollY > iUpBoundary
+    ,bInM = (!bLb && !bUb);
+    var fByteON = flag & 1, sByteON = flag & 2,tByteON = flag & 4;
+    if((tByteON && bUb) || (fByteON && bLb) || (sByteON && bInM)){
+        return;
+    }
+    else {
+        fnHeaderTransition(bLb,bUb,bInM,fByteON,sByteON,tByteON);
+    }
 };
 function AppInit(){
     var oButton = document.getElementsByClassName("clubSandwich-button")[0];
@@ -459,6 +466,7 @@ function AppInit(){
     oMask =null;oButton=null;
 
     win.addEventListener("scroll",fnScroll,false);
+    win.onload=fnScroll;
     win = null;
 }
 /*var My_app = My_app || {};
