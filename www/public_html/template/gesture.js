@@ -397,13 +397,13 @@ var oHeaderg = aHeaderg[0]; oHeader2g=aHeaderg[1];
 var oHeaderWrapg = oHeaderg.firstElementChild;
 var oHeaderWrap1g= oHeader2g.firstElementChild;
 aHeaderg=null;
-
+var ticking=false;
 var fnHeaderTransition = function (bLB,aUPB,mB,fON,sON,tON){
     
         var oHeader=oHeaderg,oHeader2=oHeader2g
         ,oHeaderWrap=oHeaderWrapg,oHeaderWrap1=oHeaderWrap1g
         ,oHeaderTitle=oHeaderTitleg;
-
+        ticking = false;
         if(mB && fON){
             flag <<= 1;
             oHeaderWrap.style.cssText="height:64px;left:72px;right:72px;top:0px;z-index:2;position:fixed;";
@@ -421,7 +421,7 @@ var fnHeaderTransition = function (bLB,aUPB,mB,fON,sON,tON){
             } else  if (sON){
                 flag <<=1;
                 oHeader2.style.display="block";
-                oHeader.style.cssText="box-shadow:0px 2px 5px rgba(0,0,0,0.26);left:0px;right:0px;top:-192px;z-index:1;position:fixed;";
+                oHeader.style.cssText="box-shadow:0px 2px 5px rgba(0,0,0,0.26);left:0px;right:0px;top:-192px;z-index:1;position:fixed;-webkit-backface-visibility:hidden;-moz-backface-visibility:hidden;backface-visibility:hidden;";
     }   
     } else if(mB && tON){
             flag >>=1;
@@ -452,9 +452,18 @@ var fnScroll = function(evt){
         return;
     }
     else {
-        fnHeaderTransition(bLb,bUb,bInM,fByteON,sByteON,tByteON);
+        requestTick(bLb,bUb,bInM,fByteON,sByteON,tByteON);
     }
 };
+
+function requestTick(bLb,bUb,bInM,fByteON,sByteON,tByteON){
+    if(!ticking){
+        window.requestAnimationFrame(function(){
+            fnHeaderTransition(bLb,bUb,bInM,fByteON,sByteON,tByteON);
+        });
+        }
+        ticking = true;
+}
 function AppInit(){
     var oButton = document.getElementsByClassName("clubSandwich-button")[0];
     var oMask = document.getElementsByClassName("mask-modal")[0];

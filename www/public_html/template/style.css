@@ -33,7 +33,7 @@ h1{
 header{
     height: 256px;
     padding: 115px 16px 0;
-    background-color: #C13B3B;
+   background-color: #C13B3B;
 }
 
 .header-wrapper {
@@ -239,6 +239,9 @@ a:hover {
     position:fixed;
     overflow-x: hidden;
     overflow-y: auto;
+    -webkit-backface-visibility:hidden;
+    -moz-backface-visibility: hidden;
+    backface-visibility: hidden;
     -webkit-transform: translateZ(0);
     -moz-transform: translateZ(0);
     -ms-transform: translateZ(0);
