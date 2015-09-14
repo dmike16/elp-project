@@ -1,0 +1,31 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+CIRCLE_H	src/main/Cplusplus/Circle.hpp	19;"	d
+Circle	src/main/Cplusplus/Circle.hpp	/^    class Circle: public Shape {$/;"	c	namespace:shape
+Circles	src/main/Cplusplus/Shape.hpp	/^    enum Type {Circles,Squares};$/;"	e	enum:shape::Type
+SHAPE_H	src/main/Cplusplus/Shape.hpp	20;"	d
+SQUARE_H	src/main/Cplusplus/Square.hpp	19;"	d
+Shape	src/main/Cplusplus/Shape.hpp	/^    class Shape{$/;"	c	namespace:shape
+Square	src/main/Cplusplus/Square.hpp	/^    class Square: public Shape{$/;"	c	namespace:shape	inherits:Shape
+Squares	src/main/Cplusplus/Shape.hpp	/^    enum Type {Circles,Squares};$/;"	e	enum:shape::Type
+Type	src/main/Cplusplus/Shape.hpp	/^    enum Type {Circles,Squares};$/;"	g	namespace:shape
+WhatIAm	src/main/Cplusplus/Circle.hpp	/^            Type WhatIAm() const {$/;"	f	class:shape::Circle
+WhatIAm	src/main/Cplusplus/Shape.hpp	/^            virtual Type WhatIAm() const = 0;$/;"	p	class:shape::Shape	access:public	signature:() const
+WhatIAm	src/main/Cplusplus/Square.hpp	/^            Type WhatIAm() const {$/;"	f	class:shape::Square	access:public	signature:() const
+main	src/main/Cplusplus/main.cpp	/^int main (){$/;"	f
+shape	src/main/Cplusplus/Circle.hpp	/^namespace shape {$/;"	n
+shape	src/main/Cplusplus/Shape.hpp	/^namespace shape{$/;"	n
+shape	src/main/Cplusplus/Square.hpp	/^namespace shape{$/;"	n
+shape::Circles	src/main/Cplusplus/Shape.hpp	/^    enum Type {Circles,Squares};$/;"	e	enum:shape::Type
+shape::Shape	src/main/Cplusplus/Shape.hpp	/^    class Shape{$/;"	c	namespace:shape
+shape::Shape::WhatIAm	src/main/Cplusplus/Shape.hpp	/^            virtual Type WhatIAm() const = 0;$/;"	p	class:shape::Shape	access:public	signature:() const
+shape::Shape::~Shape	src/main/Cplusplus/Shape.hpp	/^            virtual ~Shape(){};$/;"	f	class:shape::Shape	access:public	signature:()
+shape::Square	src/main/Cplusplus/Square.hpp	/^    class Square: public Shape{$/;"	c	namespace:shape	inherits:Shape
+shape::Square::WhatIAm	src/main/Cplusplus/Square.hpp	/^            Type WhatIAm() const {$/;"	f	class:shape::Square	access:public	signature:() const
+shape::Squares	src/main/Cplusplus/Shape.hpp	/^    enum Type {Circles,Squares};$/;"	e	enum:shape::Type
+shape::Type	src/main/Cplusplus/Shape.hpp	/^    enum Type {Circles,Squares};$/;"	g	namespace:shape
+~Shape	src/main/Cplusplus/Shape.hpp	/^            virtual ~Shape(){};$/;"	f	class:shape::Shape	access:public	signature:()
