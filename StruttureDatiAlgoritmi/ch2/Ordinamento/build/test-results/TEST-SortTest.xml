@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="SortTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2015-10-17T18:55:37" hostname="dmike-HP-Pro-3500-Series" time="0.003">
+  <properties/>
+  <testcase name="testSort" classname="SortTest" time="0.003"/>
+  <system-out><![CDATA[[1, 5, 12, 34, 44, 123] Step: 21
+[1, 5, 12, 34, 44, 123] Step: 6
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

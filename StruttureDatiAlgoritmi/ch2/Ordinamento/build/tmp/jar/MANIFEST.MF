@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+Main-Class: ex.dmike.algostructure.EntryPoint
+Implementation-TItle: Sort Method
+Implemntation-Version: 0.1.0
+
