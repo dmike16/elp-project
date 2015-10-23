@@ -1,0 +1,36 @@
+group 'strutture-algoritmi-dati'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+
+sourceCompatibility = 1.5
+targetCompatibility = 1.5
+
+jar {
+    baseName = 'keySearch'
+    version = '0.1.0'
+    manifest {
+        attributes('Implementation-TItle': 'Key Search',
+                'Implemntation-Version': version)
+    }
+}
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+}
+
+test{
+    filter{
+        includeTestsMatching "*Test"
+    }
+    testLogging{
+        events 'started', 'passed'
+    }
+}
+
+task Wrapper(type: Wrapper){
+    gradleVersion = '2.3'
+}
