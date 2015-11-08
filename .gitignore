@@ -53,3 +53,5 @@ arch/
 
 #ctags file
 tags
+# Mac Stuff
+.DS_Store

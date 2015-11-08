@@ -1,0 +1,40 @@
+group 'example'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'application'
+
+mainClassName = 'ex.dmike.algostructure.IntegerArrayDigits'
+
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
+
+jar{
+    baseName = 'fastMult'
+    version = '0.0.1'
+    manifest{
+        attributes('Implementation-Title':'FastMult',
+        'Implementation-Version': version)
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+}
+
+test{
+    filter{
+        includeTestsMatching "*Test"
+    }
+    testLogging{
+        events 'started', 'passed'
+    }
+}
+
+task Wrapper(type: Wrapper){
+    gradleVersion = '2.3'
+}
