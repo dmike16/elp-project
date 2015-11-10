@@ -1,7 +1,13 @@
 #! /usr/bin/env python3.4
 # Calculate the max sum in the sequence
+import random
 
-seq = [3, -1, -34, 45, -3, 24, 34, 34, -5, 34, 256, -4]
+seq = []
+seq.append(random.randint(1, 100))
+for i in range(1, 10):
+    seq.append(random.randint(-100, 100))
+print(seq)
+
 somma = 0
 maxx = somma
 
