@@ -7,7 +7,6 @@ using namespace std;
 using sort::makeSort;
 
 void generate_vector(int *x, int n) {
-  srand(time(0));
 
   for (int i = 0; i < n; i++) {
     x[i] = rand() % 100;
@@ -23,23 +22,43 @@ void display_vector(int *x, int n) {
 }
 
 int main(void) {
-  int x[10];
-  int n = 10;
+  int x[1610000];
+  int n = 1610000;
+  clock_t cpu0, cpu1;
+
+  srand(time(0));
 
   generate_vector(x, n);
   cout << "Vector not ordered" << endl;
-  display_vector(x, n);
+  // display_vector(x, n);
 
-  makeSort(x, 10, "insectionmakeSort");
+  cpu0 = clock();
+  // makeSort(x, n, "insectionmakeSort");
+  cpu1 = clock();
 
-  cout << "Vector ordered Inserction makeSort" << endl;
-  display_vector(x, n);
+  cout << "Vector ordered Inserction Sort in "
+       << (float)(cpu1 - cpu0) / CLOCKS_PER_SEC << endl;
+  // display_vector(x, n);
 
   generate_vector(x, n);
   cout << "Vector not ordered" << endl;
-  display_vector(x, n);
+  // display_vector(x, n);
 
-  makeSort(x, 10, "mergemakeSort");
-  cout << "Vector ordered Merge makeSort" << endl;
-  display_vector(x, n);
+  cpu0 = clock();
+  // makeSort(x, n, "mergemakeSort");
+  cpu1 = clock();
+  cout << "Vector ordered Merge Sort in "
+       << (float)(cpu1 - cpu0) / CLOCKS_PER_SEC << endl;
+  // display_vector(x, n);
+
+  generate_vector(x, n);
+  cout << "Vector not ordered" << endl;
+  // display_vector(x, n);
+
+  cpu0 = clock();
+  makeSort(x, n, "quickSort");
+  cpu1 = clock();
+  cout << "Vector ordered Quick Sort in "
+       << (float)(cpu1 - cpu0) / CLOCKS_PER_SEC << endl;
+  // display_vector(x, n);
 }
