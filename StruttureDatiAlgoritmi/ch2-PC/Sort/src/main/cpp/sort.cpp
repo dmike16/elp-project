@@ -9,7 +9,9 @@ void quickSort(int *, int, int, int);
 }
 
 namespace {
-const int LIMIT = 7;
+const int LIMIT_1 = 7;
+const int LIMIT_2 = 40;
+
 int swap_cnt = 0;
 
 struct _ {
@@ -17,6 +19,7 @@ struct _ {
   int cx;
   int dx;
 } pos;
+inline int static_min(int a, int b) { return (a < b) ? a : b; }
 void static_merge(int *a, int n, int *b) {
   int i = pos.sx;
   int j = pos.cx + 1;
@@ -41,40 +44,20 @@ void static_merge(int *a, int n, int *b) {
     a[i] = b[i - pos.sx];
   }
 }
-void static_swap(int *x, int a, int b) {
-  int temp = x[b];
-  x[b] = x[a];
-  x[a] = temp;
-}
-int static_distribution(int *x, int sx, int px, int dx) {
-  swap_cnt = 0;
-  if (px != dx)
-    static_swap(x, px, dx);
-  int i = sx;
-  int j = dx;
-  int item = x[dx];
-
-  while (i < j) {
-    while ((i < j) && (x[i] <= item)) {
-      i++;
-    }
-    while ((i < j) && (x[j] >= item)) {
-      j--;
-    }
-
-    if (i < j) {
-      static_swap(x, i, j);
-      swap_cnt = 1;
-    }
+void static_swap(int *x, int a, int b, int r) {
+  int _a = a, _b = b;
+  if (r > 0) {
+    do {
+      int temp = x[_b];
+      x[_b++] = x[_a];
+      x[_a++] = temp;
+    } while (--r > 0);
   }
-  if (i != dx)
-    static_swap(x, i, dx);
-  return i;
 }
-int static_median(int *x, int sx, int dx) {
-  int cx = (sx + dx) / 2;
+int static_median(int *x, int sx, int cx, int dx) {
 
-  return (x[sx] < x[cx]) ? ((x[cx] < x[dx]) ? cx : (x[sx] < x[dx]) ? b : a) : ;
+  return (x[sx] < x[cx]) ? (x[cx] < x[dx]) ? cx : (x[sx] < x[dx]) ? dx : sx
+                         : (x[dx] < x[cx]) ? cx : (x[sx] < x[dx]) ? sx : dx;
 }
 }
 
@@ -114,28 +97,69 @@ void sort::mergeSort(int *x, int n, int sx, int dx, int *b) {
 }
 
 void sort::quickSort(int *x, int n, int sx, int dx) {
-
+  int pcx;
 loop:
-  if (n <= LIMIT) {
+  if (n <= LIMIT_1) {
     return insectioSort(x, dx + 1, sx);
   }
+  pcx = (sx + dx) / 2;
+  if (n > LIMIT_1) {
+    int psx = sx;
+    int pdx = dx;
 
-  if (n > LIMIT) {
-
-    int px = static_median(x, sx, dx);
-    int pr = static_distribution(x, sx, px, dx - 1);
-
-    if (swap_cnt == 0)
-      return insectioSort(x, dx + 1, sx);
-
-    if (pr - sx > 1) {
-      quickSort(x, pr - 1 - sx, sx, pr - 1);
+    if (n > LIMIT_2) {
+      int d = n / 8;
+      psx = static_median(x, psx, psx + d, psx + 2 * d);
+      pcx = static_median(x, pcx - d, pcx, pcx + d);
+      pdx = static_median(x, pdx - 2 * d, pdx - d, pdx);
     }
-    if (dx - pr > 1) {
-      n = dx - pr - 1;
-      sx = pr + 1;
-      goto loop;
-      // quickSort(x, dx - pr - 1, pr + 1, dx);
+
+    pcx = static_median(x, psx, pcx, pdx);
+  }
+
+  static_swap(x, sx, pcx, 1);
+
+  int i = sx + 1;
+  int j = dx;
+  int item = x[sx];
+  int l = i, m = j;
+
+  while (1) {
+    while ((i <= j) && (x[i] <= item)) {
+      if (x[i] == item) {
+        static_swap(x, l, i, 1);
+        l++;
+      }
+      i++;
     }
+    while ((i <= j) && (x[j] >= item)) {
+      if (x[j] == item) {
+        static_swap(x, j, m, 1);
+        m--;
+      }
+      j--;
+    }
+
+    if (i > j)
+      break;
+
+    static_swap(x, i, j, 1);
+    i++;
+    j--;
+  }
+  int r = static_min(i - l, l - sx);
+  static_swap(x, sx, i - r, r);
+
+  r = static_min(dx - m, m - j);
+  static_swap(x, i, dx + 1 - r, r);
+
+  if ((r = i - l) > 1) {
+    quickSort(x, r, sx, sx + r);
+  }
+  if ((r = m - j) > 1) {
+    sx = dx + 1 - r;
+    n = r;
+    goto loop;
+    // quickSort(x, dx - pr - 1, pr + 1, dx);
   }
 }
