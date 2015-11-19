@@ -153,13 +153,24 @@ loop:
   r = static_min(dx - m, m - j);
   static_swap(x, i, dx + 1 - r, r);
 
-  if ((r = i - l) > 1) {
-    quickSort(x, r, sx, sx + r);
-  }
-  if ((r = m - j) > 1) {
-    sx = dx + 1 - r;
-    n = r;
-    goto loop;
-    // quickSort(x, dx - pr - 1, pr + 1, dx);
+  int rl = i - l, rr = m - j;
+
+  if (rl < rr) {
+    if (rl > 1) {
+      quickSort(x, rl, sx, sx + rl);
+    }
+    if (rr > 1) {
+      sx = dx + 1 - rr;
+      n = rr;
+      goto loop;
+    }
+  } else {
+    if (rr > 1)
+      quickSort(x, rr, dx + 1 - rr, dx);
+    if (rl > 1) {
+      dx = sx + rl;
+      n = rl;
+      goto loop;
+    }
   }
 }

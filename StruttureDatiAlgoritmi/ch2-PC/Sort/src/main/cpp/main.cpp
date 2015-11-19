@@ -26,8 +26,8 @@ int cmp(const void *a, const void *b) {
 }
 
 int main(void) {
-  int x[1100000];
-  int n = 1100000;
+  int x[1000000];
+  int n = 1000000;
   clock_t cpu0, cpu1;
 
   srand(time(0));
