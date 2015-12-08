@@ -456,7 +456,7 @@ var fnScroll = function(evt){
     }
 };
 
-function requestTick(bLb,bUb,bInM,fByteON,sByteON,tByteON){
+function requestTick(bLb ,bUb ,bInM, fByteON, sByteON, tByteON){
     if(!ticking){
         window.requestAnimationFrame(function(){
             fnHeaderTransition(bLb,bUb,bInM,fByteON,sByteON,tByteON);
@@ -474,6 +474,9 @@ function AppInit(){
     oMask.addEventListener("touchstart",fnClick1,false);
     oMask =null;oButton=null;
 
+    var regFuncArg = /^function\s*(?=([^\(]*))\1\(\s*(?=([^\)]*))\2\)/m;
+    console.log(requestTick.toString().match(regFuncArg)[2].replace(/ /g,"").split(','));
+    console.log(typeof arguments)
     win.addEventListener("scroll",fnScroll,false);
     win.onload=fnScroll;
     win = null;
