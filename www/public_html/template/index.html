@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org./1999/xhtml" ng-app="gemStore">
+  <head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="initial-scale=1.0, width=device-width"/>
+    <title>JavaScript Test + Angular</title>
+    <link rel="shortcut icon" href="htmlicon.ico"/>
+  </head>
+  <body ng-controller="StoreController as store">
+    <div  ng-repeat="product in store.products | orderBy:'price'" ng-hide="product.soldOut">
+      <h1>{{product.name}}</h1>
+      <h2>{{product.price | currency}}</h2>
+      <p><em>{{product.description}}</em></p>
+      <div>
+        <img ng-src="{{product.images[0]}}"/>
+      </div>
+      <button ng-show="product.canPurchase"> Add to Chart </button>
+    </div>
+    <script type="text/javascript" src="script/angular/angular.min.js"></script>
+    <script type="text/javascript" src="script/app.js"></script>
+    <script type="text/javascript" src="script/pattern.js"></script>
+  </body>
