@@ -1,0 +1,32 @@
+group 'tossing'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'application'
+
+mainClassName = 'Games'
+
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
+
+jar{
+    baseName = 'Tossing'
+    version = '0.0.1'
+    manifest{
+        attributes('Implementation-Title':'Tossing',
+        'Implementation-Version':version)
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+}
+
+task Wrapper(type: Wrapper){
+    gradleVersion = '2.3'
+}
