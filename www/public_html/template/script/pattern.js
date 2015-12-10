@@ -227,4 +227,143 @@
 
   document.body.appendChild(contactForm.element);
 
+  // Decorator Pattern
+  
+  var Bicycle = new Interface('Bicycle',['assemble','wash','ride','repair','getPrice']);
+
+  function BicycleShop () {
+    // body...
+  }
+  BicycleShop.prototype = {
+    sellBycicle: function sellBycicle (model){
+      var bicycle = this.createBicycle(model);
+
+      bycicle.assemble();
+      bycicle.wash();
+
+      return bicycle;
+    },
+    createBicycle: function createBicycle (model){
+      throw new Error("Unsupported on abstract class");
+    }
+  };
+
+  function AcmeBicycleShop(){}
+  extend(AcmeBicycleShop, BicycleShop);
+  AcmeBicycleShop.prototype = {
+    createBicycle: function createBicycle (model){
+
+    },
+    assemble: function assemble() {
+
+    },
+    wash: function wash(){
+
+    },
+    ride: function ride(){
+
+    },
+    repair: function repair(){
+
+    },
+    getPrice: function getPrice(){
+      return 399.00;
+    }
+  };
+
+  function BicycleDecorator (bicycle){
+    Interface.ensureImplements(bicycle,Bicycle);
+    this.bicycle = bicycle;
+  }
+  BicycleDecorator.prototype = {
+    assemble: function assemble(){
+      return this.bicycle.assemble();
+    },
+    wash: function wash(){
+      return this.bicycle.wash();
+    },
+    ride: function ride(){
+      return this.bicycle.ride();
+    },
+    repair: function repair(){
+      return this.bicycle.repair();
+    },
+    getPrice: function getPrice(){
+      return this.bicycle.getPrice();
+    }
+  };
+
+  function HeadLigthDecorator(bicycle){
+    HeadLigthDecorator.superclass.constructor.call(this,bicycle);
+  } 
+  extend(HeadLigthDecorator, BicycleDecorator);
+  HeadLigthDecorator.prototype.assemble = function assemble(){
+    return this.bicycle.assemble() + 'Attach headlight to handlebars';
+  };
+  HeadLigthDecorator.prototype.getPrice = function getPrice(){
+    return this.bicycle.getPrice() + 15.00;
+  };
+
+  function TailLightDecorator(bicycle){
+    TailLightDecorator.superclass.constructor.call(this,bicycle);
+  }
+  extend(TailLightDecorator,BicycleDecorator);
+  TailLightDecorator.prototype.assemble = function assemble(){
+    return this.bicycle.assemble() + ' Attach on back';
+  };
+  TailLightDecorator.prototype.getPrice = function getPrice(){
+    return this.bicycle.getPrice() + 9.00;
+  };
+
+  function FrameDecoretor (bicycle, color){
+    FrameDecoretor.superclass.constructor.call(this,bicycle);
+    this.frameColor = color;
+  }
+  extend(FrameDecoretor,BicycleDecorator);
+  FrameDecoretor.prototype.assemble = function assemble(){
+    return 'Paint the frame ' + this.frameColor + ' ' + this.bicycle.assemble();
+  };
+  FrameDecoretor.prototype.getPrice = function getPrice(){
+    return this.bicycle.getPrice() + 30.00;
+  };
+
+  function LifeTimeWarrantyDecorator(bicycle){
+    LifeTimeWarrantyDecorator.superclass.constructor.call(this,bicycle);
+  }
+  extend(LifeTimeWarrantyDecorator,BicycleDecorator);
+  LifeTimeWarrantyDecorator.prototype.repair = function repair(){
+    return 'WarrintyLifeTime';
+  };
+  LifeTimeWarrantyDecorator.prototype.getPrice = function getPrice(){
+    return this.bicycle.getPrice() + 199.00;
+  };
+
+  function BellDecorator(bicycle){
+    BellDecorator.superclass.constructor.call(this,bicycle);
+  }
+  extend(BellDecorator,BicycleDecorator);
+  BellDecorator.prototype.assemble = function assemble(){
+    return this.bicycle.assemble() + ' Attach the bell ';
+  };
+  BellDecorator.prototype.getPrice = function getPrice(){
+    return this.bicycle.getPrice() + 6.00;
+  };
+  BellDecorator.prototype.ringBell = function ringBell(){
+    return 'Ring Bell';
+  };
+
+  var mybi = new AcmeBicycleShop();
+  console.log(mybi.getPrice());
+  mybi = new HeadLigthDecorator(mybi);
+  console.log(mybi.getPrice());
+  mybi = new TailLightDecorator(mybi);
+  console.log(mybi.getPrice());
+  mybi = new FrameDecoretor(mybi, 'red');
+  console.log(mybi.assemble());
+  console.log(mybi.getPrice());
+  mybi = new LifeTimeWarrantyDecorator(mybi);
+  console.log(mybi.repair());
+  mybi = new BellDecorator(mybi);
+  console.log (mybi.getPrice());
+  console.log(mybi.ringBell());
 }());
