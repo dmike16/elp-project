@@ -50,6 +50,7 @@ arch/
 #IntelliJ IDEA file
 *.iml
 .idea/
+build/
 
 #ctags file
 tags
