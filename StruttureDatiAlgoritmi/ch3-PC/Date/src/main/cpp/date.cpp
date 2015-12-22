@@ -132,4 +132,4 @@ Chrono::Date& Chrono::Date::addDay(int n) {
 bool Chrono::leapYear(int y) {
   return (y % 400 == 0) || ((y % 4 == 0) && (y % 100 != 0));
 }
-Chrono::Date Chrono::Date::default_date(22,12,2015);
+Chrono::Date Chrono::Date::default_date(22,Chrono::Date::dec,2015);
