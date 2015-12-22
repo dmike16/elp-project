@@ -37,12 +37,12 @@
 .project
 
 #Qt project
-pvmcm.config
-pvmcm.creator
-pvmcm.files
-pvmcm.includes
-vpmcm.creator.user
-pvmcm.creator.user
+*.config
+*.creator
+*.files
+*.includes
+*.user
+*.creator.user
 
 #File Created
 _build/
