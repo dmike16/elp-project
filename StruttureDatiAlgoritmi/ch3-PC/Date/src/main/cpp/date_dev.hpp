@@ -1,11 +1,10 @@
 #ifndef DATE_DEV_H
 #define DATE_DEV_H
 
-#include "date.h"
+#include "date.hpp"
 
 namespace Chrono {
-	bool leapYear(int y);
+bool leapYear(int y);
 }
 
 #endif // DATE_DEV_H
- 
