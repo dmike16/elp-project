@@ -47,3 +47,6 @@
 #File Created
 _build/
 build
+
+#Mac files
+.DS_Store
