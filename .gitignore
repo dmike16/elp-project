@@ -54,5 +54,8 @@ build/
 
 #ctags file
 tags
+
 # Mac Stuff
+_build/
+build
 .DS_Store
