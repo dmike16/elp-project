@@ -576,7 +576,6 @@
           d = deps[i];
           args.push(self._dependencies[d] && d !== '' ? self._dependencies[d]: list.shift());
         }
-        console.log(args);
         func.apply(scope || {}, args);
       };
     }
@@ -598,6 +597,7 @@
   }]);
 
   cResolve('Dep Resolved');
+  cResolve('Another Resolved Dep');
 
 
 }());
