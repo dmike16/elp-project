@@ -5,6 +5,7 @@
     <meta name="viewport" content="initial-scale=1.0, width=device-width"/>
     <title>JavaScript Test + Angular</title>
     <link rel="shortcut icon" href="htmlicon.ico"/>
+    <link rel="stylesheet" type="text/css" href="style/spinny.css" media="screen"/>
   </head>
   <body ng-controller="StoreController as store">
     <div  ng-repeat="product in store.products | orderBy:'price'" ng-hide="product.soldOut">
@@ -57,6 +58,12 @@
       </table>
 
     </form>
+    <div id="spinner" class="container" style="display:block;"> <!--The container -->
+      <div class="spinner-frame"> <!--The background-->
+        <div class="spinner-cover"></div> <!--The Foreground-->
+        <div class="spinner-bar"></div> <!-- Spinny thing-->
+      </div>
+    </div>
     <script type="text/javascript" src="script/angular/angular.min.js"></script>
     <script type="text/javascript" src="script/app.js"></script>
     <script type="text/javascript" src="script/pattern.js"></script>
