@@ -495,35 +495,109 @@
     }
   };
 
-function CalendarMonth(monthNum, numDays, parent) {
-  this.monthNum = monthNum;
-  this.element = document.createElement('div');
-  this.element.style.display = 'none';
-  parent.appendChild(this.element);
+  function CalendarMonth(monthNum, numDays, parent) {
+    this.monthNum = monthNum;
+    this.element = document.createElement('div');
+    this.element.style.display = 'none';
+    parent.appendChild(this.element);
 
-  this.days = [];
-  for (var i = 0, len = numDays; i < len; i++) {
-    this.days[i] = calendarDayItem();
-  }
-}
-CalendarMonth.prototype = {
-  display: function display() {
-    for (var i = 1, len = this.days.length; i <= len; i++) {
-      this.days[i-1].display(i, this.element);
+    this.days = [];
+    for (var i = 0, len = numDays; i < len; i++) {
+      this.days[i] = calendarDayItem();
     }
-    this.element.style.display = 'block';
   }
-};
+  CalendarMonth.prototype = {
+    display: function display() {
+      for (var i = 1, len = this.days.length; i <= len; i++) {
+        this.days[i - 1].display(i, this.element);
+      }
+      this.element.style.display = 'block';
+    }
+  };
 
-function CalendarDay() {}
-CalendarDay.prototype = {
-  display: function display(date, parent) {
-    var element = document.createElement('div');
-    parent.appendChild(element);
-    element.innerHTML = date;
-  }
-};
+  function CalendarDay() {}
+  CalendarDay.prototype = {
+    display: function display(date, parent) {
+      var element = document.createElement('div');
+      parent.appendChild(element);
+      element.innerHTML = date;
+    }
+  };
 
-var calendar = new CalendarYear(2016,document.body);
-calendar.display();
+  var calendar = new CalendarYear(2016, document.body);
+  calendar.display();
+
+  //****************************************************
+  //
+  //
+  // Injector Pattern
+  //
+  //
+  //****************************************************
+
+  var injector = {
+    _dependencies: {},
+    register: function register(key, value) {
+      this._dependencies[key] = value;
+    },
+    resolve: function resolve() {
+      var func;
+      var deps, scope,
+        self = this;
+      if (Array.isArray(arguments[0])) {
+        deps = arguments[0];
+
+        var i = 0;
+        var len = deps.length;
+        for (; i < len; i++) {
+          if (typeof deps[i] === 'function') {
+            func = deps.splice(i, 1)[0];
+            break;
+          }
+        }
+        if (i === len) {
+          throw new Error('Forgotten to pass a function to inject');
+        }
+        scope = arguments[1] || {};
+      } else {
+        func = arguments[0];
+        if (typeof func !== 'function') {
+          throw new Error(func + " it's not a function");
+        }
+        var depsExp = /^function\s*(?=([^\(]*))\1\(\s*(?=([^\)]*))\2\)/m;
+        deps = func.toString().match(depsExp)[2].replace(/ /g, '').split(',');
+        scope = arguments[1] || {};
+      }
+      return function () {
+        var args = [];
+        var d;
+        var list = Array.prototype.slice.call(arguments, 0);
+        for (var i = 0, len = deps.length; i < len; i++) {
+          d = deps[i];
+          args.push(self._dependencies[d] && d !== '' ? self._dependencies[d]: list.shift());
+        }
+        console.log(args);
+        func.apply(scope || {}, args);
+      };
+    }
+  };
+  var a = function a(){
+    console.log('Dependece a');
+  };
+  injector.register('a',a);
+
+  var b = function b() {
+    console.log('Dependece b');
+  };
+  injector.register('b',b);
+
+  var cResolve = injector.resolve(['a','b','mesg',function c(a,b,mesg){
+    a();
+    b();
+    console.log(mesg);
+  }]);
+
+  cResolve('Dep Resolved');
+
+
 }());

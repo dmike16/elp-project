@@ -16,6 +16,47 @@
       </div>
       <button ng-show="product.canPurchase"> Add to Chart </button>
     </div>
+    <form action="processorder.php" method="post">
+      <table border="0">
+        <tr bgcolor="#ccc">
+          <td width="150">Item</td>
+          <td width="15">Quantity</td>
+        </tr>
+        <tr>
+          <td>Tires</td>
+          <td align="center">
+            <label for="tires">
+              <input type="text" id="tires" name="tireqty" size="3"
+              maxlength="3"/>
+            </label>
+          </td>
+        </tr>
+        <tr>
+          <td>Oil</td>
+          <td align="center">
+            <label for="oil">
+              <input type="text" id="oil" name="oilqty" size="3"
+              maxlength="3"/>
+            </label>
+          </td>
+        </tr>
+        <tr>
+          <td>Spark Plugs</td>
+          <td align="center">
+            <label for="spark">
+              <input type="text" id="spark" name="sparkqty" size="3"
+              maxlength="3"/>
+            </label>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" align="center">
+            <button type="submit">Submit Order</button>
+          </td>
+        </tr>
+      </table>
+
+    </form>
     <script type="text/javascript" src="script/angular/angular.min.js"></script>
     <script type="text/javascript" src="script/app.js"></script>
     <script type="text/javascript" src="script/pattern.js"></script>
