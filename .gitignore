@@ -61,3 +61,4 @@ build
 .DS_Store
 /javaWebApp/Chapter3/HelloWorldWeb/nbproject/private/
 /javaWebApp/Chapter3/HelloWorldWeb/.nb-gradle/
+/javaWebApp/Chapter3/HelloUser/nbproject/private/
