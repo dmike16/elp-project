@@ -13,6 +13,15 @@ and open the template in the editor.
     
     <display-name> Hello User App</display-name>
     
+    <context-param>
+        <param-name>settingOne</param-name>
+        <param-value>foo</param-value>
+    </context-param>
+    
+    <context-param>
+        <param-name>settingTwo</param-name>
+        <param-value>bar</param-value>
+    </context-param>
     
     <servlet>
         <servlet-name>multiCheckerServlet</servlet-name>
@@ -28,6 +37,10 @@ and open the template in the editor.
     <servlet>
         <servlet-name>helloServlet</servlet-name>
         <servlet-class>dmike.web.HelloServlet</servlet-class>
+        <init-param>
+            <param-name>database</param-name>
+            <param-value>CustomSupport</param-value>
+        </init-param>
         <load-on-startup>1</load-on-startup>
     </servlet>
     

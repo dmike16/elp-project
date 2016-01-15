@@ -11,7 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.ServletConfig;
 //import javax.servlet.annotation.WebServlet;
+import javax.servlet.ServletContext;
 /**
  *
  * @author dmike
@@ -40,6 +42,9 @@ public class HelloServlet extends HttpServlet{
             user = HelloServlet.DEFAULT_USER;
         }
         
+        ServletContext sc = this.getServletContext();
+        ServletConfig scc = this.getServletConfig();
+        
         response.setContentType("text/html");
         response.setCharacterEncoding("UTF-8");
         
@@ -57,6 +62,9 @@ public class HelloServlet extends HttpServlet{
                 .append("       </label>\r\n")
                 .append("       <button type=\"Submit\">Submit</Button>\r\n")
                 .append("       </form>\r\n")
+                .append("      <p> Setting One: " + sc.getInitParameter("settingOne")+"</p>")
+                .append("      <p> Setting Two: " + sc.getInitParameter("settingTwo")+"</p>")
+                .append("      <p> Setting LocalOne: " + scc.getInitParameter("database")+"</p>")
                 .append("   </body>\r\n")
                 .append("</html>\r\n");
         
