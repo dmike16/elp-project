@@ -1,0 +1,109 @@
+/*
+ *  **************************************
+ *
+ *  Gradle build Script for Subproject web
+ *  It contains all the web servlet class, web.xml
+ *  and everything that goes inside a WAR archive
+ *
+ *
+ *  *************************************
+ */
+//***
+// Apply the war plugin that add the war and assemble tasks
+//  plus the other tasks of the java plugin
+//***
+apply plugin: "war"
+
+group = rootProject.group
+version = rootProject.version
+
+//***
+// Set source and targer compatibility to JDK1.8 (Java 8)
+// This to propieties ara add to the project by the java plugin
+//***
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+ 
+
+
+
+//***
+// Set some proprieties relative to the war task
+// archiveName: rootProjectName + [extension=war]
+// manifest: the manifest of the war
+//***
+war {
+    archiveName = rootProject.name.toLowerCase() + '.war'
+    manifest({
+        attributes("Implementation-Title":"HelloWebApp",
+        "Implementation-Version": version)
+    }) 
+}
+
+//***
+// Define the dependencies of the project, fetch from MavenCentral repo
+//***
+dependencies{
+    compile project(":utils")
+    compile group: 'javax.servlet', name: 'javax.servlet-api', version: '3.1.0' 
+}
+
+//***
+// Tasks  snapshot
+// dependOn -> assemble tasks
+// print a message with some info + the version with the SNAPSHOT postfix
+//***
+task snapshot (dependsOn: 'assemble') {
+    description "Snapshot Version"
+    doLast{
+        def msg = "/--------------------------/\n\
+        Author   : dmike\n\
+        email    : cip.ollamikele.yahoo.com\n\
+        version  : ${project.version}\n\
+/--------------------------------/"
+        println msg
+    }
+}
+
+//***
+// Task release 
+// dependsOn -> snapshot
+// print a relax message for the work done :->
+//***
+task release(dependsOn: 'snapshot') {
+    description "Realease Version"
+    doLast{
+        println '-------RELEASE: BE PROUD OF YOU-------'
+    }
+}
+
+//***
+// Check if in the taskGraph there is a release task
+// if not add the SNAPSHOT postfix to the version
+//***
+gradle.taskGraph.whenReady{ taskGraph ->
+    if (!taskGraph.hasTask(release)){
+        version = version + '-SNAPSHOT'
+    }
+}
+
+//***
+// Task deploy of type Copy
+// dependsOn -> assemble
+// deploy the app: copy the war file in the default deployment webContainer's
+// dir
+//***
+task deploy(dependsOn: 'assemble',type: Copy){
+    description "Deployment App. Copying in the WebContainer"
+    from "$buildDir/libs"
+    include '*.war'
+    into "$WebContainerHome" 
+}
+
+// Task undeploy of type Delete
+// dependsOn -> null
+// delete the war file from the default deploymeny webContainer's dir
+task undeploy(type: Delete){
+    description "Undeloy App. Remove from WebContainer"
+    delete "$WebContainerHome/$war.archiveName"
+}
