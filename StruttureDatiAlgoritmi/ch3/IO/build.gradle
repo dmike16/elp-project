@@ -1,0 +1,32 @@
+group 'ioStream'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'application'
+
+mainClassName = 'dmike.io.StreamExample'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+jar{
+    baseName = 'ioStream'
+    version = '0.0.1'
+    manifest{
+        attributes('Main-Class': 'dmike.io.StreamExample',
+			'Implementation-Title':'ioStream',
+        'Implementation-Version': version)
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+}
+
+task Wrapper(type: Wrapper){
+    gradleVersion = '2.3'
+}
