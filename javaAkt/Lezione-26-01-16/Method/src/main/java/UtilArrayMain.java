@@ -20,6 +20,24 @@ public class UtilArrayMain{
 		UtilArray.stampa(b);
 		System.out.print("Array solo pari ");
 		UtilArray.stampa(UtilArray.numeriPari(b));
+
+		int c[] = {6,9,1,2,12};
+		System.out.println("La somma dei numeri multipli di 2 e 3 è: " + 
+			UtilArray.sommaMultipli2e3(c));
+		System.out.println("Numeri dispari in " + Arrays.toString(c) +
+			" : " + UtilArray.contaDispari(c) + "\n" +
+			"Elemeto massimo: " + UtilArray.max(c));
+		System.out.println("L array " + (UtilArray.tuttiPari(c) ? "": "non") + 
+			" ha tutti gli elementi pari");
+		int k = 4;
+		System.out.println("L array " + (UtilArray.tuttiMinoriDik(c,k) ? "": "non") + 
+			" ha tutti gli elementi minori di " + k);
+		int[] cc = {34,3,2,3,4,4,4,3};
+		System.out.println("L array " + (UtilArray.elementi3k(cc,k) ? "": "non") + 
+			" ha tre elementi uguali a " + k);
+		System.out.println("L array " + (UtilArray.elementi3kConsecutivi(cc,k) ? "": "non") + 
+			" ha tre elementi consecutivi uguali a " + k);
+
 	}
 
 }
