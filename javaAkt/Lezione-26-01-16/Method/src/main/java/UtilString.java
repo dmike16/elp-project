@@ -61,7 +61,7 @@ class UtilString{
 			if (eVocale(s.charAt(i)))
 				System.out.print(s.charAt(i));
 		}
-		System.out.println();		
+		System.out.println();
 	}
 	public static int contaOccorrenze(String s, char occ){
 		int count = 0;
@@ -95,18 +95,15 @@ class UtilString{
 		return (count == 3);
 	}
 	public static boolean caratteriConsecutivi(String s){
-		//int i = 0, len = s.length();
-		
-		//while(i < len && !(occorrenze3Consecutive(s,s.charAt(i++))));
 		int count = 0;
 		for(int i = 0,len = s.length(); i < len - 2 && count < 3; i++){
-			for(int j = i; j < len && count < 3; j++){
+			count = 0;
+			for(int j = i; j < i + 3; j++){
 				if(s.charAt(i) == s.charAt(j)){
 					count++;
-				}else{
-					count = 0;
 				}
 			}
+			if (count == 2)i++;
 		}
 		return (count == 3);
 	}
@@ -164,7 +161,7 @@ class UtilString{
 				result += s.substring(i,i + 1).toUpperCase();
 				j = 0;
 				k = i + 1;
-			} 
+			}
 		}
 		result += s.substring(k);
 		System.out.println(result);

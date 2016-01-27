@@ -22,22 +22,46 @@ public class UtilArrayMain{
 		UtilArray.stampa(UtilArray.numeriPari(b));
 
 		int c[] = {6,9,1,2,12};
-		System.out.println("La somma dei numeri multipli di 2 e 3 è: " + 
+		System.out.println("La somma dei numeri multipli di 2 e 3 è: " +
 			UtilArray.sommaMultipli2e3(c));
 		System.out.println("Numeri dispari in " + Arrays.toString(c) +
 			" : " + UtilArray.contaDispari(c) + "\n" +
 			"Elemeto massimo: " + UtilArray.max(c));
-		System.out.println("L array " + (UtilArray.tuttiPari(c) ? "": "non") + 
+		System.out.println("L array " + (UtilArray.tuttiPari(c) ? "": "non") +
 			" ha tutti gli elementi pari");
 		int k = 4;
-		System.out.println("L array " + (UtilArray.tuttiMinoriDik(c,k) ? "": "non") + 
+		System.out.println("L array " + (UtilArray.tuttiMinoriDik(c,k) ? "": "non") +
 			" ha tutti gli elementi minori di " + k);
 		int[] cc = {34,3,2,3,4,4,4,3};
-		System.out.println("L array " + (UtilArray.elementi3k(cc,k) ? "": "non") + 
+		System.out.println("L array " + (UtilArray.elementi3k(cc,k) ? "": "non") +
 			" ha tre elementi uguali a " + k);
-		System.out.println("L array " + (UtilArray.elementi3kConsecutivi(cc,k) ? "": "non") + 
+		System.out.println("L array " + (UtilArray.elementi3kConsecutivi(cc,k) ? "": "non") +
 			" ha tre elementi consecutivi uguali a " + k);
 
+			char[] ab = {'a','b','c','b','a'};
+		System.out.println("L array " + (UtilArray.alternanzaAeB(ab) ? "": "non") +
+				" ha alternanze di a e b");
+				UtilArray.stampaZipZag(b);
+
+				int pd[] = {3,4,0,4};
+				UtilArray.sommaPariDispari(pd);
+
+				int[] aaa = {1,2,3,4}, bbb = {5,6,7,8,9,10};
+				System.out.println("Array a U Array b : " +
+					Arrays.toString(UtilArray.unisciArray(aaa,bbb)));
+
+					int[] pari = {1,1,1,1}, dispari = {2,2,2,2};
+					System.out.println("Array a U Array b : " +
+						Arrays.toString(UtilArray.unisciAlternado(pari,dispari)));
+
+					System.out.println("L Array " +
+							(UtilArray.ordinato(aaa)? "": "non ") + "è ordinato");
+
+					char[] seq = {'f','f','s','s','a','s','s','f'};
+					System.out.println("L Array " +
+								(UtilArray.caratteriConsecutivi(seq)? "": "non ") + "ha 3 caratteri consecutivi");
+					System.out.println("Il secondo Array è: " +
+								Arrays.toString(UtilArray.secondoArray()));
 	}
 
 }
