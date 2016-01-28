@@ -166,4 +166,50 @@ class UtilString{
 		result += s.substring(k);
 		System.out.println(result);
 	}
+	public static boolean anagramma(String a , String b){
+		if (a.length() != b.length()){
+			return false;
+		}
+		if (a.equals(b)){
+			return true;
+		}
+		a = a.toLowerCase();
+		b = b.toLowerCase();
+		char[] tmp = b.toCharArray();
+
+		int count = 0;
+		for(int i = 0, len = a.length(); i < len; i++,count = 0){
+			for(int j = i; j < tmp.length && count < 1; j++){
+				if (a.charAt(i) == tmp[j]){
+					count++;
+					if (i != j){
+						char ct = tmp[i];
+						tmp[i] = tmp[j];
+						tmp[j] = ct;
+					}
+				} 
+			}
+			if (count == 0){
+				return false;
+			} 
+		}
+		return true;
+	}
+	public static String unisciPariDispari(String a, String b){
+		int min = (a.length() < b.length())? a.length(): b.length();
+
+		int numPari = ((a.length() & 1) == 0)? a.length()/2: a.length()/2 +1;
+		int numDispari = b.length() / 2;
+
+		char[] result = new char[numDispari + numPari];
+
+		for(int i = 0; i < a.length(); i += 2){
+			result[i] = a.charAt(i); 
+		}
+		for(int i = 1; i < b.length(); i += 2){
+			result[i]  = b.charAt(i);
+		}
+		
+		return new String(result);
+	}
 }

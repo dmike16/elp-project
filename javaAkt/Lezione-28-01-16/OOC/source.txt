@@ -1,0 +1,13 @@
+src/main/java/Studente.java
+src/main/java/Persona.java
+src/main/java/Impiegato.java
+src/main/java/Manager.java
+src/main/java/Polimorfismo.java
+src/main/java/Figura.java
+src/main/java/FiguraPiana.java
+src/main/java/FiguraSolida.java
+src/main/java/Rettangolo.java
+src/main/java/Circonferenza.java
+src/main/java/Cubo.java
+src/main/java/Sfera.java
+src/main/java/UtilFigure.java

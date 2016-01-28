@@ -49,6 +49,11 @@ public class UtilStringMain{
 		System.out.println(UtilString.sostituisciOccorrenze(helloWorld,'*','l'));
 		System.out.println(UtilString.alternaString("Hello","World"));
 		UtilString.stampaConInizialiMaiuscole("uno , due tre");
+		System.out.println((UtilString.anagramma("tttta","ttttb"))? " è " : " non è ");
+	
+		String ha = "ciao";
+		String ah = "bella";
+		System.out.println("Alternata = " + UtilString.unisciPariDispari(ha,ah));
 	}
 
 

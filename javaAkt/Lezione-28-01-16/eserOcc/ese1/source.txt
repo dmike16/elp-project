@@ -1,0 +1,6 @@
+src/main/java/PersonaMain.java
+src/main/java/Persona.java
+src/main/java/StudenteMain.java
+src/main/java/Studente.java
+src/main/java/MotorinoMain.java
+src/main/java/Motorino.java
