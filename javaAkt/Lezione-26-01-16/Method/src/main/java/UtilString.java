@@ -203,11 +203,21 @@ class UtilString{
 
 		char[] result = new char[numDispari + numPari];
 
-		for(int i = 0; i < a.length(); i += 2){
-			result[i] = a.charAt(i); 
+		for(int i = 0, k = 0; i < a.length(); i += 2){
+			if (i < min){
+				result[i]  = a.charAt(i);
+				k = i;
+			}else {
+				result[++k] = a.charAt(i);
+			} 
 		}
-		for(int i = 1; i < b.length(); i += 2){
-			result[i]  = b.charAt(i);
+		for(int i = 1,k = 1; i < b.length(); i += 2){
+			if (i < min){
+				result[i]  = b.charAt(i);
+				k = i;
+			} else {
+				result[++k] = b.charAt(i);
+			}
 		}
 		
 		return new String(result);

@@ -38,5 +38,12 @@ public class Polimorfismo{
 		double sumArea = UtilFigure.sommaAree(fig);
 		System.out.println("L'Area totale delle figure piane è :" + 
 			String.format("%.2f",sumArea));
+
+		Persona p1 = new Persona("Mario",90);
+		Persona pe1 = new Persona("Mario",90);
+
+		Persona p3p = p1;
+		System.out.println(p1.equals(pe1));
+		System.out.println(p1 == pe1);
 	}
 }

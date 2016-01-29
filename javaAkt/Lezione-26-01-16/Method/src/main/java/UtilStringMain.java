@@ -51,8 +51,8 @@ public class UtilStringMain{
 		UtilString.stampaConInizialiMaiuscole("uno , due tre");
 		System.out.println((UtilString.anagramma("tttta","ttttb"))? " è " : " non è ");
 	
-		String ha = "ciao";
-		String ah = "bella";
+		String ha = "ciaoBellai";
+		String ah = "zio";
 		System.out.println("Alternata = " + UtilString.unisciPariDispari(ha,ah));
 	}
 

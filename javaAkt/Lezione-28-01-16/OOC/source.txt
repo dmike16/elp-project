@@ -11,3 +11,4 @@ src/main/java/Circonferenza.java
 src/main/java/Cubo.java
 src/main/java/Sfera.java
 src/main/java/UtilFigure.java
+src/main/java/Collezioni.java

@@ -22,6 +22,19 @@ public class Persona {
 	public String toString(){
 		return "Nome: " + this.name + " / Eta: " + this.eta;
 	}
+	@Override
+	public boolean equals(Object obj){
+		if (obj != null && this.getClass().equals(obj.getClass())){
+			// Cast obj to this;
+			Persona tmp = (Persona) obj;
+			return (this.name.equals(tmp.name) && this.eta == tmp.eta);
+		} 
+		return false;
+	} 
+	@Override
+	public int hashCode(){
+		return name.hashCode() + eta;
+	}
 	//public abstract String descrizione();
 	// Errore --- I metodi statici non hanno referenza implicita all oggetto
 	/*

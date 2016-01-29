@@ -51,4 +51,17 @@ public class Impiegato extends Persona{
 	public static int getNextId(){
 		return Impiegato.nextId;
 	}
+	@Override
+	public boolean equals(Object obj){
+		if(super.equals(obj)){
+			Impiegato tmp = (Impiegato) obj;
+			return this.salario == tmp.salario && this.id == tmp.id && 
+				this.assunzione.equals(tmp.assunzione);
+		}
+		return false;
+	}
+	@Override
+	public int hashCode(){
+		return super.hashCode() + id + (int) salario + assunzione.hashCode();
+	}
 }
