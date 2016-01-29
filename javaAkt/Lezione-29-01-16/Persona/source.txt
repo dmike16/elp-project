@@ -1,0 +1,3 @@
+src/main/java/Persona.java
+src/main/java/Stagista.java
+src/main/java/Studente.java
