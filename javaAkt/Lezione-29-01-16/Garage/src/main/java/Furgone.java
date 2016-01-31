@@ -1,5 +1,5 @@
 public class Furgone extends VeicoloAMotore{
-	public VeicoloAMotore(int yy, String marca, String ali,
+	public Furgone(int yy, String marca, String ali,
 		String cc, int carico)
 	{
 		super(yy,marca,ali,cc);

@@ -1,0 +1,6 @@
+src/main/java/VeicoloAMotore.java
+src/main/java/Automobile.java
+src/main/java/Furgone.java
+src/main/java/Motocicletta.java
+src/main/java/Garage.java
+src/main/java/GarageMain.java
