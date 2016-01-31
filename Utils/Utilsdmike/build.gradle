@@ -1,0 +1,21 @@
+group 'util'
+version '1'
+
+apply plugin: 'java'
+
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
+
+jar{
+	baseName = 'dmikeUtil'
+	version = '1.0'
+	manifest{
+		attributes('Main-Class':'dmike.Util.reflection.ShowClassMethod',
+			'Implementation-Title':'util',
+			'Implementation-Version': version)
+	}
+}
+
+task Wrapper(type: Wrapper){
+	gradleVersion = '2.3'
+}
