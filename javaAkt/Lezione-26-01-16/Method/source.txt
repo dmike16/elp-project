@@ -2,3 +2,4 @@ src/main/java/UtilStringMain.java
 src/main/java/UtilString.java
 src/main/java/UtilArray.java
 src/main/java/UtilArrayMain.java
+src/main/java/NegativeNumberException.java

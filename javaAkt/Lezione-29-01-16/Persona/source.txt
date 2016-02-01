@@ -1,3 +1,5 @@
 src/main/java/Persona.java
 src/main/java/Stagista.java
 src/main/java/Studente.java
+src/main/java/VotoStudentiException.java
+src/main/java/StudentiMain.java

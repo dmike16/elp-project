@@ -1,9 +1,17 @@
-public class Persona {
+public class Persona implements Cloneable{
 	private final String name;
 	private int eta;
 
-	public Persona(String name, int eta){
+	public Persona(String name, int eta)
+		throws ExceptionPreCondozioni
+	{
 		// this referenza all istanza che sto creando
+		//if (eta < 0){
+		//	throw new ExceptionPreCondozioni("Eta negativa (" + eta + ")");
+		//}
+		if(name == null || eta < 0){
+			throw new ExceptionPreCondozioni();
+		}
 		this.name = name;
 		this.eta = eta;
 	}
@@ -34,6 +42,17 @@ public class Persona {
 	@Override
 	public int hashCode(){
 		return name.hashCode() + eta;
+	}
+	@Override
+	public Persona clone(){
+		try{
+			Persona clone = (Persona) super.clone();
+			return clone;
+		}// Non può mai accadere
+		catch(CloneNotSupportedException e){
+			e.printStackTrace();
+			return null;
+		}
 	}
 	//public abstract String descrizione();
 	// Errore --- I metodi statici non hanno referenza implicita all oggetto

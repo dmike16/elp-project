@@ -1,3 +1,5 @@
+package dmike.polimorfism;
+
 public class Persona{
 	public Persona(String nome, String cog, String cdf, String citta){
 		this.nome = nome;
@@ -22,7 +24,7 @@ public class Persona{
 	}
 	@Override
 	public String toString(){
-		return getNome() + " " + getCognome() + " " +getCodiceFiscale() + " " +
+		return getNome() + " " + getCognome() + " " + getCodiceFiscale() + " " +
 		" residente in " + getCitta();
 	}
 	private Persona setCitta(String citta){

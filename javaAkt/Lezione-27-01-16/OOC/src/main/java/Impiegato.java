@@ -1,7 +1,7 @@
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-public class Impiegato{
+public class Impiegato implements Comparable<Impiegato>{
 	private static int nextId = 1;
 
 	private final String nome;
@@ -66,5 +66,15 @@ public class Impiegato{
 	}
 	public static int getNextId(){
 		return Impiegato.nextId;
+	}
+	@Override
+	public int compareTo(Impiegato o){
+		if (this.getSalario() > o.getSalario()){
+			return 1;
+		}else if (this.getSalario() < o.getSalario()){
+			return -1;
+		}else {
+			return this.assunzione.compareTo(o.assunzione);
+		}		
 	}
 }

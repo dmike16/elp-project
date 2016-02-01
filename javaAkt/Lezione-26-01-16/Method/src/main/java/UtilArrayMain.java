@@ -60,8 +60,13 @@ public class UtilArrayMain{
 					char[] seq = {'f','f','s','s','a','s','s','f'};
 					System.out.println("L Array " +
 								(UtilArray.caratteriConsecutivi(seq)? "": "non ") + "ha 3 caratteri consecutivi");
-					System.out.println("Il secondo Array è: " +
-								Arrays.toString(UtilArray.secondoArray()));
+					//System.out.println("Il secondo Array è: " +
+					//			Arrays.toString(UtilArray.secondoArray()));
+		try{
+			UtilArray.leggiArray();
+		}catch(NegativeNumberException e){
+			System.out.println("Non puoi Inserire numeri negativi");
+			e.printStackTrace();
+		}
 	}
-
 }

@@ -1,7 +1,9 @@
 import java.util.*;
 
 public class Collezioni{
-	public static void main(String[] args){
+	public static void main(String[] args)
+		throws ExceptionPreCondozioni
+	{
 		Impiegato i1 = new Impiegato("Alice");
 		Impiegato i2 = new Impiegato("Alex");
 

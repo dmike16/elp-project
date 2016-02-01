@@ -9,13 +9,17 @@ public class Impiegato extends Persona{
 	private final int id;
 
 
-	public Impiegato(String name, int eta, double salario, int gg, int mm, int aa){
+	public Impiegato(String name, int eta, double salario, int gg, int mm, int aa)
+		throws ExceptionPreCondozioni
+	{
 		super(name,eta);
 		this.salario = salario;
 		this.assunzione = (new GregorianCalendar(aa,mm-1,gg)).getTime();
 		this.id = Impiegato.nextId++;
 	}
-	public Impiegato(String name){
+	public Impiegato(String name)
+		throws ExceptionPreCondozioni
+	{
 		super(name,(int)(Math.random() * (61 - 18)) + 18);
 		// Eta random tra 18 e 60
 		// Salario random tra 1000 e 4000

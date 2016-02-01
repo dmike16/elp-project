@@ -1,0 +1,5 @@
+src/main/java/Animale.java
+src/main/java/Cane.java
+src/main/java/Gatto.java
+src/main/java/Topo.java
+src/main/java/AnimaliMain.java

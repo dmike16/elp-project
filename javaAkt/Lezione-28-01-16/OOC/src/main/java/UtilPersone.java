@@ -1,4 +1,6 @@
 import java.util.Date;
+import java.util.Scanner;
+import java.util.StringTokenizer;
 
 public class UtilPersone{
 	public static Impiegato maxSalario(Impiegato[] impiegati){
@@ -53,5 +55,29 @@ public class UtilPersone{
 		}
 
 		return imp;
+	}
+	public static Persona leggiPersona()
+	{
+		System.out.println("Inserisci Nome ed Eta separati dal pipe: nome|eta");
+		Scanner cin = new Scanner(System.in);
+		Persona p = null;
+		while(p == null){
+		try{
+			StringTokenizer st =  new StringTokenizer(cin.nextLine(),"|");
+
+			String nome = st.nextToken().trim();
+			int eta = Integer.parseInt(st.nextToken().trim());
+
+			p = new Persona(nome,eta);
+		} catch(RuntimeException e){
+			System.out.println("Dati non inserici correttamente\n" +
+				"Richiesto nome|eta");
+			//e.printStackTrace();
+		} catch(ExceptionPreCondozioni e){
+			System.out.println("Eta negativa");
+		}
+	}
+	cin.close();
+	return p;
 	}
 }

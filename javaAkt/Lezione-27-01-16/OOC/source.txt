@@ -4,3 +4,4 @@ src/main/java/PersonaMain.java
 src/main/java/Impiegato.java
 src/main/java/ImpiegatoMain.java
 src/main/java/UtilImpiegati.java
+src/main/java/OrdinamentoOggetti.java

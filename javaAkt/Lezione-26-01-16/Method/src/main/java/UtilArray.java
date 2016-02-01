@@ -245,4 +245,29 @@ public class UtilArray{
 		}
 		return secondo;
 	}
+	public static int[] leggiArray(){
+		System.out.println("Quanti elementi vuoi inserire");
+		Scanner cin = new Scanner(System.in);
+
+		int dim = cin.nextInt();
+		int[] result = new int[dim];
+		int i = 0;
+		try{
+			do{
+				System.out.print("N=");
+				int tmp = cin.nextInt();
+				if (tmp < 0){
+					throw new NegativeNumberException("Numero Negativo " + tmp);
+				}else{
+					result[i] = tmp;
+				}
+			}while(++i < dim);
+		}finally{
+			if(cin != null){
+				cin.close();
+			}
+		}
+
+		return result;
+	}
 }

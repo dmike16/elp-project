@@ -1,0 +1,4 @@
+src/main/java/SociTest.java
+src/main/java/dmike/polimorfism/Persona.java
+src/main/java/dmike/polimorfism/Soci.java
+src/main/java/dmike/polimorfism/Pagamenti.java

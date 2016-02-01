@@ -5,7 +5,9 @@ public class Studente extends Persona{
 	private final Date immatricolazione;
 	private final String matricola;
 
-	public Studente(String nome, int eta, int gg, int mm, int aa, String matricola){
+	public Studente(String nome, int eta, int gg, int mm, int aa, String matricola)
+		throws ExceptionPreCondozioni
+	{
 		super(nome,eta);
 		this.matricola = matricola;
 		this.immatricolazione = (new GregorianCalendar(aa,mm-1,gg)).getTime();

@@ -1,7 +1,9 @@
 import java.util.*;
 
 public class Polimorfismo{
-	public static void main(String[] args){
+	public static void main(String[] args)
+		throws ExceptionPreCondozioni
+	{
 		Persona p = new Persona("Mario", 34);
 		Persona p2 = new Impiegato("Alice");
 		Persona p3 = new Manager("Bob",400);
@@ -45,5 +47,10 @@ public class Polimorfismo{
 		Persona p3p = p1;
 		System.out.println(p1.equals(pe1));
 		System.out.println(p1 == pe1);
+
+		Persona ppp = p1.clone();
+		System.out.println(p1);
+		System.out.println(ppp.equals(p1));
+		System.out.println(ppp == p1);
 	}
 }
