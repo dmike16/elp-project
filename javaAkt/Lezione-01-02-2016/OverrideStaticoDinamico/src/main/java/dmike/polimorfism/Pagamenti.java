@@ -20,5 +20,17 @@ public class Pagamenti extends Soci{
 	public String toString(){
 		return super.toString() + " Tassa: " + getTassa();
 	}
+	@Override 
+	public int hashCode(){
+		return super.hashCode() + (int)tassaIscrizione;
+	}
+	@Override
+	public boolean equals(Object obj){
+		if (super.equals(obj)){
+			Pagamenti tmp = (Pagamenti)obj;
+			return (Math.abs(tassaIscrizione - tmp.getTassa())) < Soci.TOL;
+		}
+		return false;
+	}
 	private double tassaIscrizione;
 }
