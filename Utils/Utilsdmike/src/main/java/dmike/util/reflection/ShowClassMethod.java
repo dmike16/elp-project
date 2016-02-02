@@ -2,7 +2,7 @@
  * Use this class to investigate the method of the argument class
  * @author dmike
  */
-package dmike.Util.reflection;
+package dmike.util.reflection;
 
 import java.util.regex.Pattern;
 import java.lang.reflect.Method;
