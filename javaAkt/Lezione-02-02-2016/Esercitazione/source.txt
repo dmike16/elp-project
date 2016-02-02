@@ -8,7 +8,6 @@ src/main/java/dominio/Noleggio.java
 src/main/java/dominio/PreCondizioneException.java
 src/main/java/attivita/AttivitaIO.java
 src/main/java/attivita/AttivitaPrincipale.java
-src/main/java/attivita/View.java
 src/main/java/applicazione/Main.java
 src/main/java/dmike/utils/inout/NotValidDateException.java
 src/main/java/dmike/utils/inout/StdIO.java

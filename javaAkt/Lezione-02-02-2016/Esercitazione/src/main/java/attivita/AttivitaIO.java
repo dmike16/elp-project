@@ -4,14 +4,16 @@ import dominio.Agenzia;
 import dominio.*;
 import java.util.List;
 import java.util.Date;
+import dmike.utils.inout.StdIO;
+import dmike.utils.inout.NotValidDateException;
 
 public class AttivitaIO{
 
 	public static Agenzia leggiAgenzia(){
-		// Far Inserire i Date dell agenzia 
-		String nome = View.getStringNoNull("Inserisci nome azienda");
-		String localita = View.getStringNoNull("Inserisci localita azienda");
-		double bilancio = View.getDoubleNonNull("Inserisci nome azienda");
+		// Far Inserire i Date dell agenzia
+		String nome = StdIO.getStdIO().getStringNotNull("Inserisci nome azienda");
+		String localita = StdIO.getStdIO().getStringNotNull("Inserisci localita azienda");
+		double bilancio = StdIO.getStdIO().getDoubleNotNull("Inserisci nome azienda");
 
 		return  new Agenzia(nome,localita,bilancio);
 	}
@@ -31,7 +33,7 @@ public class AttivitaIO{
 	public static Veicolo leggiVeicolo(){
 		boolean indietro = false;
 		while(!indietro){
-			int scelta = View.getIntNonNull(
+			int scelta = StdIO.getStdIO().getIntNotNull(
 				"[1] Auto\n" +
 				"[2] Camion\n"+
 				"[3] Bicicletta\n"+
@@ -48,7 +50,7 @@ public class AttivitaIO{
 					indietro = true;
 					break;
 				default:
-					System.out.println("Scenta non ammessa");
+					StdIO.getStdIO().coutln("Scenta non ammessa");
 					break;
 			}
 		}
@@ -56,9 +58,9 @@ public class AttivitaIO{
 	}
 
 	public static void menuPrincipale(Agenzia agenzia){
-		
+
 		while(true){
-			int scelta = View.getIntNonNull(
+			int scelta = StdIO.getStdIO().getIntNotNull(
 				agenzia.getNome() + " " + agenzia.getLocalita() + " " +
 				"Bilancio " + agenzia.getBilancio() +"\n" +
 				"[1] Gestione Agenzia\n" +
@@ -85,9 +87,10 @@ public class AttivitaIO{
 					visualizzaNoleggiTerminati(agenzia);
 					break;
 				case 0:
+				  StdIO.getStdIO().close();
 					System.exit(0);
 				default:
-					System.out.println("Scelta non ammessa");
+					StdIO.getStdIO().coutln("Scelta non ammessa");
 					break;
 			}
 		}
@@ -95,7 +98,7 @@ public class AttivitaIO{
 	public static void menuGestione(Agenzia agenzia){
 		boolean indietro = false;
 		while(!indietro){
-			int scelta = View.getIntNonNull(
+			int scelta = StdIO.getStdIO().getIntNotNull(
 				"[1] Nuovo Cliente\n" +
 				"[2] Nuovo Veicolo\n"+
 				"[3] Visualizza Clienti\n"+
@@ -107,15 +110,15 @@ public class AttivitaIO{
 					Cliente nuovoC = leggiCliente();
 					if (nuovoC != null){
 						agenzia.inserisciCliente(nuovoC);
-						System.out.println("Cliente Inserito Con successo "+ 
-							nuovoC); 
+						StdIO.getStdIO().coutln("Cliente Inserito Con successo "+
+							nuovoC);
 					}
 					break;
 				case 2:
 					Veicolo nuovoV = leggiVeicolo();
 					if (nuovoV != null){
 						agenzia.inserisciVeicolo(nuovoV);
-						System.out.println("Veicolo Inserito Con Successo " +
+						StdIO.getStdIO().coutln("Veicolo Inserito Con Successo " +
 							nuovoV);
 					}
 					break;
@@ -129,7 +132,7 @@ public class AttivitaIO{
 					indietro = true;
 					break;
 				default:
-					System.out.println("Scelta non ammessa");
+					StdIO.getStdIO().coutln("Scelta non ammessa");
 					break;
 			}
 		}
@@ -137,17 +140,17 @@ public class AttivitaIO{
 	public static void visualizzaVeicoli(Agenzia agenzia, boolean disp){
 		List<Veicolo> veicoli = agenzia.getVeicoli();
 		if (veicoli.isEmpty()){
-			System.out.println("Non ci sono veicoli registrati");
+			StdIO.getStdIO().coutln("Non ci sono veicoli registrati");
 			return;
 		}
-		System.out.println("Lista Veicoli:");
+		StdIO.getStdIO().coutln("Lista Veicoli:");
 		for(int i = 0, len = veicoli.size(); i < len; i++){
 			if (disp && veicoli.get(i).isDisponibile()){
-				System.out.println("Indice: [" + i + "]\n" 
+				StdIO.getStdIO().coutln("Indice: [" + i + "]\n"
 				+ veicoli.get(i).getClass().getSimpleName()+ " " +
-				veicoli.get(i) + "\n");	
+				veicoli.get(i) + "\n");
 			} else if(!disp){
-				System.out.println("Indice: [" + i + "]\n" 
+				StdIO.getStdIO().coutln("Indice: [" + i + "]\n"
 					+ veicoli.get(i).getClass().getSimpleName()+ " " +
 					veicoli.get(i) + "\n");
 			}
@@ -156,64 +159,70 @@ public class AttivitaIO{
 	public static void visualizzaClienti(Agenzia agenzia){
 		List<Cliente> clienti = agenzia.getClienti();
 		if (clienti.isEmpty()) {
-			System.out.println("Non ci sono Clienti");
+			StdIO.getStdIO().coutln("Non ci sono Clienti");
 			return;
 		}
-		System.out.println("Lista Clienti:");
+		StdIO.getStdIO().coutln("Lista Clienti:");
 		for(int i = 0, len = clienti.size(); i < len; i++){
-			System.out.println("Indice: [" + i + "]\n" +
+			StdIO.getStdIO().coutln("Indice: [" + i + "]\n" +
 				" " + clienti.get(i)  + "\n");
 		}
 	}
 	public static void nuovoNoleggio(Agenzia agenzia){
 		visualizzaClienti(agenzia);
-		int idCliente = View.getIntNonNull("Inserisce indice cliente");
+		int idCliente = StdIO.getStdIO().getIntNotNull("Inserisce indice cliente");
 
 		Cliente clienteSel = agenzia.getClienti().get(idCliente);
 		if(clienteSel == null){
-			System.out.println("Cliente non valido");
+			StdIO.getStdIO().coutln("Cliente non valido");
 			return;
 		}
 
 		visualizzaVeicoli(agenzia,true);
-		int idVeicolo = View.getIntNonNull("Inserisce Veicolo da noleggiare");
+		int idVeicolo = StdIO.getStdIO().getIntNotNull("Inserisce Veicolo da noleggiare");
 		Veicolo veicoloSel = agenzia.getVeicoli().get(idVeicolo);
 		if(veicoloSel == null){
-			System.out.println("Veicolo non valido");
+			StdIO.getStdIO().coutln("Veicolo non valido");
 			return;
 		}
 
-		Date data = View.getDate("Inserisci data inizio noleggio");
+		Date data = null;
+		try{
+			data = StdIO.getStdIO().getDateNotNull("Inserisci data inizio noleggio");
+		} catch(NotValidDateException e){
+			StdIO.getStdIO().coutln("Data non valida presa la data di oggi");
+			data = new Date();
+		}
 		Noleggio nuovoN = new Noleggio(clienteSel,veicoloSel,data);
 		agenzia.inserisciNoleggio(nuovoN);
-		System.out.println("Noleggio aggiunto con success " + nuovoN);
+		StdIO.getStdIO().coutln("Noleggio aggiunto con success " + nuovoN);
 	}
 	public static void terminaNoleggio(Agenzia agenzia){
 		visualizzaNoleggiNonTerminati(agenzia);
-		int idNoleggio = View.getIntNonNull("Inserisci noleggio");
+		int idNoleggio = StdIO.getStdIO().getIntNotNull("Inserisci noleggio");
 		Noleggio noleggioSel = agenzia.getNoleggiNonTerminati().get(idNoleggio);
 		if (noleggioSel != null){
-			System.out.println("Selizione non andata a buon fine");
+			StdIO.getStdIO().coutln("Selizione non andata a buon fine");
 		}
 		double costo = agenzia.terminaNoleggio(noleggioSel);
 		if(costo != -1){
-			System.out.println("Noleggio terminto:\n" +
+			StdIO.getStdIO().coutln("Noleggio terminto:\n" +
 				noleggioSel + "\n" +
 				"Costo Manutenzione: " + costo);
 		}
 	}
 	public static void visualizzaNoleggiTerminati(Agenzia agenzia){
-		
+
 	}
 	public static void visualizzaNoleggiNonTerminati(Agenzia agenzia){
 		List<Noleggio> noleggi = agenzia.getNoleggiNonTerminati();
 		if(noleggi == null){
-			System.out.println("Non ci sono noleggi non terminati");
+			StdIO.getStdIO().coutln("Non ci sono noleggi non terminati");
 			return;
 		}
 		for(int i = 0,len = noleggi.size(); i < len; i++){
-				System.out.println("Indice: [" + i + "]\n" +
-				" " + noleggi.get(i)  + " non terminati\n");		
+				StdIO.getStdIO().coutln("Indice: [" + i + "]\n" +
+				" " + noleggi.get(i)  + " non terminati\n");
 		}
 	}
 }

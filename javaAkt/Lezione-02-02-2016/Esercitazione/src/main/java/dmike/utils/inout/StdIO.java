@@ -120,7 +120,7 @@ public final class StdIO implements View, Closeable{
 		}
 		return date;
 	}
-	public static StdIO getStdIOReference(){
+	public static StdIO getStdIO(){
 		if (StdIO.io == null){
 			io = new StdIO();
 		}
@@ -140,6 +140,9 @@ public final class StdIO implements View, Closeable{
 				io = null;
 			}
 		}
+	}
+	public static void coutln(String mesg){
+		StdIO.getStdIO().cout.println(mesg);
 	}
 	private Date validateDate(Scanner ss,FormatDate ff)
 		throws NotValidDateException, NumberFormatException
@@ -168,5 +171,5 @@ public final class StdIO implements View, Closeable{
 		new InputStreamReader(System.in));
 	private final PrintWriter cout = new PrintWriter(System.out,true);
 	private static StdIO io = null;
-	private StdIO(){} 
+	private StdIO(){}
 }
