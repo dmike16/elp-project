@@ -1,0 +1,6 @@
+src/main/java/applicazione/Main.java
+src/main/java/attivita/AttivitaPrincipale.java
+src/main/java/attivita/AttivitaDatiTest.java
+src/main/java/assicurazioni/Agenzia.java
+src/main/java/assicurazioni/PolizzaBase.java
+src/main/java/assicurazioni/PolizzaIncendioFurto.java
