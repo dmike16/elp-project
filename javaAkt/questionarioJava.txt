@@ -1,0 +1,76 @@
+N.1
+	La classe rappresenta il "template" di un oggetto, cioè ne definisce la struttura. Mentre l'oggetto rappresenta un istanza della classe vale a dire l'entità allocata in memoria.
+
+N.2
+	La JVM sta per java virtual maschine, che permette di tradurre in linguaggio macchina il bytecode generato dal compilatore java. Tale meccanismo consente di migliorare la sicurezza in quanto l'applicativo java non comunica direttamente con il sistema, ma lo fa tramite la JVM; è le che gestisce il modo in cui si comunica co l'OS. E sta alla base dell'alta portabilità del codice java, in quanto una volta generato il byte code, possiamo eseguire l'aaplicativo su qualsiasi sistema purchè in esso ci sia istallata la corretta JVM.
+N.3
+	La parola "super" viene utilizzata in una sottoClasse per riferirsi a metodi o variabili ( public ) della superClasse che sono sovrascritti nella sotto Classe; oppure nel costruttore pre riferirsi al costruttore della super Classe, in tal caso deve essere la prima istruzione eseguita dal metodo.
+N.4
+	Il polimorfismo è uno dei principi che stanno alla base della programmazione orientata ad oggetti. Esso puo essere realizzato in due modi:
+		-Overloading dei metodi, cioè in una stessa classe definiamo più metodi con lo stesso nome, ma con numero e/o tipo di argomenti differenti.
+		-Overriding dei metodi, cioè il metodo mantiene la dichiarazione fatta nella super Claase o interfaccia e ne viene cambiato il compartamento. Tale overriding puo essre  statico quando la varible che punta la mio oggetto è quello stesso tipo dell'oggetto, o dinamico quando la variabile è del tipo della super Classe o interfaccia, estesa o inplementata dalla classe di cui l'oggetto è un istanza.
+N.5 
+	Una classe che implementa un interfaccia è vincolata a implemntare tutti i metodi definiti nell'interfaccia. Cioè a farne l'overriding.
+N.6
+	Il metodo toStirng() appartiene alla classe Object, che sta alla base della gerachia di tutte le classi.
+N.7
+	Di un classe astratta non posso istanziare oggetti, ma posso definire variabili di una classe astratta che puntano a referenze di oggetti delle sue sotto classi.
+N.8
+	No int è un tipo primitivo, vien passato per valore.
+N.9
+	Java è un linguaggio pseudo compilato. Il compilarore genera un file in bytecode, controllandone prima la sintassi, che poi per esseere eseguito viene passato ad un interprete che po traduce in linguaggio macchina.
+N.10
+	I principi dell OOP sono:
+		-Incapsulamento, i dati vengono nascosti, incapsulati all'interno di una struttara e all'utente vengono forniti i metodi per agire sui dati.
+		-Ereditarietà, processo per il quale un oggetto acquisisce le funzionalità di un altro oggetto, ereditandolo. Questo consenti di astrarre il problema dal case specifico, creato un modello astratto generale che viene ereditato per definire comporatamenti sempre più specifici.
+		-Polimorfismo, ce ci consente di avere una sola interfaccia ed molti metodi.
+	N.11
+		Due stringe si confrontano con il metodo equals() che è stato ridefinito dai sviluppatori della classe String.
+	N.12
+		Per acquisire un singolo carattere dalla tastiera, dobbiamo prima leggere una stringa usanto o lo Scanner utility oppure stream di caratteri, e poi estrarre il carattera dalla string con charAt(0).
+	N.13
+		Tra i metodi comuni alle collections troviamo tutti quelli nell'interfaccia Collection, tra cui add(e),remove(e),contrains(e) ed altri...
+	N.14
+		Un ArrayList è un classe che fa parte delle Collections Framwork utilizzata per realizzare array dinamici, cioè che possono variare dimensione quando ne hanno bisogno. Tale classe implemente l'interfaccia List che aggiunge all'interfaccia Collection alcuni metodi pre gestire gli elementi della sequenza in base allo loro posizione nella sequenza stessa.
+	N.15
+		Si un metodo può restituire una referanza ad un array, ed anche ad un oggetto.
+	N.16
+		Si throw viene utilizzata per laciare un oggetto eccezione, infatti è seguita dall'istanziamento di un oggetto eccezione. Mentre throws è utilizzata per dichiare a chi utilizza il metodo che questo potrebbe lancia uno o più eccezzione, infatti è seguita da tipi di eccezione.
+	N.17
+		Tra le eccezioni unchecked ci sono:
+			-NullPointerException, quando si tenta di accedere ad un metodo o variabile di una referanza che punta a null
+			-ArrayIndexOutOfBound, si tenta di accedere ad un elemento furi range
+			-NumberFormatException, si tenta di assegnare ad un tipo numerico un dato che non lo è
+			-ecc..
+	N.18
+		Il finally si utilizza quando abbiamo delle istruzione che vogliamo che siano eseguite indipendentemente di cose accade nel blocco try.
+	N.19
+		La variabile si systema CLASSPATH serve per indicare al compilatore java e alla JVM dove andare a cercare librerie di esterne che non fanno parte delle librerie standard.
+	N.20
+		Il gargabage collector viene eseguito dalla JVM, quando ce bisogno di recuperare memoria. Cumque sia non si possono prevedere quando, come e se viene chiamato il garbage collector.
+	N.21
+		Si il metodo toString() può essere ridefinito, in quanto ogni classe eredita dalla classe Oject.
+	N.22
+		La firma di un metodo è rappresentata dal suo nome e dal numero e tipo di argomenti.
+	N.23
+		Quando un metodo di una super classe o interfaccia viene ridefinito in una sotto classe o in una classe che implementa l'interfaccia, e tale metodo viene chiamato su un oggetto di tale classe referenziato da una variabile di tipo super classe o interfaccia, allora la JVM grazie al binding dinamico, cioè al runtime, mi chiama la versinone del metodo corretta, cioè quella definita nell'effettivo oggetto puntato dalla referenza.
+	N.24
+		Un javabean reppresenta una classe scritta secondo una particolare convenzoine, che prevede:
+			-costruttore vuoto,
+			-attributi privari,
+			-metodo get and set
+	N.25
+		Static si utilizza per definire metodi o variabili che appartendono alla classe, nel senso che non vi è una copia per ogni oggeto. Per accedervi si bisogno che siano preceduti dal NomeClasse.methodo(o variabile).
+	N.26
+		final può essere utitlizzato per varibili, metodi o classe:
+			-a variabili final non si può cambiare valore nel caso di tipi primitivi o riferimento nel caso di oggetti,
+			-metodi final non possi essere sovrascritti.
+			-classe final non possono essere estese
+	N.27
+		b
+	N.28
+		MiaClasse
+	N.29
+		b
+	N.30
+		e
