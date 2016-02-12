@@ -141,8 +141,8 @@ public final class StdIO implements View, Closeable{
 			}
 		}
 	}
-	public static void coutln(String mesg){
-		StdIO.getStdIO().cout.println(mesg);
+	public void coutln(String mesg){
+		cout.println(mesg);
 	}
 	private Date validateDate(Scanner ss,FormatDate ff)
 		throws NotValidDateException, NumberFormatException
