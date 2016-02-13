@@ -1,5 +1,5 @@
 group 'util'
-version '1'
+version '1.0'
 
 apply plugin: 'java'
 
@@ -7,7 +7,7 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 jar{
-	baseName = 'dmikeUtil'
+	baseName = 'dutil'
 	version = '1.0'
 	manifest{
 		attributes('Main-Class':'dmike.Util.reflection.ShowClassMethod',

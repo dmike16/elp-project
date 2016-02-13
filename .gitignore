@@ -64,3 +64,6 @@ build
 /javaWebApp/Chapter3/HelloUser/nbproject/private/
 /StruttureDatiAlgoritmi/ch3/HoldingObject/nbproject/private/
 /javaWebApp/Chapter3/Customer-Support-v1/nbproject/private/
+
+#Gradle Stuff
+.gradle/
