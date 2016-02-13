@@ -1,0 +1,35 @@
+group 'dbtest'
+version '1.0'
+
+apply plugin: 'java'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+def ENV = System.getenv()
+
+jar{
+	baseName = 'dbtest'
+	version = '1.0'
+	manifest{
+		attributes('Main-Class':'test.db.Main',
+			'Class-Path':ENV['HOME']+'/oracle/dmikeOracle/dmikeUtil-1.0.jar ' + ENV['HOME'] + '/oracle/sqldeveloper/jdbc/lib/ojdbc6.jar',
+			'Implementatio-Title':'dbtest',
+			'Implementation-Version':version)
+	}
+}
+
+repositories{
+	flatDir{
+		dirs  ENV['HOME']+'/oracle/dmikeOracle', ENV['HOME'] + '/oracle/sqldeveloper/jdbc/lib'
+	}
+}
+
+dependencies{
+	compile([name:'dmikeUtil-1.0'])
+	runtime([name:'ojdbc6'])
+}
+
+task Wrapper(type: Wrapper){
+	gradleVersion = '2.3'
+}
