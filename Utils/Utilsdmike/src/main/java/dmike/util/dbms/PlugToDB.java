@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 
 public final class PlugToDB{
 	private PlugToDB(String host,String nameDB,String user,String passw)
@@ -74,17 +75,21 @@ public final class PlugToDB{
 	public static void shutDownConnection()
 		throws SQLException
 	{
-		Iterator<String> iter = pool.keySet().iterator();
+		if(pool == null || pool.isEmpty())return;
+		
+		Iterator<Map.Entry<String,PlugToDB>> iter = pool.entrySet().iterator();
 		while(iter.hasNext()){
-			String key = iter.next();
-			pool.remove(key).dispose();
+			iter.next().getValue().dispose();
+			iter.remove();
 		}
 	}
-	public static void shutDownConnection(String user,String db){
+	public static void shutDownConnection(String user,String db)
+		throws SQLException
+	{
 		String key = user+"@"+db;
 		
 		if(pool.containsKey(key)){
-			pool.remove(key);
+			pool.remove(key).dispose();
 		}
 	}
 	public static ArrayList<PlugToDB> showConnection(){
