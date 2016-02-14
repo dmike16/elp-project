@@ -21,12 +21,12 @@ jar{
 
 repositories{
 	flatDir{
-		dirs  ENV['HOME']+'/oracle/dmikeOracle', ENV['HOME'] + '/oracle/sqldeveloper/jdbc/lib'
+		dirs  ENV['HOME']+'/oracle/util', ENV['HOME'] + '/oracle/sqldeveloper/jdbc/lib'
 	}
 }
 
 dependencies{
-	compile([name:'dmikeUtil-1.0'])
+	compile([name:'dutil-1.0'])
 	runtime([name:'ojdbc6'])
 }
 
