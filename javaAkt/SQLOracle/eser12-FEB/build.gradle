@@ -13,7 +13,7 @@ jar{
 	version = '1.0'
 	manifest{
 		attributes('Main-Class':'test.db.Main',
-			'Class-Path':ENV['HOME']+'/oracle/dmikeOracle/dmikeUtil-1.0.jar ' + ENV['HOME'] + '/oracle/sqldeveloper/jdbc/lib/ojdbc6.jar',
+			'Class-Path':ENV['HOME']+'/oracle/util/dutil-1.0.jar ' + ENV['HOME'] + '/oracle/sqldeveloper/jdbc/lib/ojdbc6.jar',
 			'Implementatio-Title':'dbtest',
 			'Implementation-Version':version)
 	}

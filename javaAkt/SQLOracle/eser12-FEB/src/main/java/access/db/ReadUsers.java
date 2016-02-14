@@ -20,8 +20,6 @@ import dmike.util.dbms.PlugToDB;
 
 public class ReadUsers{
 	
-	private PlugToDB conn = null;
-	
 	public ReadUsers()
 		throws SQLException
 	{
@@ -33,7 +31,7 @@ public class ReadUsers{
 		conn = PlugToDB.startConnection(host, nameDB, user, passw);
 	}
 	
-	public int insertUsersData(Users user)
+	public int insertData(Users user)
 		throws SQLException
 	{
 		int rows = -1;
@@ -73,7 +71,7 @@ public class ReadUsers{
 		return rows;
 	}
 	
-	public int updateUsersData(Users user, String condition)
+	public int updateData(Users user, String attr, String oper, Object value)
 		throws SQLException
 	{
 		int rows = -1;
@@ -81,37 +79,40 @@ public class ReadUsers{
 		String[] attToUpdate = new String[4];
 		StringBuilder sqlBuilder = new StringBuilder();
 		
-		sqlBuilder = ReadUsers.appendHead(sqlBuilder, "UPDATE users set\n");
+		sqlBuilder = ReadUsers.appendBody(sqlBuilder, "UPDATE users set\n");
 		
 		
 		if(user.getUserName() != null){
-			ReadUsers.appendExpression(sqlBuilder, user.getUserName());
+			ReadUsers.appendExpression(sqlBuilder, "user_name");
 			sqlBuilder.append(",");
 			attToUpdate[count++] = user.getUserName();
 		}
 		
 		if(user.getPassw() != null){
-			ReadUsers.appendExpression(sqlBuilder, user.getPassw());
+			ReadUsers.appendExpression(sqlBuilder, "password");
 			sqlBuilder.append(",");
 			attToUpdate[count++] = user.getPassw();
 		}
 		
 		if(user.getName() != null){
-			ReadUsers.appendExpression(sqlBuilder, user.getName());
+			ReadUsers.appendExpression(sqlBuilder, "fullname");
 			sqlBuilder.append(",");
 			attToUpdate[count++] = user.getName();
 		}
 		
 		if(user.getEmail() != null){
-			ReadUsers.appendExpression(sqlBuilder, user.getEmail());
+			ReadUsers.appendExpression(sqlBuilder, "email");
 			sqlBuilder.append(",");
 			attToUpdate[count++] = user.getEmail();
 		}
 		
-		ReadUsers.appendExpression(sqlBuilder, user.getSalary() + "");
+		ReadUsers.appendExpression(sqlBuilder, "salary");
 		count++;
 		sqlBuilder.append("\nwhere ");
-		ReadUsers.appendTail(sqlBuilder, condition);
+		sqlBuilder.append(attr);
+		sqlBuilder.append(oper);
+		sqlBuilder.append("?");
+		count++;
 		
 		PreparedStatement prep = null;
 		
@@ -119,12 +120,14 @@ public class ReadUsers{
 			
 			if (count != 0){
 				String sql = sqlBuilder.toString();
+				
 				prep = conn.getConnection().prepareStatement(sql);
 				
+				prep.setObject(count--, value);
 				prep.setDouble(count--, user.getSalary());
 				
-				for(int i = count; i > 0; i--){
-					prep.setString(i, attToUpdate[i]);
+				for(int i = count; i >= 1; i--){
+					prep.setString(i, attToUpdate[i-1]);
 				}
 				
 				rows = prep.executeUpdate();
@@ -140,22 +143,23 @@ public class ReadUsers{
 		return rows;
 	}
 	
-	public int deleteUsersRows(String condition){
-		StringBuilder sqlBuild = new StringBuilder();
+	public int deleteData(String attr,String oper, Object value)
+		throws SQLException
+	{
 		int rows = -1;
+		StringBuilder sqlBuild = new StringBuilder();
+		sqlBuild.append("DELETE FROM users\nWhere ");
+		sqlBuild.append(attr);
+		sqlBuild.append(oper);
+		sqlBuild.append("?");
 		
-		ReadUsers.appendHead(sqlBuild, "DELETE FROM users");
-		ReadUsers.appendTail(sqlBuild, condition);
+		String sql = sqlBuild.toString();
+						
+		PreparedStatement prep = conn.getConnection().prepareStatement(sql);
+		prep.setObject(1, value);
 		
-		try{
-			String sql = sqlBuild.toString();
+		rows = prep.executeUpdate();
 			
-			PreparedStatement prep = conn.getConnection().prepareStatement(sql);
-			rows = prep.executeUpdate();
-			
-		}catch(SQLException e){
-			e.printStackTrace();
-		}
 		
 		return rows;
 	}
@@ -195,10 +199,10 @@ public class ReadUsers{
 		int rows = -1;
 		StringBuilder sqlBuilder = new StringBuilder();
 		
-		sqlBuilder = ReadUsers.appendHead(sqlBuilder, "UPDATE users_type set\n");
+		sqlBuilder = ReadUsers.appendBody(sqlBuilder, "UPDATE users_type set\n");
 		
 		if (ut.getDescription() != null){
-			ReadUsers.appendExpression(sqlBuilder, ut.getDescription());
+			ReadUsers.appendExpression(sqlBuilder, "description");
 			PreparedStatement prep = null;
 			try{	
 				String sql = sqlBuilder.toString();
@@ -216,7 +220,7 @@ public class ReadUsers{
 		return rows;
 	}
 	
-	public List<Users> listUsers()
+	public List<Users> listData()
 		throws SQLException
 	{
 		ArrayList<Users> users = new ArrayList<>();
@@ -290,13 +294,45 @@ public class ReadUsers{
 		
 		return groupsU;
 	}
+	public Users getUser(String user)
+		throws SQLException
+	{
+		Users u = new Users();
+		PreparedStatement prest = null;
+		ResultSet rslt = null;
+		String sql = "SELECT * FROM users\n"+
+					"WHERE user_name = ?";
+		try{
+			prest = conn.getConnection().prepareStatement(sql);
+			prest.setString(1, user);
+			rslt = prest.executeQuery();
+			
+			while(rslt.next()){
+				u.setId(rslt.getInt("ID"));
+				u.setName(rslt.getString("fullname"));
+				u.setUserName(rslt.getString("user_name"));
+				u.setPassw(rslt.getString("password"));
+				u.setSalary(rslt.getDouble("salary"));
+				u.setEmail(rslt.getString("email"));
+				u.setIdType(rslt.getInt("user_type"));
+			}
+		}finally{
+			if(prest != null){
+				if(rslt != null){
+					rslt.close();
+				}
+				prest.close();
+			}
+		}
+		return u;
+	}
 	
 	@Override
 	public String toString(){
 		return ReadUsers.class.getName();
 	}
 	
-	private static StringBuilder appendHead(StringBuilder build,String head){
+	private static StringBuilder appendBody(StringBuilder build,String head){
 		
 		for(String s : head.split(" ")){
 			build.append(s);
@@ -314,13 +350,7 @@ public class ReadUsers{
 		
 		return build;
 	}
-	private static StringBuilder appendTail(StringBuilder build, String tail){
-		for(String s: tail.split(" ")){
-			build.append(s);
-			build.append(" ");
-		}
-		
-		return build;
-	}
+	
+	private PlugToDB conn = null;
 	
 }

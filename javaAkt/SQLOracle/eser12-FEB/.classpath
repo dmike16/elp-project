@@ -3,6 +3,6 @@
 	<classpathentry kind="src" path="src/main/java"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="/home/dmike/oracle/sqldeveloper/jdbc/lib/ojdbc6.jar"/>
-	<classpathentry kind="lib" path="/home/dmike/oracle/dmikeOracle/dmikeUtil-1.0.jar"/>
+	<classpathentry kind="lib" path="/home/dmike/oracle/util/dutil-1.0.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

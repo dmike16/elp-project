@@ -12,10 +12,11 @@ public class Table {
 		int choice = 0;
 		String msg = "Select Table\n"+
 				"[1] Gesture Users\n" +
-				"[2] Gesture Veicoli\n"+
-				"[3] Gesture Mobili\n"+
+				"[2] Gesture Mobili\n"+
+				"[3] Gesture Veicoli\n"+
 				"[4] Get All Connection\n"+
 				"[0] Exit";
+		
 		try{
 			do{
 				choice = std.getIntNotNull(msg);
@@ -23,7 +24,13 @@ public class Table {
 				case 1:
 					Table.openUser().openTable(std);
 					break;
-				case 2:case 3:case 0:
+				case 2:
+					Table.openItem().openTable(std);
+					break;
+				case 3:
+					Table.openVeicoli().openTable(std);
+					break;
+				case 0:
 					PlugToDB.shutDownConnection();
 					return;
 				case 4:
@@ -40,6 +47,12 @@ public class Table {
 	}
 	private static GestureTable openUser(){
 		return new UsersTable();
+	}
+	private static GestureTable openItem(){
+		return new ItemTable();
+	}
+	private static GestureTable openVeicoli(){
+		return new VeicoliTable();
 	}
 	private Table(){};
 }

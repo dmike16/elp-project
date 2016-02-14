@@ -10,7 +10,7 @@ class UsersTable implements GestureTable{
 	void newUser(ReadUsers dbUsers,StdIO std){
 		
 		try{
-			if(dbUsers.insertUsersData(InputAction.readUsers(std)) > 0){
+			if(dbUsers.insertData(InputAction.readUsers(std)) > 0){
 				std.coutln("Utente inserito");
 			}else{
 				std.coutln("Errore nell'inserimento");
@@ -21,6 +21,58 @@ class UsersTable implements GestureTable{
 			
 		}
 	}
+
+	void modifyUsers(ReadUsers db, StdIO std){
+		int choice;
+		do{
+			try{
+				String userName = std.getStringNotNull("Insert user name: ");
+				Users ou = db.getUser(userName);
+				std.coutln("Your user is\n" + ou.toString());
+				choice = std.getIntNotNull("[1] Change current user password\n"+
+											"[2] Delete current user\n"+
+											"[0] Back");
+				if(choice != 0){
+					
+				}
+				switch(choice){
+				case 1:
+					Users nu = new Users();
+					nu.setPassw(std.getStringNotNull("Insert new passw: "));
+					if((db.updateData(nu,"user_name","=",userName)) > 0){
+						std.coutln("Password UPDATE WITH SUCCESS!!!!");
+					}else{
+						std.coutln("NOT ABLE TO UDPATE!!!");
+					}
+					
+					break;
+				case 2:
+					String  resp = std.getStringNotNull("Are you sure? [y/n]");
+					if(resp.equals("y")){
+						if((db.deleteData("user_name","=",userName)) > 0){
+							std.coutln("Utente cancellato");
+						}
+					}
+					break;
+				case 0:
+					return;
+				default:
+					break;
+				}
+			}catch(SQLException | NullPointerException  e){
+				std.coutln("Error in conunicate with DB\n" +
+						e.getMessage());
+				choice = std.getIntNotNull("[1] Retry\n"+
+											"[0] Back");
+				if(choice != 1){
+					return;
+				}
+			}
+			
+		}while(true);
+	}
+	
+	
 	
 	@Override
 	public void openTable(StdIO std){
@@ -29,31 +81,30 @@ class UsersTable implements GestureTable{
 			ReadUsers db = null;
 			String msg ="[1] List all Users in table\n"+
 					"[2] Insert a new User\n"+
-					"[0] Exit";
-			std.coutln(msg);
-			choice = std.getIntNotNull("Make a Choice");
-			boolean exit = false;
+					"[3] Modify User\n"+
+					"[0] Back";
 			
+			choice = std.getIntNotNull(msg);
+						
 			if(choice != 0){
 				db = new ReadUsers();
 			}
 		
-	loop:	while(!exit){
+			while(true){
 				switch(choice){
 				case 1:
-					std.coutln("Complete List of Users");
-					GestureTable.showData(std, db.listUsers());
+					GestureTable.showData(std, db.listData());
 					break;
 				case 2:
-					std.coutln("Insert a new user");
 					newUser(db, std);
 					break;
+				case 3: 
+					modifyUsers(db,std);
+					break;
 				case 0:
-					exit=true;
-					break loop;
+					return;
 				default:
-					exit=true;
-					break loop;
+					break;
 						
 				}
 				choice = std.getIntNotNull(msg);
@@ -66,9 +117,6 @@ class UsersTable implements GestureTable{
 				break;
 			case 1:
 				error.append("Error in get users rows\n");
-				break;
-			case 2:
-				error.append("Error in insert users rows\n");
 				break;
 			default:
 				std.coutln(e.getMessage());
