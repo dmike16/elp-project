@@ -53,5 +53,47 @@ public class ReadCategory {
 		return cat;
 	}
 	
-		private PlugToDB conn;
+	public List<Category> listChiperCatWithIva()
+		throws SQLException
+	{
+		ArrayList<Category> categorie = new ArrayList<>();
+		Statement stmt = null;
+		ResultSet rslt = null;
+		
+		try{
+			String sql = "SELECT ca.cat_cod,ca.cat_descrizione,max(a.art_iva)\n"+
+					"FROM articoli a, categorie ca\n"+
+					"WHERE a.cat_cod = ca.cat_cod\n"+
+						"and a.art_prezzo < (SELECT avg(art_prezzo)\n"+
+						"FROM articoli)\n"+
+					"GROUP BY ca.cat_cod,ca.cat_descrizione";
+			stmt = conn.getConnection().createStatement();
+			rslt = stmt.executeQuery(sql);
+			
+			while(rslt.next()){
+				Category c = categiroriaWithIva(rslt.getInt(3));
+				c.setCod(rslt.getString(1));
+				c.setDescription(rslt.getString(2));
+				
+				categorie.add(c);
+			}
+		}finally{
+			PlugToDB.closeStatement(stmt, rslt);
+		}
+		
+		return categorie;
+	}
+	
+	private Category categiroriaWithIva(int iva_1){
+		return new Category(){
+			@Override
+			public String toString(){
+				return super.toString() + "\n"+
+						"MaxIva: " + iva;
+			}
+			private int iva = iva_1; 
+		};
+	}
+	
+	private PlugToDB conn;
 }

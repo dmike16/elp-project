@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import action.db.Department;
+import action.db.DepartmentWithLocation;
 import action.db.Location;
 import dmike.util.dbms.PlugToDB;
 
@@ -23,10 +23,10 @@ public class ReadDepartment {
 			conn = PlugToDB.startConnection(host, db, user, passw);
 		}
 		
-		public List<Department> listDepartmentLocationCountEmployee(Date d)
+		public List<DepartmentWithLocation> listDepartmentLocationCountEmployee(Date d)
 			throws SQLException
 		{
-			ArrayList<Department> departs = new ArrayList<>();
+			ArrayList<DepartmentWithLocation> departs = new ArrayList<>();
 			
 			PreparedStatement pstatm = null;
 			ResultSet rslt = null;
@@ -44,12 +44,12 @@ public class ReadDepartment {
 				rslt = pstatm.executeQuery();
 				
 				while(rslt.next()){
-					CountEmployee count = new CountEmployee();
-					count.setCount(rslt.getInt(1));
+					DepartmentWithLocation count = CountEmployee(rslt.getInt(1));
+				
 					count.setName(rslt.getString(2));
 					int id = rslt.getInt(3);
 					count.setlID(id);
-					count.setLocation(CountEmployee.locationCached(departs, id));
+					count.setLocation(locationCached(departs, id));
 					count.getLocation().setId(id);
 					count.getLocation().setAddress(rslt.getString(4));
 					count.getLocation().setCity(rslt.getString(5));
@@ -68,50 +68,25 @@ public class ReadDepartment {
 			return departs;
 		}
 		
-		private static class LocationDepartment extends Department{
-			 protected LocationDepartment(){
-				super();
-			}
-			public Location getLocation(){
-				return dep;
-			}
-			public void setLocation(Location d){
-				dep = d;
-			}
-			@Override
-			public String toString(){
-				return "Nome Dep: " + super.getName() + "\n"+
-						"Location : " + "Id: " + getLocation().getId()+"\n" +
-						"            Address: " + getLocation().getAddress()+ ", " +
-										getLocation().getCity();
-			}
-			protected static Location locationCached(List<Department> dep,int id){
-				for(Department d: dep){
-					if(d.getlID() == id){
-						return ((LocationDepartment) d).getLocation();
-					}
+		private Location locationCached(List<DepartmentWithLocation> deps,int id){
+			for(DepartmentWithLocation d: deps){
+				if(d.getlID() == id){
+					return d.getLocation();
 				}
-				return new Location();
 			}
-				
-			private Location dep;
+			return new Location();
 		}
-		private static class CountEmployee extends LocationDepartment{
-			protected CountEmployee(){
-				super();
-			}
-			public int getCount(){
-				return count;
-			}
-			public void setCount(int c){
-				count = c;
-			}
-			@Override
-			public String toString(){
-				return super.toString() +"\n"+
-						"NumDip: " + getCount();
-			}
-			private int count;
+		private DepartmentWithLocation CountEmployee(int ccount){
+			return new DepartmentWithLocation(){
+				@Override
+				public String toString(){
+					return "Name: " + super.getName() +"\n"+
+							"LoID: " + super.getLocation().getId() + "\n"+
+							"Address: " + super.getLocation().getAddress() + ", " + super.getLocation().getCity()+"\n"+
+							"NumDip: " + count;
+				}
+				private int count = ccount;
+				};
 		}
 		private PlugToDB conn;
 }
