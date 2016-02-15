@@ -1,5 +1,8 @@
 package action.db;
 
+import java.util.Date;
+
+import dmike.util.inout.NotValidDateException;
 import dmike.util.inout.StdIO;
 
 class InputAction {
@@ -16,5 +19,10 @@ class InputAction {
 		
 		return u;
 		
+	}
+	public static Date insertDate(StdIO std)
+		throws NotValidDateException
+	{
+		return std.getDateNotNull("Dammi una date");
 	}
 }

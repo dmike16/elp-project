@@ -17,6 +17,8 @@ public class VeicoliTable implements GestureTable{
 			ReadVeicolo db = null;
 			String msg ="[1] List all Veicol in table\n"+
 					"[2] Ownership secion\n"+
+					"[3] Find max cc\n"+
+					"[4] Find total Versioni fabbricate dal max fabb_cod\n"+
 					"[0] Back";
 			choice = std.getIntNotNull(msg);
 						
@@ -32,7 +34,13 @@ public class VeicoliTable implements GestureTable{
 				case 2:
 					ownerShipSection(std,db);
 					break;
-				case 3: 
+				case 3:
+					String fabb = std.getStringNotNull("Inserisci fabbrica");
+					std.coutln("Max cc veicolo costruito in "+fabb+" è " + 
+							db.maxCilindrata(fabb));
+					break;
+				case 4:
+					std.coutln("Verioni totali : " + db.totalVersioni());
 					break;
 				case 0:
 					return;
@@ -73,8 +81,8 @@ public class VeicoliTable implements GestureTable{
 					break;
 				case 2:
 					List<Proprieta> plist;
-					plist = db.getProprieta().findDateByDate(new Date(
-							std.getDateNotNull("Inserisci una data").getTime()));
+					long mill = InputAction.insertDate(std).getTime();
+					plist = db.getProprieta().findDateByDate(new Date(mill));
 					for(Proprieta p: plist){
 						std.coutln(p.toString(true));
 					}

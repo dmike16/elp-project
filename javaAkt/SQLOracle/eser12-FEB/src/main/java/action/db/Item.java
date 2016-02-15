@@ -46,7 +46,7 @@ public class Item {
 				"DSC: " + getDescription() +"\n"+
 				"PRI: " + getPrice() +"\n" +
 				"IVA: " + getIva() + "\n" +
-				"TCT: " + getTransportCost() +"\n";
+				"TCT: " + getTransportCost();
 	}
 
 	private String cod;

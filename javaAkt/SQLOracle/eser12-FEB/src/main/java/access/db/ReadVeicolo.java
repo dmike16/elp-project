@@ -1,5 +1,6 @@
 package access.db;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -64,6 +65,68 @@ public class ReadVeicolo {
 				
 				return items;
 			}
+		public int maxCilindrata(String fabbrica)
+			throws SQLException
+		{
+			int result = 0;
+			
+			PreparedStatement pstatm = null;
+			ResultSet rslt = null;
+			
+			try{
+				String sql = "SELECT max(cilindrata)\n"+
+						"FROM veicoli v, modelli m, fabbriche f\n"+
+						"WHERE v.cod_modello = m.cod_modello\n"+
+						"and m.cod_fabbrica = f.cod_fabbrica\n"+
+						"and f.nome_fabbrica = ?";
+				pstatm = conn.getConnection().prepareStatement(sql);
+				pstatm.setString(1, fabbrica.toUpperCase());
+				
+				rslt = pstatm.executeQuery();
+				
+				while(rslt.next()){
+					result = rslt.getInt(1);
+				}
+			}finally{
+				if(pstatm != null){
+					if(rslt != null){
+						rslt.close();
+					}
+					pstatm.close();
+				}
+			}
+			
+			return result;
+		}
+		public int totalVersioni()
+			throws SQLException
+		{
+			int total=0;
+			
+			Statement stmt = null;
+			ResultSet rslt = null;
+			
+			try{
+				String sql = "SELECT sum(numero_versioni) FROM modelli\n"+
+						"WHERE cod_fabbrica = (SELECT max(cod_fabbrica) from fabbriche)";
+				stmt = conn.getConnection().createStatement();
+				rslt = stmt.executeQuery(sql);
+				
+				while(rslt.next()){
+					total = rslt.getInt(1);
+				}
+			
+			}finally{
+				if(stmt != null){
+					if(rslt != null){
+						rslt.close();
+					}
+					stmt.close();
+				}
+			}
+			
+			return total;
+		}
 		private PlugToDB conn;
 		private ReadProprieta prop;
 }

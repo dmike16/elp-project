@@ -17,6 +17,9 @@ class ItemTable implements GestureTable{
 			ReadItem db = null;
 			String msg ="[1] List all Items in table\n"+
 					"[2] count by IVA\n"+
+					"[3] List Modelli e Fabbrica\n"+
+					"[4] List Lab with comp number\n"+
+					"[5] List chipset item from a category\n"+
 					"[0] Back";
 			choice = std.getIntNotNull(msg);
 						
@@ -33,6 +36,14 @@ class ItemTable implements GestureTable{
 					countItemCatByIva(std,db);
 					break;
 				case 3: 
+					GestureTable.showData(std, db.getModel().listModelliAndFabbriche());
+					break;
+				case 4:
+					GestureTable.showData(std,db.getComponent().contComponentperLab());
+					break;
+				case 5:
+					String cat = std.getStringNotNull("Inserisci categoria");
+					GestureTable.showData(std, db.chipestItem(cat));
 					break;
 				case 0:
 					return;

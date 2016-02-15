@@ -14,7 +14,8 @@ public class Table {
 				"[1] Gesture Users\n" +
 				"[2] Gesture Mobili\n"+
 				"[3] Gesture Veicoli\n"+
-				"[4] Get All Connection\n"+
+				"[4] Gestrue Employees\n"+
+				"[5] Get All Connection\n"+
 				"[0] Exit";
 		
 		try{
@@ -22,19 +23,26 @@ public class Table {
 				choice = std.getIntNotNull(msg);
 				switch(choice){
 				case 1:
-					Table.openUser().openTable(std);
+					Table.table[choice-1].openTable(std);
 					break;
 				case 2:
-					Table.openItem().openTable(std);
+					Table.table[choice-1].openTable(std);
 					break;
 				case 3:
-					Table.openVeicoli().openTable(std);
+					Table.table[choice-1].openTable(std);
+					break;
+				case 4:
+					Table.table[choice-1].openTable(std);
 					break;
 				case 0:
 					PlugToDB.shutDownConnection();
 					return;
-				case 4:
-					std.coutln(PlugToDB.showConnection().toString());
+				case 5:
+					if(PlugToDB.showConnection().isEmpty()){
+						std.coutln("No Connection");
+					}else{
+						std.coutln(PlugToDB.showConnection().toString());
+					}
 					break;
 				}
 			}while(true);
@@ -45,14 +53,12 @@ public class Table {
 			std.close();
 		}
 	}
-	private static GestureTable openUser(){
-		return new UsersTable();
-	}
-	private static GestureTable openItem(){
-		return new ItemTable();
-	}
-	private static GestureTable openVeicoli(){
-		return new VeicoliTable();
-	}
+	private static GestureTable[] table = {
+		new UsersTable(),
+		new ItemTable(),
+		new VeicoliTable(),
+		new EmployeesTable()
+	};
+	
 	private Table(){};
 }

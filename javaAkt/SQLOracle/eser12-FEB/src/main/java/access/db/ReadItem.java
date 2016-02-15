@@ -18,12 +18,16 @@ public class ReadItem {
 		throws SQLException
 	{
 		cat = new ReadCategory();
+		mod = new ReadModel();
+		comp = new ReadComponent();
 		conn = PlugToDB.startConnection("localhost", "xe", "HR", "HR8716linUX");
 	}
 	public ReadItem(String host,String db, String user, String passw)
 		throws SQLException
 	{
 		cat = new ReadCategory();
+		mod = new ReadModel();
+		comp = new ReadComponent();
 		conn = PlugToDB.startConnection(host, db, user, passw);
 	}
 	public List<Item> listData()
@@ -101,11 +105,56 @@ public class ReadItem {
 		
 		return group;
 	}
+	public List<Item> chipestItem(String cat)
+		throws SQLException
+	{
+		ArrayList<Item> items = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rslt = null;
+		
+		try{
+			String sql = "SELECT * FROM articoli a, categorie ca\n"+
+					"WHERE a.cat_cod = ca.cat_cod\n"+
+					"and ca.cat_descrizione = ?\n"+
+					"and a.art_prezzo < (select avg(art_prezzo) from articoli)";
+			
+			pstmt = conn.getConnection().prepareStatement(sql);
+			pstmt.setString(1, cat);
+			
+			rslt = pstmt.executeQuery();
+			
+			while(rslt.next()){
+				Item i = new Item();
+				
+				i.setCat(rslt.getString(2));
+				i.setCod(rslt.getString(1));
+				i.setDescription(rslt.getString(3));
+				i.setPrice(rslt.getDouble(4));
+				i.setIva(rslt.getInt(5));
+				i.setTransportCost(rslt.getDouble(6));
+				
+				items.add(i);
+			}
+		}finally{
+			PlugToDB.closeStatement(pstmt, rslt);
+		}
+		
+		return items;
+	}
 	
 	public ReadCategory getCategory(){
 		return cat;
 	}
+	public ReadModel getModel(){
+		return mod;
+	}
+	public ReadComponent getComponent(){
+		return comp;
+	}
 	
+	private ReadComponent comp= null;
+	private ReadModel mod = null;
 	private ReadCategory cat = null;
 	private PlugToDB conn = null;
 }
