@@ -7,7 +7,10 @@ package dmike.util.dbms;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -101,6 +104,39 @@ public final class PlugToDB{
 		}
 		
 		return allConnection;
+	}
+	public static void closeStatement(Statement stmt)
+		throws SQLException
+	{
+		if(stmt != null){
+			stmt.close();
+		}
+	}
+	public static void closeStatement(PreparedStatement pstmt)
+		throws SQLException
+	{
+		if(pstmt != null){
+			pstmt.close();
+		}
+	}
+	public static void closeResultSet(ResultSet rslt)
+		throws SQLException
+	{
+		if(rslt != null){
+			rslt.close();
+		}
+	}
+	public static void closeStatement(Statement stmt,ResultSet rslt)
+		throws SQLException
+	{
+		PlugToDB.closeStatement(stmt);
+		PlugToDB.closeResultSet(rslt);
+	}
+	public static void closeStatement(PreparedStatement pstmt,ResultSet rslt)
+		throws SQLException
+	{
+		PlugToDB.closeStatement(pstmt);
+		PlugToDB.closeResultSet(rslt);
 	}
 	protected Object clone() 
 			throws CloneNotSupportedException

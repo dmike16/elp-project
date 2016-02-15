@@ -103,7 +103,7 @@ public final class StdIO implements View, Closeable{
 		while(true){
 			try{
 				cout.println(mesg);
-				cout.println("Secondo in formato dd/mm/yy");
+				cout.println("Secondo il formato dd/mm/yy");
 				String ddMMYY = cin.readLine();
 				stream = new Scanner(ddMMYY);
 				stream.useDelimiter("\\s*[/-]\\s*");

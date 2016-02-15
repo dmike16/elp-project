@@ -10,6 +10,7 @@ public interface GestureTable {
 		
 		for(Object u: gen){
 			std.coutln(u.toString());
+			std.coutln("");
 		}
 	}
 	public void openTable(StdIO std);
