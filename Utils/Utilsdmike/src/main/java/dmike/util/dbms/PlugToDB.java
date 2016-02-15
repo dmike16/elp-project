@@ -99,8 +99,11 @@ public final class PlugToDB{
 		
 		ArrayList<PlugToDB> allConnection = new ArrayList<>();
 		
-		for(String k: pool.keySet()){
-			allConnection.add(pool.get(k));
+		if(pool != null){
+		
+			for(String k: pool.keySet()){
+				allConnection.add(pool.get(k));
+			}
 		}
 		
 		return allConnection;
