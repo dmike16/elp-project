@@ -19,6 +19,7 @@ public class VeicoliTable implements GestureTable{
 					"[2] Ownership secion\n"+
 					"[3] Find max cc\n"+
 					"[4] Find total Versioni fabbricate dal max fabb_cod\n"+
+					"[5] Insert new Veicolo\n"+
 					"[0] Back";
 			choice = std.getIntNotNull(msg);
 						
@@ -42,6 +43,13 @@ public class VeicoliTable implements GestureTable{
 				case 4:
 					std.coutln("Verioni totali : " + db.totalVersioni());
 					break;
+				case 5:
+					if((db.updateData(InputAction.insertVeicoli(std))) > 0){
+						std.coutln("Veicolo Inserito Correttamente");
+					}else{
+						std.coutln("Mancato inserimento");
+					}
+					break;
 				case 0:
 					return;
 				default:
@@ -64,6 +72,9 @@ public class VeicoliTable implements GestureTable{
 			}
 			error.append(e.getMessage());
 			std.coutln(error.toString());
+		}catch(NotValidDateException e){
+			std.coutln("Invalid format data" +
+					e.getMessage());
 		}
 		
 	}

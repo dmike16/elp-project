@@ -69,7 +69,8 @@ public class Veicoli {
 				"Po: " + getPosti() + "\n"+
 				"Im: " + getImm() + "\n" +
 				"Co: " + getComb() + "\n"+
-				"Mo: " + getMod() + "\n";
+				"Mo: " + getMod() + "\n"+
+				"CA: " +getCat();
 	}
 	private String targa;
 	private int cilindrata;

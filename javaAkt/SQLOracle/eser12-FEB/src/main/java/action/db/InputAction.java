@@ -25,4 +25,21 @@ class InputAction {
 	{
 		return std.getDateNotNull("Dammi una date");
 	}
+	public static Veicoli insertVeicoli(StdIO std)
+		throws NotValidDateException
+	{
+		Veicoli v = new Veicoli();
+		
+		v.setTarga(std.getStringNotNull("Inserisci la targa"));
+		v.setCilindrata(std.getIntNotNull("Inserisci cilindrata"));
+		v.setKw(std.getIntNotNull("Inserisci KW"));
+		v.setPosti(std.getIntNotNull("Inserisci numero posti"));
+		v.setVel(std.getIntNotNull("Inserisci Velocita"));
+		v.setMod(std.getStringNotNull("Codice modello"));
+		v.setComb(std.getStringNotNull("Inseisci codice combustibile"));
+		v.setImm(InputAction.insertDate(std));
+		v.setCat(std.getStringNotNull("Inserisci codice categoria"));
+		
+		return v;
+	}
 }

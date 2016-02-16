@@ -1,5 +1,6 @@
 package access.db;
 
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -126,6 +127,36 @@ public class ReadVeicolo {
 			}
 			
 			return total;
+		}
+		public int updateData(Veicoli v)
+			throws SQLException
+		{
+			int rows = -1;
+			
+			PreparedStatement pstmt = null;
+			try{
+				String sql = "INSERT INTO veicoli(targa,cilindrata,cavalli_fiscali,velocita,posti,immatricolazione,"+
+					"cod_categoria,cod_combustibile,cod_modello) VALUES (?,?,?,?,?,?,?,?,?)";
+				
+				pstmt = conn.getConnection().prepareStatement(sql);
+				pstmt.setString(1, v.getTarga());
+				pstmt.setInt(2, v.getCilindrata());
+				pstmt.setFloat(3,v.getKw());
+				pstmt.setFloat(4, v.getVel());
+				pstmt.setInt(5, v.getPosti());
+				pstmt.setDate(6, new Date(v.getImm().getTime()));
+				pstmt.setString(7, v.getCat());
+				pstmt.setString(8, v.getComb());
+				pstmt.setString(9, v.getMod());
+				
+				rows = pstmt.executeUpdate();
+			}finally{
+				if(pstmt != null){
+					PlugToDB.closeStatement(pstmt);
+				}
+			}
+			
+			return rows;
 		}
 		private PlugToDB conn;
 		private ReadProprieta prop;
