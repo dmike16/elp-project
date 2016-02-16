@@ -16,6 +16,12 @@ public class Category {
 		this.description = description;
 	}
 	
+	@Override
+	public String toString(){
+		return "Cod: " + getCod() + "\n"+
+				"Descr: " + getDescription();
+	}
+	
 	private String cod;
 	private String description;
 }

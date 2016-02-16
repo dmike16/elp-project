@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import access.db.ReadCategory;
 import access.db.ReadItem;
 import dmike.util.dbms.GestureTable;
 import dmike.util.inout.StdIO;
@@ -20,6 +21,7 @@ class ItemTable implements GestureTable{
 					"[3] List Modelli e Fabbrica\n"+
 					"[4] List Lab with comp number\n"+
 					"[5] List chipset item from a category\n"+
+					"[6] Categorie\n"+
 					"[0] Back";
 			choice = std.getIntNotNull(msg);
 						
@@ -44,6 +46,9 @@ class ItemTable implements GestureTable{
 				case 5:
 					String cat = std.getStringNotNull("Inserisci categoria");
 					GestureTable.showData(std, db.chipestItem(cat));
+					break;
+				case 6:
+					categorie(std,db.getCategory());
 					break;
 				case 0:
 					return;
@@ -106,6 +111,35 @@ class ItemTable implements GestureTable{
 			std.coutln("Problem in execution of the query\n" +
 					e.getMessage());
 		}
+	}
+	void categorie(StdIO std, ReadCategory db){
+		int choice;
+		String msg = "[1] List Categorie\n"+
+					"[2] List Chipser Cat with IVA\n"+
+					"[0] Back";
+		choice = std.getIntNotNull(msg);
+		
+		while(true){
+			try{
+				switch(choice){
+				case 1:
+					GestureTable.showData(std, db.listData());
+					break;
+				case 2:
+					GestureTable.showData(std, db.listChiperCatWithIva());;
+					break;
+				case 0:
+					return;
+				default:
+					break;
+				}
+			}catch(SQLException e){
+				std.coutln("Error in DB\n"+
+						e.getMessage());
+			}
+			choice = std.getIntNotNull(msg);
+		}
+						
 	}
 
 }

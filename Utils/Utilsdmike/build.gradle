@@ -10,7 +10,7 @@ jar{
 	baseName = 'dutil'
 	version = '1.0'
 	manifest{
-		attributes('Main-Class':'dmike.Util.reflection.ShowClassMethod',
+		attributes('Main-Class':'dmike.util.reflection.ShowClassMethod',
 			'Implementation-Title':'util',
 			'Implementation-Version': version)
 	}
