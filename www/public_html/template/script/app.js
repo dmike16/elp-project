@@ -158,4 +158,40 @@
   }).then(function(){
     document.querySelector('#spinner').style.display = 'none';
   });
+
+  // Service Worker
+
+  if ('ServiceWorker' in navigator){
+    navigator.ServiceWorker.register('/sw.js').then(function(registration){
+      console.log("Service Worker registered with scope: ",
+    registration.scope);
+  }).catch(function(err){
+    console.log("ServiceWorker failde",err);
+  });
+} else {
+  console.log("ServiceWorker not Supported");
+}
+var a = ['a','b','c'];
+var b = {
+  f: a,
+};
+b[Symbol.iterator] = function(){
+  var that = this;
+  return {
+    next: function(){
+      if (this.index < 3){
+        var id = this.index++;
+        return {value: that.f[id],done: false};
+      }else {
+        this.index = 0;
+        return {done: true};
+      }
+    },
+    index : 0
+  };
+};
+for( var i of b){
+  console.log(i);
+}
+console.log(b[Symbol.iterator]().next());
 }());
