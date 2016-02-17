@@ -1,0 +1,99 @@
+<! DOCTYPE HTML>
+<html>
+	<!-- Commento , anche 
+		mutiriga fin quanto non trova la chiusura -->
+	<head>
+		<!-- Parametri di configurazione -->
+		<title>Titolo di pagina</title>
+		<!-- Tag meta contiene degli attributi-->
+		<!-- In tal caso la nosta pagine web contiene caratteri UTF-8-->
+		<meta charset="UTF-8"/>
+		<style >
+			body{
+				color: #ccc;
+			}
+			h1{
+				color: aqua;
+				background: yellow !important;
+			}
+			h2{
+				background: blue;
+				font-size: 60px;
+				width: 30%;
+				float: left; 
+			}
+			.clear-fix{
+				clear:both;
+			}
+			.yellow{
+				color: yellow;
+			}
+			h2.green{
+				color: green;
+			}
+			/* 
+				Commento CSS
+				Regole intestazione
+			*/
+			header{
+				background: red;
+			}
+			h1 span {
+				color: green;
+			}
+			/* Fine */
+		</style>
+	</head>
+
+	<body>
+		<header>
+			<h1 style="color: red;background: blue;">
+				Ciao <span>Mondo</span>
+			</h1>
+			<h2>Titolo</h2>
+			<h2 class="yellow">Titolo</h2>
+			<h2 class="green">Titolo</h2>
+			<div class="clear-fix"> </div>
+		</header>	
+		<h3 class="green">Titolo</h3>
+		<h4 class="yellow">Titolo</h4>
+		<h5>Titolo</h5>
+		<h6>Titolo</h6>
+		<p>testo scritto nella pagina</p>
+		<ul>
+			<li>Item</li>
+			<li>Item</li>
+			<li>Supermercato
+				<ol>
+					<li>Acqua</li>
+					<li>Carne</li>
+					<li>Frutta</li>
+				</ol>
+			</li>
+			<li>Informatica
+				<ul>
+					<li>Item</li>
+					<li>Item</li>
+					<li>Item</li>
+					<li>Item</li>
+				</ul>
+			</li>
+		</ul>
+		<ol>
+			<li>Totem</li>
+			<li>Item</li>
+			<li>Item</li>
+			<li>Item</li>
+			<li>Item</li>
+		</ol>
+		<nav>
+			<ul>
+				<li><a href="seconda.html">Seconda Pagina</a></li>
+				<li>Item</li>
+				<li>Item</li>
+				<li>Item</li>
+				<li><a href="https://www.google.it " target="new">Google</a></li>
+			</ul>
+		</nav>
+	</body>
+</html>
