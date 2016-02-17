@@ -6,8 +6,12 @@ import dmike.util.dbms.GestureTable;
 import dmike.util.dbms.PlugToDB;
 import dmike.util.inout.StdIO;
 
-public class Table {
-	public static void selectTable(){
+public class Table implements Runnable{
+	public Table(){
+		threadTable = new Thread(this,"Table Menu");
+	};
+	@Override
+	public void run(){
 		StdIO std = StdIO.getStdIO();
 		int choice = 0;
 		String msg = "Select Table\n"+
@@ -53,12 +57,14 @@ public class Table {
 			std.close();
 		}
 	}
+	public void active(){
+		threadTable.start();
+	}
 	private static GestureTable[] table = {
 		new UsersTable(),
 		new ItemTable(),
 		new VeicoliTable(),
 		new EmployeesTable()
 	};
-	
-	private Table(){};
+	private Thread threadTable ;
 }
