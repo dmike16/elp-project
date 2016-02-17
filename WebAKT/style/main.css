@@ -4,19 +4,24 @@ html,body{
 	font-family: 'Roboto Mono';
 	font-size: 16px;
 }
+
+a:link{
+	text-decoration: none;
+}
 /* End*/
 
 /* Header Style */
 header{
 	display: block;
-	width: 100%;
 	margin: 0;
-	padding: 10px 0px 10px 0;
-	background-color: #ccc;
+	padding: 10px 0 10px 0;
+	background-color: #607d8b;
+	box-sizing: border-box;
 }
 header h1{
 	text-align: center;
 	font-size: 50px;
+	color: #eee;
 	margin-left: 0;
 	margin-right: 0;
 }
@@ -25,27 +30,99 @@ header h1{
 /* Stiling ul list to show like a nav bar*/
 nav{
 	display: block;;
-	width: 100%;
-	margin: 0;
+	width: 70%;
+	margin: 0 auto;
 }
 .nav-menu{
+	width: 100%;
 	display: block;
 	list-style: none;
-	margin: 0 auto;
 	padding: 0;
 }
 .nav-menu li{
 	float: left;
+	margin: 0 auto;
+	width: 33%;
 }
 .nav-menu li a{
 	margin-right: 5px;
-	text-decoration: none; 
+	text-decoration: none;
+	color: #eee;
 }
 /* End */
 
-/* Clear Fix float*/
-.clear-fix:after{
+/* Help Class*/
+.clear-fix::after{
 	content: "";
 	display: table;
 	clear: both;;
+}
+.upper-line::before{
+	content: "";
+	display: block;
+	border-top: 1px solid #eee;
+}
+/* end*/
+
+/* Central Body*/
+#content{
+	display: block;
+	width: 100%;
+	height: 100%;
+	box-sizing: border-box;
+	padding: 8px 4px 4px 8px;
+	margin-bottom: 15px;
+}
+/* end*/
+
+/* SideBar */
+.side-bar{
+	display: block;
+	float: left;
+	height: inherit;
+	width: 30%;
+	padding: 1px 8px 1px 8px;
+	border-right: 1px solid #ccc;
+}
+/*end*/
+
+/*Central body*/
+.body-content{
+	display: block;
+	float: left;
+	width: 66%;
+	padding: 1px 8px 1px 8px;
+	height: inherit;
+}
+.body-content > article{
+	margin-bottom: 25px;
+	padding: 0 15px;
+	display: block;
+}
+.body-content > article::before{
+	content: "";
+	display: block;
+	border-top: 1px solid #444;
+}
+article:nth-child(1)::before{
+	border: none;
+}
+/*end*
+
+/* Footer*/
+footer{
+	display: block;
+	width: 100%;
+	background-color: #616161;
+}
+footer nav{
+	padding: 12px 24px;
+	color: #fff;
+	font-size: 13px;
+	margin: 0;
+}
+footer nav a{
+	text-decoration: none;
+	color: #fff;
+	margin-right: 25px;
 }
