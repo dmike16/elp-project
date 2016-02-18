@@ -1,11 +1,12 @@
 /* Header*/
-.header h1{
+.header .title{
 	margin: 0 auto;
-	color: #555;
+		color: #fff;
+	font-size: 20px;
 }
 .header{
 	border-bottom: 1px solid #ccc;
-	background-color: #eee;
+	background-color: #607d8b;
 }
 /*END*/
 /* Felx class */
@@ -61,12 +62,16 @@ nav ul{
 }
 nav ul li{
 	font-size: 15px;
-	color: #555;
+	color: #fff;
 	line-height: 1.6em;
 }
 a{
 	text-decoration: none;
 	color: inherit;
+}
+a::-moz-focus-inner{
+	border: 0;
+	padding: 0;
 }
 /*END*/
 
@@ -74,23 +79,86 @@ a{
 .button{
 	display: inline-block;
 	text-decoration: none;
-	border: 1px solid #ccc;
-	height: 54px;
-	width: 100%;
+	border: none;
 	border-radius: 50%;
 	text-indent: -99999px;
-	background-size: 44px 44px;
-	background: url(../img/cart.png) no-repeat center;
+	direction: ltr;
 	box-sizing: border-box;
-	box-shadow: none;
+	text-align: center;
 }
 .button:hover{
-	box-shadow: 0px 4px 10px -3px rgba(119, 130, 128, 0.35);
+	box-shadow: 0 4px 10px -3px rgba(119, 130, 128, 0.35);
+}
+.cart{
+	height: 54px;
+	width: 100%;
+	background: url(../img/cart.png) no-repeat center;
+	background-size: 44px 44px;
+	box-shadow: none;
+}
+.submit{
+	width: 50px;
+	height: 40px;
+	border-radius: 30%;
+	text-indent: 0;
+	background: #607d8b;
+	box-shadow: 0 1px 4px 2px rgba(0,0,0,0.25);
+	color: #fff;
+}
+.button::-moz-focus-inner{
+	border: 0;
+	padding: 0;
 }
 /*END*/
 
 /*IMG*/
 img{
 	width: 100%;
+	height: 100%;
+}
+.item .image{
+	width: 66%;
+	height: auto;
 }
 /*end*/
+
+/* Text decoration*/
+.strike{
+	text-decoration: line-through;
+}
+/* END*/
+
+/*Footer*/
+footer{
+	display: block;
+	width: 100%;
+	background-color: #616161;
+	margin-top: 10px;
+	color: #fff;
+}
+.exspand-s{
+	padding: 12px 24px;
+}
+/*END*/
+/* Color*/
+.background-eee{
+	background:#eee;
+}
+/*end*/
+
+/* Media Query*/
+@media (min-width:768px) {
+	.header .title{
+		font-size: 36px;
+		line-height: 1.2;
+	}
+	.item .image{
+		height: 280px;
+	}
+}
+@media (min-width: 1060px) {
+	.item .image{
+		height: 186px;
+	}
+
+}
