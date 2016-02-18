@@ -1,0 +1,96 @@
+/* Header*/
+.header h1{
+	margin: 0 auto;
+	color: #555;
+}
+.header{
+	border-bottom: 1px solid #ccc;
+	background-color: #eee;
+}
+/*END*/
+/* Felx class */
+.layout{
+	display: flex;
+	display: -webkit-flex;
+}
+.orizontal{
+	flex-flow: row;
+	-webkit-flex-flow: row;
+}
+.flex-auto{
+	flex: auto;
+	-webkit-flex :auto;
+}
+.vertical{
+	flex-flow: column;
+	-webkit-flex-flow: column;
+}
+.no-flex{
+	flex: none;
+	-webkit-flex:none;
+}
+.flex-img{
+	width: 100%;
+}
+.flex-010{
+	flex: 0 1 0.0001px;
+	-webkit-flex:0 1 0.00001px;
+}
+.justify-around{
+	justify-content: space-around;
+	-webkit-justify-content: space-around;
+}
+/*END*/
+/*Dimension*/
+.center{
+	margin: 0 auto;
+}
+.half{
+	width: 50%;
+}
+.separe{
+	margin-top: 10px;
+}
+/*END*/
+
+/*MENU*/
+nav ul{
+	list-style: none;
+	margin: 0 0 6px 0;
+	padding: 0;
+}
+nav ul li{
+	font-size: 15px;
+	color: #555;
+	line-height: 1.6em;
+}
+a{
+	text-decoration: none;
+	color: inherit;
+}
+/*END*/
+
+/* Custom button*/
+.button{
+	display: inline-block;
+	text-decoration: none;
+	border: 1px solid #ccc;
+	height: 54px;
+	width: 100%;
+	border-radius: 50%;
+	text-indent: -99999px;
+	background-size: 44px 44px;
+	background: url(../img/cart.png) no-repeat center;
+	box-sizing: border-box;
+	box-shadow: none;
+}
+.button:hover{
+	box-shadow: 0px 4px 10px -3px rgba(119, 130, 128, 0.35);
+}
+/*END*/
+
+/*IMG*/
+img{
+	width: 100%;
+}
+/*end*/

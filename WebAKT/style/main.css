@@ -29,25 +29,29 @@ header h1{
 
 /* Stiling ul list to show like a nav bar*/
 nav{
-	display: block;;
+	display: block;
 	width: 70%;
 	margin: 0 auto;
 }
 .nav-menu{
 	width: 100%;
-	display: block;
+	display: table;
 	list-style: none;
 	padding: 0;
 }
 .nav-menu li{
+	display: table-cell;
 	float: left;
-	margin: 0 auto;
 	width: 33%;
 }
+
 .nav-menu li a{
-	margin-right: 5px;
+	margin: 0 auto ;
 	text-decoration: none;
 	color: #eee;
+}
+.nav-menu li a:hover{
+	color: #ccc;
 }
 /* End */
 
@@ -83,6 +87,7 @@ nav{
 	width: 30%;
 	padding: 1px 8px 1px 8px;
 	border-right: 1px solid #ccc;
+	font-size: 14px;
 }
 /*end*/
 
@@ -125,4 +130,13 @@ footer nav a{
 	text-decoration: none;
 	color: #fff;
 	margin-right: 25px;
+}
+/* Media query*/
+@media(min-width: 800px){
+	.body-content{
+		width: 72%; 
+	}
+	.side-bar{
+		width: 23%;
+	}	
 }
