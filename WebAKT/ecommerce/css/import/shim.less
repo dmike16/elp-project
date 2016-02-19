@@ -1,0 +1,16 @@
+/*
+ * Try to normalize broswer css differencies
+ */
+
+ /* Display Flex  Cross Broswer */
+#layout{
+	@flex-webkit:-webkit-flex;
+	@flex:{
+		display: flex;
+		display: @flex-webkit;
+	};
+
+	.flexible(){
+		@flex();
+	}
+}

@@ -1,0 +1,19 @@
+/* Floar clear fix */
+@import "shim";
+.clearfix{
+	&:before{
+		display:block;
+		zoom:1;
+	}
+	&:after{
+		content:" ";
+		display:table;
+		font-size:0;
+		height:0;
+		clear:both;
+		visibility:hidden;
+	}
+}
+.layout{
+	#layout > .flexible();
+}
