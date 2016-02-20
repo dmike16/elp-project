@@ -1,16 +1,106 @@
 /*
  * Try to normalize broswer css differencies
  */
-
+#webkit{
+	.flex(){
+		@wflex: -weblit-flex;
+		@winline:  -webkit-inline-flex;
+		@wwrap: -webkit-wrap; 
+		@wflow: -webkit-flow;
+		@wjustify: -webkit-justify-content;
+	}
+}
+.user-select(@arg){
+		-webkit-user-select: @arg;
+    	-moz-user-select: @arg;
+    	-ms-user-select: @arg;
+    	user-select: @arg;
+	}
+.transition(@prop,@delay: 0.0s,@duration,@cubicBeizer: linear){
+	-webkit-transition+: @arguments;
+	transition+: @arguments;
+}
  /* Display Flex  Cross Broswer */
 #layout{
-	@flex-webkit:-webkit-flex;
-	@flex:{
-		display: flex;
-		display: @flex-webkit;
-	};
+	#webkit > .flex();
 
 	.flexible(){
-		@flex();
+		display: flex;
+		display: @wflex;
 	}
+	.flexible(inline){
+		display: inline-flex;
+		display: @winline;
+	}
+	.wrap(){
+		flex-wrap: wrap;
+		@{wwrap}: wrap;
+	}
+	.flow(@direction: row){
+		flex-flow: @direction;
+		@{wflow}: @direction;
+	}
+	.justify(@type){
+		justify-content: @type;
+		@{wjustify}: @type;
+	}
+	.flex(@grow: 0,@shrink: 1,@base: auto){
+		flex: @arguments;
+		@{wflex}: @arguments;
+	}
+	.no-margin(){
+			margin: 0;
+	}
+}
+
+#button{
+	.no-moz-focus(){
+		button::-moz-focus-inner{
+			border:0;
+			padding:0;
+		}
+		input::-moz-focus-inner:extend(button::-moz-focus-inner){}
+	}
+}
+
+#cleanup{
+	.hidden-overflow(){
+		html{
+			overflow-x: hidden;
+		}
+		body:extend(html){
+			overflow: hidden;
+			#layout > .no-margin();
+		}
+	}
+	.tag-block(){
+		article{
+			display: block;
+		}
+		aside:extend(article){}
+		details:extend(article){}
+		figcaption:extend(article){}
+		figure:extend(article){}
+		footer:extend(article){}
+		header:extend(article){}
+		main:extend(article){}
+		menu:extend(article){}
+		nav:extend(article){}
+		section:extend(article){}
+		summary:extend(article){}
+	}
+	.link(){
+		a:hover{
+			outline: 0;
+		}
+		a:active:extend(a:hover){
+			background-color: transparent;
+		}
+	}
+}
+.clobber(){
+	#cleanup > .hidden-overflow();
+	#cleanup > .tag-block();
+	#cleanup > .link();
+	#button > .no-moz-focus();
 }

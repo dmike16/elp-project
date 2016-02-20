@@ -1,5 +1,7 @@
 /* Floar clear fix */
 @import "shim";
+
+.clobber();
 .clearfix{
 	&:before{
 		display:block;
@@ -16,4 +18,96 @@
 }
 .layout{
 	#layout > .flexible();
+
+	&.wrap{
+		#layout > .wrap();
+	}
+
+	&.oritontal{
+		#layout > .flow();
+	}
+
+	&.vertical{
+		#layout > .flow(column);
+	}
+
+	&.inline {
+		#layout > .flexible(inline);
+	}
+
+	&.flex-d{
+		#layout > .flex();
+	}
+	&.felx-none{
+		#layout > .flex(0,0,auto);	
+	}
+	&.flex-010{
+		#layout > .flex(0,1,0.000001px);
+	}
+}
+
+.level{
+	@alph : 0.15;
+	@x: 0px;
+	@y: 3px;
+	@b: 4px;
+	@s: 0px;
+	&-z0:extend(.level){
+		box-shadow: none;
+	}
+	&-z1:extend(.level){
+		box-shadow: @x @y @b @s rgba(0, 0, 0, @alph);
+	}
+	&-z2:extend(.level){
+		box-shadow: @x (@y+@y*66/100) (@b+@b*66/100) @s rgba(0, 0, 0, @alph+@alph*66/100);
+	}
+	&-z3:extend(.level){
+		box-shadow: @x @y*3.33 @b*7.5 @s rgba(0, 0, 0, @alph+0.20);
+	}
+	.transition(box-shadow,0.0s,0.28s,cubic-beizer(0.4,0,0.2,1));
+}
+.btn{
+	.rounds(@w,@h) when (@w=@h){
+		border-radius: 50%;
+	}
+	.rounds(@w,@h) when (@w/@h >= 2){
+		border-radius: 10% 10% 10% 10% / 50% 50% 50% 50%;
+	}
+	.rounds(@w,@h) when (@h/@w >= 2){
+		border-radius: @w;		
+	}
+	.raise(@color){
+		background-color: darken(@color, 3%);
+	}
+	&-small:extend(.btn){
+		@t: 0.7em;
+		@l: 0.6em;
+		@bcolor: #ffffff;
+		background-color: inherit;
+		padding: @t @l;
+		&.circ{
+			@t: 0.7em;
+			padding: @t;
+			.rounds(@t,@t);
+		}
+		&.raised{
+			.raise(@bcolor);
+		}
+		&:hover{
+			background-color: @bcolor;
+		}
+	}
+	display: inline-block;
+	background: transparent;
+	border: 0;
+	cursor: pointer;
+	outline: 0;
+	position: relative;
+	text-decoration: none;
+	border: none;
+	font-size: 1em;
+	box-sizing: border-box;
+	text-align: center;
+	vertical-align: middle;
+	.user-select(none);
 }
