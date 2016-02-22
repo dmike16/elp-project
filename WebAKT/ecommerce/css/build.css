@@ -65,20 +65,19 @@ input::-moz-focus-inner {
   flex-flow: column;
   -webkit-flow: column;
 }
-.layout.inline,
-.icon.icon-flex {
+.layout.inline {
   display: inline-flex;
   display: -webkit-inline-flex;
 }
-.layout.flex-d {
+.flex-d {
   flex: 0 1 auto;
   -weblit-flex: 0 1 auto;
 }
-.layout.felx-none {
+.flex-none {
   flex: 0 0 auto;
   -weblit-flex: 0 0 auto;
 }
-.layout.flex-010 {
+.flex-010 {
   flex: 0 1 0.000001px;
   -weblit-flex: 0 1 0.000001px;
 }
@@ -94,7 +93,7 @@ input::-moz-focus-inner {
   text-transform: uppercase;
   min-width: 5.12em;
   font: inherit;
-  padding: 0.7em 0.6em;
+  padding: 0.5em 0.67em;
   box-sizing: border-box;
   text-align: center;
   border-radius: 3px;
@@ -132,12 +131,21 @@ input::-moz-focus-inner {
 }
 .btn[class~="disabled"],
 .btn-rb[class~="disabled"] {
-  background-color: #eaeaea;
-  color: #a8a8a8;
+  background-color: rgba(153, 153, 153, 0.4);
+  color: rgba(0, 0, 0, 0.38);
   pointer-events: none;
   cursor: auto;
 }
+.btn-rb {
+  margin: 8px;
+}
 .icon {
+  display: inline-block;
+  fill: currentcolor;
   position: relative;
   vertical-align: middle;
+}
+.icon.icon-material {
+  width: 24px;
+  height: 24px;
 }

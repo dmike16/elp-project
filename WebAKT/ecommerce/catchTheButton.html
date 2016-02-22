@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Hover The Button</title>
+    <link rel="stylesheet" type="text/css" href="css/build.css">
+</head>
+
+<body>
+	<style type="text/css">
+		.container{
+			top:0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			position: fixed;
+			vertical-align: middle;
+			text-align: center;
+			background-color: #fefefe;
+		}
+		.container::before{
+			content: "";
+			display: inline-block;
+			height: 100%;
+			vertical-align: middle;
+		}
+	</style>
+    <div class="container">
+        <button class="btn-rb z1">Hover Me</button>
+    </div>
+    <script type="text/javascript" src="js/injection.js"></script>
+    <script type="text/javascript">
+    loadScript("js/jquery-2.2.0.min.js", function() {
+        loadScript("js/game.js", function() {
+            alert("Ready to Start?");
+        });
+    });
+    </script>
+</body>
+
+</html>

@@ -31,15 +31,47 @@
     &.inline {
         #layout > .flexible(inline);
     }
-    &.flex-d {
+}
+.flex{
+    &-d {
         #layout > .flex();
     }
-    &.felx-none {
+    &-none {
         #layout > .flex(0, 0, auto);
     }
-    &.flex-010 {
+    &-010 {
         #layout > .flex(0, 1, 0.000001px);
     }
+}
+
+#text-color {
+    .primary-text(light) {
+        color: fade(#ffffff, 100%);
+    }
+    .primary-text(darker) {
+        color: fade(#000000, 87%);
+    }
+    .secondary-text(light) {
+        color: fade(#ffffff, 70%);
+    }
+    .secondary-text(darker) {
+        color: fade(#000000, 54%);
+    }
+    .disabled-text(light) {
+        color: fade(#ffffff, 50%);
+    }
+    .disabled-text(darker) {
+        color: fade(#000000, 38%);
+    }
+}
+#ratio{
+	@aspect-ratio: 16/9, 3/2, 4/3, 1/1, 3/4, 2/3;
+	.width(@i,@h){
+		width: extract(@aspect-ratio,@i)*@h;
+	}
+	.heigth(@i,@w){
+		height: @w/extract(@aspect-ratio,@i);
+	}
 }
 
 .btn {
@@ -49,6 +81,10 @@
     @y: 2px;
     @b: 2px;
     @s: 0px;
+    .level(@z) when(@z=-1){
+    		box-shadow+: inset 0px 2px 9px 0px rgba(0, 0, 0, 0.15);
+    		box-shadow+: inset 0px 0px 11px -4px rgba(0, 0, 0, 0.45);
+    }
     .level(@z) when(@z=1) {
         box-shadow+: @x @y @b @s rgba(0, 0, 0, @alph);
         box-shadow+: @x @y+-1 @b*2 @s rgba(0, 0, 0, @alph - 0.02);
@@ -93,7 +129,7 @@
     }
     &[class~="disabled"] {
         background-color: fade(#999999, 40%);
-        color: fade(#000000, 26%);
+        #text-color > .disabled-text(darker);
         pointer-events: none;
         cursor: auto;
     }
@@ -105,6 +141,7 @@
         &[class~="z3"]:extend(.btn[class~="z3"]) {}
         &[class~="z4"]:extend(.btn[class~="z4"]) {}
         &[class~="animated"]:extend(.btn[class~="animated"]) {}
+        margin: 8px;
     }
     display: inline-block;
     background: transparent;
@@ -117,7 +154,7 @@
     font: inherit;
     min-width: 5.12em;
     font: inherit;
-    padding: 0.7em 0.6em;
+    padding: 0.5em 0.67em;
     box-sizing: border-box;
     text-align: center;
     border-radius: 3px;
@@ -128,11 +165,11 @@
 
 .icon {
     display: inline-block;
-    fill:currentcolor;
+    fill: currentcolor;
     position: relative;
     vertical-align: middle;
-    &.icon-sm{
-    	width: 1.1em;
-    	height: 1.1em;
+    &.icon-material {
+        width: 24px;
+        height: 24px;
     }
 }

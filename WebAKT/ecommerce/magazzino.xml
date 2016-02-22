@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<magazzino>
+    <prodotto sku="1">
+        <descrizione nome="Chitarra">
+            <![CDATA[Chitarra Classica]]>
+        </descrizione>
+        <prezzo sconto="20" valuta="EUR">80</prezzo>
+        <quantita qty="1" />
+        <imagine alt="Chitarra Classica">
+            <![CDATA[img/chitarra.jpg]]>
+        </imagine>
+    </prodotto>
+    <prodotto sku="2">
+        <descrizione nome="Chitarra">
+            <![CDATA[Ubuntu Touch Phone]]>
+        </descrizione>
+        <prezzo sconto="20" valuta="EUR">80</prezzo>
+        <quantita qty="1" />
+        <imagine alt="Ubunti Phone">
+            <![CDATA[img/meizu-mx4-button.jpg]]>
+        </imagine>
+    </prodotto>
+    <prodotto sku="3">
+        <descrizione nome="Chitarra">
+            <![CDATA[Chitarra Classica]]>
+        </descrizione>
+        <prezzo sconto="20" valuta="EUR">80</prezzo>
+        <quantita qty="1" />
+        <imagine alt="Chitarra Classica">
+            <![CDATA[img/chitarra.jpg]]>
+        </imagine>
+    </prodotto>
+    <prodotto sku="4">
+        <descrizione nome="Chitarra">Chitarra Classica</descrizione>
+        <prezzo sconto="20" valuta="EUR">80</prezzo>
+        <quantita qty="1" />
+        <imagine alt="Chitarra Classica">
+            <![CDATA[img/chitarra.jpg]]>
+        </imagine>
+    </prodotto>
+    <prodotto sku="5">
+        <descrizione nome="Chitarra">
+            <![CDATA[Chitarra Classica]]>
+        </descrizione>
+        <prezzo sconto="20" valuta="EUR">80</prezzo>
+        <quantita qty="1" />
+        <imagine alt="Chitarra Classica">
+            <![CDATA[img/chitarra.jpg]]>
+        </imagine>
+    </prodotto>
+    <prodotto sku="6">
+        <descrizione nome="Chitarra">
+            <![CDATA[Chitarra Classica]]>
+        </descrizione>
+        <prezzo sconto="20" valuta="EUR">80</prezzo>
+        <quantita qty="1" />
+        <imagine alt="Chitarra Classica">
+            <![CDATA[/img/chitarra.jpg]]>
+        </imagine>
+    </prodotto>
+</magazzino>
