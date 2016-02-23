@@ -9,6 +9,7 @@
             url: magazzino,
             dataType: "xml",
             success: function(xml) {
+                var i = 0;
                 $(xml).find("prodotto").each(function() {
 
                     // Data fetch from the server
@@ -38,6 +39,10 @@
                         '<button class="btn-rb add-to-cart" type="submit">Acquista</button>',
                         '</section></div>'
                     ];
+                    i++;
+                    if (i!== 0 && i%3 === 0){
+                      html.push('<div class="clearfix hidden-sm"></div>');
+                    }
                     $("#central-row").append(html.join(" "));
                 });
                 $('.add-to-cart').on('click', function() {
@@ -113,9 +118,10 @@
 		},
 		cancelAll: function cancelAll(){
 			var cookie = doc.cookie;
-			var reg = /(?:;\s*)?([^(?:path)(?:domain)(?:expires)(?:secure)(=)])/;
-			reg.test(cookie);
-			console.log(RegExp.$1);
+			var reg = /(?:;\s*)?([^;][a-z]+)=/g;
+
+			
+			console.log(cookie.match(reg));
 		}
 	};
 
@@ -123,7 +129,6 @@
 	cookies.set("message","Hello World",new Date(Date.parse('Jan 1, 2017')));
 	console.log(doc.cookie);
 	console.log(cookies.get('name'));
-	cookies.cancel('message');
 	console.log(doc.cookie);
 	cookies.cancelAll();
 	console.log(doc.cookie);
