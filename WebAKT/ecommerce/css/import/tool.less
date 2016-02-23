@@ -44,6 +44,13 @@
     }
 }
 
+.fit{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
 #text-color {
     .primary-text(light) {
         color: fade(#ffffff, 100%);
@@ -133,8 +140,12 @@
         pointer-events: none;
         cursor: auto;
     }
+    &[class~="z-1"]{
+        .level(-1);
+    }
     &-rb:extend(.btn) {
         &[class~="disabled"]:extend(.btn[class~="disabled"]) {}
+        &[class~="z-1"]:hover:extend(.btn[class~="z-1"]){}
         &[class~="z0"]:extend(.btn[class~="z0"]) {}
         &[class~="z1"]:extend(.btn[class~="z1"]) {}
         &[class~="z2"]:extend(.btn[class~="z2"]) {}
