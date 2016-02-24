@@ -1,3 +1,9 @@
+[id*="qty-"]{
+	width: 65%;
+}
+label[for*="qty-"]{
+	width: 35%;
+}
 /* Header*/
 .header .title{
 	margin: 0 auto;

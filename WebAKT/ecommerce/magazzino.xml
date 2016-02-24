@@ -11,10 +11,10 @@
         </imagine>
     </prodotto>
     <prodotto sku="2">
-        <descrizione nome="Ubuntu Touch Phone">
+        <descrizione nome="Ubuntu Phone">
             <![CDATA[Ubuntu Touch Phone]]>
         </descrizione>
-        <prezzo sconto="20" valuta="EUR">80</prezzo>
+        <prezzo sconto="20" valuta="EUR">280</prezzo>
         <quantita qty="1" />
         <imagine alt="Ubunti Phone">
             <![CDATA[img/meizu-mx4-ubuntu.jpg]]>

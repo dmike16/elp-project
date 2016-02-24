@@ -1,6 +1,16 @@
 // Implementin and server asyncr call with jQuery
 (function() {
     "use strict";
+    var lib = new localStorageDB("library",localStorage);
+
+    lib.drop();
+    if(lib.isNew()){
+    	lib.createTable("cart",["sku","titolo","prezzo","sconto","qt"]);
+
+    	lib.commit();
+    }
+    
+    
     jQuery(document).ready(function($) {
 
         var magazzino = "magazzino.xml";
@@ -34,7 +44,7 @@
                         '<p itemprop="offer" itemscope itemtype="http://schema.org/Offer">Prezzo <span itemprop="price" class="strike">' + prezzo,
                         '</span><span itemprop="priceCurrency" content="EUR">€</span> - ' + sconto + '% : <strong>' + (prezzo - (prezzo * sconto / 100)) + '€</strong></p>',
                         '<label for="qty-1">',
-                        '<input itemprop="weight" id="qty-1" name="quantita" type="text" placeholder="Quatità" />',
+                        '<input itemprop="weight" id="qty-1" name="quantita" type="text" placeholder="Quatità" pattern="/\d+/"/>',
                         '</label>',
                         '<button class="btn-rb add-to-cart" type="submit">Acquista</button>',
                         '</section></div>'
@@ -52,6 +62,8 @@
                    	var srcImage = $container.find('img').attr("src");
                    	var nome = $container.find('h2[itemprop="name"]').text();
                    	var price = $container.find('p[itemprop="offer"] strong').text();
+                   	var qty = $container.find('input[itemprop="weight"]').val();
+                   	console.log(qty);
                    	var $modal = $('#myModal');
                    	var $modal_header = $modal.find('h4');
                    	$modal_header.text('Carrello');
@@ -62,10 +74,18 @@
                    	'<p>Prezzo: ',
                    	price,'</p>'];
                    	$modal_body.append(html.join(""));
+                   	$.cookie("sku001",id,{expires: 30, path: '/'});
+                   	lib.insertOrUpdate("cart",{sku: id},{
+                   		sku: id,
+                   		titolo: nome,
+                   		sconto: 20,
+                   		prezzo: parseFloat(price),
+                   		qt: (qty === ' ')? 1: parseInt(qty)
+                   	});
+                   	lib.commit();
                    	$modal.modal({
                    		backdrop:'static'
                    	});
-                   	console.log(srcImage,nome);
                 });
                 $('button[data-dismiss="modal"]').on('click',function(){
                 	$('html').removeClass('modal-open');
@@ -114,22 +134,28 @@
 			}
 		},
 		cancel: function cancelCookie(name,pth,dmn){
+			console.log(name);
 			this.set(name,"",new Date(0),pth,dmn);
 		},
 		cancelAll: function cancelAll(){
 			var cookie = doc.cookie;
-			var reg = /(?:;\s*)?([^;][a-z]+)=/g;
+			var reg = /(?:;\s*)?(?:[^;][a-z]+)=/g;
+			var temp = cookie.match(reg);
 
-			
-			console.log(cookie.match(reg));
+			reg.compile("[^;=\\s]+","g");
+			temp = temp.join(' ').match(reg);
+			for(var i = temp.length -1; i >= 0; i--){
+				this.cancel(temp[i]);
+			}
 		}
 	};
 
+	/*
 	cookies.set("name","Michele Cipolla");
 	cookies.set("message","Hello World",new Date(Date.parse('Jan 1, 2017')));
 	console.log(doc.cookie);
 	console.log(cookies.get('name'));
 	console.log(doc.cookie);
 	cookies.cancelAll();
-	console.log(doc.cookie);
+	console.log(doc.cookie);*/
 }(document));
