@@ -10,9 +10,19 @@ module.exports = function(grunt){
 					"css/build.css":"css/main.less"
 				}
 			}
+		},
+		concat:{
+			options:{
+				separator: ';'
+			},
+			dist:{
+				src: ['js/small-cookie.js','js/store.js'],
+				dest: 'js/build.js'
+			}
 		}
 	});
 
 	grunt.loadNpmTasks('grunt-contrib-less');
+	grunt.loadNpmTasks('grunt-contrib-concat');
 	grunt.registerTask('default',['less']);
 }

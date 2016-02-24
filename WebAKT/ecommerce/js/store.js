@@ -41,9 +41,8 @@
                     }
                     this.append(html.join(' '));
                 }, $ele);
-                $ele.find('.add-to-cart').on('click', function() {
-                    $('html').addClass('modal-open');
-
+                $ele.find('.add-to-cart').on('click', function(e) {
+                    
                     var $pnt = $(this).parent('.item'),
                         $input = $pnt.find('input');
 
@@ -64,6 +63,11 @@
                         $modalBody = $modal.find('.modal-body');
 
                     $modal.find('h4').text('Oggetto Selezionato');
+                    
+                    var $bnts = $modal.find('.modal-footer button');
+                    $bnts.eq(0).text("Close");
+                    $bnts.eq(1).text("Go To Cart");
+
                     $modalBody.empty();
 
                     if (qty == 0) {
@@ -74,6 +78,7 @@
                         var html = ['<h4>', row.title, '</h4>', '<img src="', row.image.src, '" alt="', row.image.alt, '" ', 'style="width:120px;height:200px"/>', '<p>Prezzo: ', realPrice, '</p>'];
                         $modalBody.append(html.join(""));
                         $modal.find('.modal-footer button').eq(1).removeClass('disabled');
+                        
                     } else {
                         $modalBody.append("<h4>Qunatià non Disponibile</h4>");
                         $modal.find('.modal-footer button').eq(1).addClass("disabled");
@@ -82,6 +87,8 @@
                     $modal.modal({
                         backdrop: 'static'
                     });
+                    
+                    $('html').addClass('modal-open');
 
                 });
             }
@@ -146,10 +153,11 @@
                 }
             });
 
-            $('button[data-dismiss="modal"]').on('click', function() {
+            $('#myModal .modal-footer button').eq(0).on('click', function() {
                 $('html').removeClass('modal-open');
+                $('#myModal').modal('hide');
             });
-
+            
         }
     );
 }());
