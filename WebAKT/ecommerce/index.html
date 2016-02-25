@@ -33,22 +33,25 @@
             <div class="row">
                 <div class="col-md-4">
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-7">
                     <nav>
                         <ul class="layout orizontal justify-around">
-                            <li class="flex-010 btn-rb z-1">
+                            <li class="flex-110 btn-rb z-1">
                                 <a href="index.html">Home</a>
                             </li>
-                            <li class="flex-010 btn-rb z-1">
+                            <li class="flex-110 btn-rb z-1">
                                 <a href="upload.html">Upload</a>
                             </li>
-                            <li class="flex-010 btn-rb z-1">
+                            <li class="flex-110 btn-rb z-1">
                                 <a href="catchTheButton.html">Game</a>
+                            </li>
+                            <li class="flex-110 btn-rb z-1">
+                                <a href="register.html">Registration</a>
                             </li>
                         </ul>
                     </nav>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-1">
                 </div>
             </div>
         </header>
@@ -56,7 +59,8 @@
             <div class="col-xs-12 col-md-3">
                 <aside class="separe background-eee">
                     <div class="center">
-                        <button class="btn-rb disabled">Carrello</button>
+                        <button id="cart" class="btn-rb disabled">Carrello</button>
+                        <button id="fill-db" class="btn-rb z1">Update DB</button>
                     </div>
                     <div class="center">
                         <form name="login" method="post" action="#">
@@ -225,8 +229,28 @@
         
       </div>
       <div class="modal-footer">
+        <button type="button" class="btn-rb">Chiudi</button>
         <button type="button" class="btn-rb"></button>
-        <button type="button" class="btn-rb"></button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="cartModal" tabindex="-1" role="dialog" aria-labelledby="cartModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <!--button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button-->
+        <h4 class="modal-title" id="cartModalLabel">Carello</h4>
+      </div>
+      <div class="modal-body">
+        <div id="cart-ele" class="layout wrap orizontal ">
+            
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn-rb">Continua</button>
+        <button type="button" class="btn-rb">Paga</button>
       </div>
     </div>
   </div>

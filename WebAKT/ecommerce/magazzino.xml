@@ -5,7 +5,7 @@
             <![CDATA[Chitarra Classica]]>
         </descrizione>
         <prezzo sconto="20" valuta="EUR">80</prezzo>
-        <quantita qty="1" />
+        <quantita qty="10" />
         <imagine alt="Chitarra Classica">
             <![CDATA[img/chitarra.jpg]]>
         </imagine>
@@ -15,7 +15,7 @@
             <![CDATA[Ubuntu Touch Phone]]>
         </descrizione>
         <prezzo sconto="20" valuta="EUR">280</prezzo>
-        <quantita qty="1" />
+        <quantita qty="5" />
         <imagine alt="Ubunti Phone">
             <![CDATA[img/meizu-mx4-ubuntu.jpg]]>
         </imagine>
@@ -24,10 +24,10 @@
         <descrizione nome="Chitarra">
             <![CDATA[Chitarra Classica]]>
         </descrizione>
-        <prezzo sconto="20" valuta="EUR">80</prezzo>
-        <quantita qty="1" />
+        <prezzo sconto="10" valuta="EUR">180</prezzo>
+        <quantita qty="3"/>
         <imagine alt="Chitarra Classica">
-            <![CDATA[img/chitarra.jpg]]>
+            <![CDATA[img/chitarra2.jpg]]>
         </imagine>
     </prodotto>
     <prodotto sku="4">
