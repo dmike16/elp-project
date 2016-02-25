@@ -67,7 +67,7 @@
                         '<div class="flex-010 layout inline relative" data-sku="',
                         ele.sku,
                         '" style="width:100%;">',
-                        '<div class="close">&times;</div>',
+                        '<div class="close"></div>',
                         '<h3>',
                         ele.title,
                         '</h3>',
@@ -111,6 +111,8 @@
                 };
                 injectProduct(db, 'instore', $container, html, row);
                 index.push(i++);
+                var $times = $container.find('div[data-sku="'+key+'"] .close');
+                $times.text('x'+ck[key]);
             }
             var $close = $container.find('.close');
 
@@ -136,7 +138,13 @@
 
                     delete e.data[key];
                     $.removeCookie(key);
+
+                    var $parent = $div.parent('div');
                     $div.remove();
+
+                    if($parent.children().length === 0){
+                        
+                    }
 
 
                 });
@@ -189,7 +197,9 @@
                     var realPrice = (rows.offer.price - (rows.offer.price * rows.offer.discount / 100));
 
                     //Populate the modal body
-                    var html = ['<h4>', rows.title, '</h4>', '<img src="', rows.image.src, '" alt="', rows.image.alt, '" ', 'style="width:120px;height:200px"/>', '<p>Prezzo: ', realPrice, '</p>'];
+                    var html = ['<h4>', rows.title, '</h4>', '<img src="', rows.image.src, '" alt="', rows.image.alt, '" ', 'style="width:120px;height:200px"/>', '<p>Prezzo: ', realPrice, '&times;',
+                    qty,
+                    '</p>'];
                     $modalBody.append(html.join(""));
 
                     // Active go to cart                    

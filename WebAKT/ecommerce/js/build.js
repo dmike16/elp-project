@@ -1,4 +1,57 @@
-(function() {
+// Small Cookie Funziotnalities
+var dutils = dutils || {};
+
+(function(exports) {
+    "use strict";
+
+    exports.cookie = {
+        getItem: function(key) {
+            if (!key) {
+                return nullM
+            }
+            return decodeURIComponent(document.cookie.replace(
+                new RegExp("(?:;\\s*)?" +
+                    encodeURIComponent(key).replace(/[\-\.\+\*]/g, "\\$&") +
+                    "\\=([^;]*);?"), "$1"));
+        },
+        setItem: function(key, value, Vend, path, domain, secure) {
+            if (!key || /^(?:expires|max\-age|path|domain|secure)$/i.test(key)) {
+                return false;
+            }
+            var expires = "";
+            if (Vend) {
+                switch (Vend.constructor) {
+                    case Number:
+                        expires = (Vend === Infinity) ? "; expires=Fri, 31 Dec 9999 23:59:59 GMT" : "; max-age=" + Vend;
+                        break;
+                    case String:
+                        expires = ": expires=" + Vend;
+                        break;
+                    case Date:
+                        expires = "; expires=" + Vend.toUTCString();
+                        break;
+                }
+            }
+            document.cookie = encodeURIComponent(key) + '=' + encodeURIComponent(value) + expires +
+                (domain ? "; domain=" + domain : "") + (path ? "; path=" + path : "") +
+                (secure ? "; secure" : "");
+        },
+        removeItem: function(key, path, domain) {
+        	if(!this.hasItem(key)){
+        		return false;
+        	}
+        	this.setItem(key,"",new Date(0),path,domain);
+        },
+        hasItem: function(key){
+        	if(!key) {
+        		return false;
+        	}
+        	return (new RegExp("(?:^|;\\s*)" + encodeURIComponent(key).replace(/[\-\.\+\*]/g,"\\$&")+
+        		"\\s*\\=")).test(document.cookie);
+        }
+    };
+}(dutils));
+;(function() {
     "use strict";
 
     function initStoreDB(name) {
@@ -67,7 +120,7 @@
                         '<div class="flex-010 layout inline relative" data-sku="',
                         ele.sku,
                         '" style="width:100%;">',
-                        '<div class="close">&times;</div>',
+                        '<div class="close"></div>',
                         '<h3>',
                         ele.title,
                         '</h3>',
@@ -111,6 +164,8 @@
                 };
                 injectProduct(db, 'instore', $container, html, row);
                 index.push(i++);
+                var $times = $container.find('div[data-sku="'+key+'"] .close');
+                $times.text('x'+ck[key]);
             }
             var $close = $container.find('.close');
 
@@ -127,7 +182,7 @@
                     
                     var qty = _row[0].qty + e.data[key].qty; 
                     
-                    db.update('instore', { query: dml }, function(row) {
+                    db.update('instore', dml, function(row) {
                         row.qty = parseInt(qty);
                         
                         return row;
@@ -136,7 +191,11 @@
 
                     delete e.data[key];
                     $.removeCookie(key);
+
+                    var $parent = $div.parent('div');
                     $div.remove();
+
+                    console.log($parent.children());
 
 
                 });
@@ -189,7 +248,9 @@
                     var realPrice = (rows.offer.price - (rows.offer.price * rows.offer.discount / 100));
 
                     //Populate the modal body
-                    var html = ['<h4>', rows.title, '</h4>', '<img src="', rows.image.src, '" alt="', rows.image.alt, '" ', 'style="width:120px;height:200px"/>', '<p>Prezzo: ', realPrice, '</p>'];
+                    var html = ['<h4>', rows.title, '</h4>', '<img src="', rows.image.src, '" alt="', rows.image.alt, '" ', 'style="width:120px;height:200px"/>', '<p>Prezzo: ', realPrice, '&times;',
+                    qty,
+                    '</p>'];
                     $modalBody.append(html.join(""));
 
                     // Active go to cart                    
