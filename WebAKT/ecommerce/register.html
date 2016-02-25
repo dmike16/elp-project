@@ -4,11 +4,11 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
-    <title>Upload Item</title>
+    <title>Registration</title>
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.css" />
     <link rel="stylesheet" type="text/css" href="css/main.css" />
-    <link rel="stylesheet" type="text/css" href="css/build.css" />   
+    <link rel="stylesheet" type="text/css" href="css/build.css" />
 </head>
 
 <body>
@@ -36,17 +36,17 @@
                 <div class="col-md-7">
                     <nav>
                         <ul class="layout orizontal justify-around">
-                            <li class="flex-110 btn-rb z-1">
+                            <li class="btn-rb z-1 flex-110">
                                 <a href="index.html">Home</a>
                             </li>
-                            <li class="flex-110 btn-rb z-1">
+                            <li class="btn-rb z-1 flex-110">
                                 <a href="upload.html">Upload</a>
                             </li>
-                            <li class="flex-110 btn-rb z-1">
-                                <a href="catchTheButton.html">Game</a>
+                            <li class="btn-rb z-1 flex-110">
+                                <a href="upload.html">Game</a>
                             </li>
-                            <li class="flex-110 btn-rb z-1">
-                                <a href="register.html">Registration</a>
+                            <li class="btn-rb z-1 flex-110">
+                                <a href="upload.html">Registration</a>
                             </li>
                         </ul>
                     </nav>
@@ -60,51 +60,43 @@
             </div>
             <div class="col-xs-10 col-md-8">
                 <section>
-                    <h2>Upload Form</h2>
+                    <h2>Register Form</h2>
                     <form id="upload" action="#" method="post">
-                        <p>
-                            <label for="sku">
-                                <input id="sku" name="sku_pd" type="text" placeholder="Sku" />
-                            </label>
-                            <span>
+                        <section>
+                            <h3> Dati Anagrafici</h3>
+                            <p>
+                                <label for="name">
+                                    <input id="name" name="name" type="text" placeholder="First Name" />
+                                </label>
+                                <span>
                   <input name="idendity" type="text" hidden value="Cipolla"/>
                 </span>
-                        </p>
+                            </p>
+                            <p>
+                                <label for="last-name">
+                                    <input id="last-name" name="last-name" type="text" placeholder="Last Name" />
+                                </label>
+                            </p>
+                            <p>
+                                <label for="birth">
+                                    <input id="birth" name="birth" type="date" placeholder="Data di Nascita" />
+                                </label>
+                            </p>
+                            <p>
+                                <label for="birth-city">
+                                    <input id="birth-city" name="birth-city" type="text" placeholder="Citta di Nascita" />
+                                </label>
+                            </p>
+                            <p>
+                                <label for="code">
+                                    <input id="code" name="code" type="text" placeholder="Codice Fiscale" />
+                                </label>
+                            </p>
+                        </section>
                         <p>
-                            <label for="name">
-                                <input id="name" name="name_pd" type="text" placeholder="Nome prodotto" />
-                            </label>
-                        </p>
-                        <p>
-                            <label for="descr">
-                                <textarea id="descr" name="description" rows="8">Una breve descrizione del prodotto
-                                </textarea>
-                            </label>
-                        </p>
-                        <p>
-                            <label for="qty">
-                                <input id="qty" name="quantity" type="text" placeholder="Quantità" />
-                            </label>
-                        </p>
-                        <p>
-                            <label for="price">
-                                <input id="price" name="price_pd" type="number" placeholder="Prezzo" />
-                                <span> € </span>
-                            </label>
-                        </p>
-                        <p>
-                            <label for="sale">
-                                <input id="sale" name="sale_pd" type="number" placeholder="Sconto" />
-                                <span> % </span>
-                            </label>
-                        </p>
-                        <p>
-                            <label for="image">Carica un Immagine
-                                <input id="image" name="image_pd" type="file" required/>
-                            </label>
                         </p>
                         <p class="text-right">
-                            <button type="submit" class="button submit">Carica</button>
+                            <button type="submit" class="btn disabled">Registrati</button>
                         </p>
                     </form>
                 </section>

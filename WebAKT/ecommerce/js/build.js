@@ -127,7 +127,7 @@
                     
                     var qty = _row[0].qty + e.data[key].qty; 
                     
-                    db.update('instore', dml, function(row) {
+                    db.update('instore', { query: dml }, function(row) {
                         row.qty = parseInt(qty);
                         
                         return row;

@@ -31,6 +31,9 @@
     &.inline {
         #layout > .flexible(inline);
     }
+    &.relative{
+        position: relative;
+    }
 }
 .flex{
     &-d {
@@ -41,6 +44,9 @@
     }
     &-010 {
         #layout > .flex(0, 1, 0.000001px);
+    }
+    &-110{
+        #layout > .flex(1, 1, 0.000001px);
     }
 }
 
