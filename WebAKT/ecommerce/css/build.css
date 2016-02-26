@@ -88,6 +88,15 @@ input::-moz-focus-inner {
   flex: 1 1 0.000001px;
   -weblit-flex: 1 1 0.000001px;
 }
+.clickable {
+  padding: 8px;
+  background-color: inherit;
+  -webkit-transition: background-color 0s 0.28s cubic-beizer(0.4, 0, 0.2, 1);
+  transition: background-color 0s 0.28s cubic-beizer(0.4, 0, 0.2, 1);
+}
+.clickable:hover {
+  background-color: #ccc;
+}
 .fit {
   position: absolute;
   top: 0;

@@ -59,7 +59,7 @@ var dutils = dutils || {};
 
         if (db.isNew()) {
             db.createTable('instore', ['sku', 'title', 'descr', 'offer', 'image', 'qty']);
-//            db.createTable('cart', ['sku', 'title', 'offer', 'qty']);
+            //db.createTable('users', ['name', 'last_name', 'passwd', 'email', 'code','date','address']);
 
             db.commit();
         }
@@ -95,6 +95,9 @@ var dutils = dutils || {};
 
     var cart = {
         cached: {},
+        deactive: function deactive($btn) {
+            $btn.toggleClass('disabled z1');
+        },
         active: function activeCart($btn, db) {
             if ($btn.hasClass('disabled')) {
                 var ck = $.cookie();
@@ -120,7 +123,7 @@ var dutils = dutils || {};
                         '<div class="flex-010 layout inline relative" data-sku="',
                         ele.sku,
                         '" style="width:100%;">',
-                        '<div class="close"></div>',
+                        '<div class="close" role="button" style="font-family:inherit;">&times;</div>', , '<div class="badge" style="bottom:0;right:0;position:absolute;"></div>',
                         '<h3>',
                         ele.title,
                         '</h3>',
@@ -144,9 +147,11 @@ var dutils = dutils || {};
                 if (!(/^sku-\d+$/.test(key))) {
                     continue;
                 } else if (typeof this.cached[key] !== 'undefined') {
-                    if (ck[key] != this.cached[key].qty) {
-                        var nqty = this.cached[key].qty + parseInt(ck[key]);
-                        this.cached[key].qty = nqty;
+                    var oqty = parseInt(ck[key]);
+                    if (oqty !== this.cached[key].qty) {
+                        this.cached[key].qty = oqty;
+                        var $times = $container.find('div[data-sku="' + key + '"] .badge');
+                        $times.text(oqty);
                     }
                     i++;
                     continue;
@@ -164,8 +169,8 @@ var dutils = dutils || {};
                 };
                 injectProduct(db, 'instore', $container, html, row);
                 index.push(i++);
-                var $times = $container.find('div[data-sku="'+key+'"] .close');
-                $times.text('x'+ck[key]);
+                var $times = $container.find('div[data-sku="' + key + '"] .badge');
+                $times.text(ck[key]);
             }
             var $close = $container.find('.close');
 
@@ -173,29 +178,32 @@ var dutils = dutils || {};
                 $close.eq(index[k]).on('click', this.cached, function(e) {
                     var $div = $(this).closest('div[data-sku]');
                     var key = $div.attr('data-sku');
-                    console.log($div);
+
                     var _row = db.queryAll('instore', {
                         query: {
                             sku: key
                         }
                     });
-                    
-                    var qty = _row[0].qty + e.data[key].qty; 
-                    
+
+                    var qty = e.data[key].qty;
+
                     db.update('instore', dml, function(row) {
-                        row.qty = parseInt(qty);
-                        
+                        row.qty += qty;
+
                         return row;
                     });
                     db.commit();
 
+                    e.data[key] = null;
                     delete e.data[key];
                     $.removeCookie(key);
 
                     var $parent = $div.parent('div');
                     $div.remove();
 
-                    console.log($parent.children());
+                    if ($parent.children().length === 0) {
+                        cart.deactive($('aside .center #cart'));
+                    }
 
 
                 });
@@ -239,8 +247,8 @@ var dutils = dutils || {};
                 $bnts.eq(1).text("Carrello");
 
                 $modalBody.empty();
-
-                if (qty == 0) {
+                qty = parseInt(qty);
+                if (qty === 0) {
                     $modalBody.append("<h4>Qunatià Pari a zero!!! OPS</h4>");
                     $modal.find('.modal-footer button').eq(1).addClass("disabled");
                 } else if (qty <= rows.qty) {
@@ -249,27 +257,37 @@ var dutils = dutils || {};
 
                     //Populate the modal body
                     var html = ['<h4>', rows.title, '</h4>', '<img src="', rows.image.src, '" alt="', rows.image.alt, '" ', 'style="width:120px;height:200px"/>', '<p>Prezzo: ', realPrice, '&times;',
-                    qty,
-                    '</p>'];
+                        qty,
+                        '</p>'
+                    ];
                     $modalBody.append(html.join(""));
 
                     // Active go to cart                    
-                    $modal.find('.modal-footer button').eq(1).removeClass('disabled');
+                    var $btnc = $modal.find('.modal-footer button').eq(1);
+                    if ($btnc.hasClass('disabled')) {
+                        $btnc.removeClass('disabled');
+                    }
 
                     // Cached product in cookie
-                    $.cookie(dml.sku, qty, { expires: 30 });
+                    //Check if it's already cached
+                    var nqty = $.cookie(dml.sku);
 
+                    if (typeof nqty !== 'undefined') {
+                        $.cookie(dml.sku, (qty + parseInt(nqty)), { expires: 30 });
+                    } else {
+                        $.cookie(dml.sku, qty, { expires: 30 });
+                    }
                     // Update the qty in db
                     db.update('instore', dml, function(row) {
-                        row.qty -= parseInt(qty);
-                        console.log(row.qty);    
+                        row.qty -= qty;
+                        //    console.log(row.qty);
                         return row;
                     });
                     db.commit();
                     // Active the cart Button
-                    cart.active($('aside .center #cart'),db);
+                    cart.active($('aside .center #cart'), db);
 
-                    console.log($.cookie());
+                    //console.log($.cookie());
                 } else {
                     $modalBody.append("<h4>Qunatià non Disponibile</h4>");
                     $modal.find('.modal-footer button').eq(1).addClass("disabled");
@@ -284,6 +302,59 @@ var dutils = dutils || {};
             });
             $btns.removeClass('disabled');
             cart.active($('aside .center #cart'), db);
+        },
+        login: function registration($modal) {
+            var log = [
+                '<section> <h3 class="clickable" style="cursor:pointer;"> Login</h3>',
+                '<form name="modal-login" id="modal-login" class="form-horizontal" action="#" method="post">',
+                '<div class="form-group">',
+                '<label for="mod-user" class="col-sm-4" >User Name</label>',
+                '<div class="col-sm-8">',
+                '<input id="mod-user" name="mod-user" class="form-control" type="text" required/>',
+                '</div></div>',
+                '<div class="form-group"><label for="mod-passw" class="col-sm-4">Password</label>',
+                '<div class="col-sm-8">',
+                '<input id="mod-passw" name="mod-passw" class="form-control" type="password" required/></div></div>',
+                '<div class="form-group">',
+                '<div class="col-sm-offset-10 col-sm-2">',
+                '<button type="submit" class="btn-rb"> login </button></div></form>',
+                '</section>'
+            ];
+            var reg = [
+                '<section> <h3 class="clickable" style="cursor:pointer;"> Registrazione</h3>',
+                '<form class="form-horizontal" name="modal-reg" id="modal-reg"style="display:none;" action="#" method="post">',
+                '<div class="row"><div class="has-feedback col-sm-6"><label for="reg-name" class="sr-only">Nome</label><input id="reg-name" name="reg-name" class="form-control" type="text" required placeholder="Nome"/>',
+                '<span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span></div>',
+                '<div class="has-feedback col-sm-6"><label for="reg-surname" class="sr-only">Cognome</label><input id="reg-surname" name="reg-surname" class="form-control" type="text" required placeholder="Cognome"/>',
+                '<span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span></div></div>',
+                '<div class="row"><div class="has-feedback col-sm-6"><label for="reg-email" class="sr-only">Email</label><input id="reg-email" name="reg-email" class="form-control" type="email" required placeholder="Email"/>',
+                '<span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span></div>',
+                '<div class="has-feedback col-sm-6"><label for="reg-passw" class="sr-only">Password</label><input id="reg-passw" name="reg-passw" class="form-control" type="password" required placeholder="Password"/>',
+                '<span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span></div></div>',
+                '<div class="row"><div class="col-sm-6"><label for="reg-birth" class="sr-only">Nascita</label><input id="reg-birth" name="reg-birth" class="form-control" type="date" placeholder="Data Nascita"/>',
+                '</div>',
+                '<div class="has-feedback col-sm-6"><div class="input-group"><label for="reg-ind" class="sr-only">Indirizzo</label><input id="reg-ind" name="reg-ind" class="form-control" type="text" placeholder="Indirizzo"/>',
+                '<span class="input-group-addon">@</span></div></div>',
+                '</div><div class="row"><div class="col-sm-offset-3 col-sm-2"><label for="reg-n" class="sr-only">N</label><input id="reg-n" name="reg-n" class="form-control" type="text" placeholder="Civico"/>',
+                '</div><div class="col-sm-3"><label for="reg-c" class="sr-only">Citta</label><input id="reg-c" name="reg-c" class="form-control" type="text" placeholder="Citta"/>',
+                '</div><div class="col-sm-2"><label for="reg-pr" class="sr-only">Provincia</label><input id="reg-pr" name="reg-pr" class="form-control" type="text" placeholder="Pr"/>',
+                '</div><div class="col-sm-2"><label for="reg-cap" class="sr-only">Cap</label><input id="reg-cap" name="reg-cap" class="form-control" type="text" placeholder="Cap"/>',
+                '</div></div>',
+                '<div class="row"><div class="col-sm-offset-6 col-sm-6">',
+                '<button type="submit" class="btn-rb"> Invia </button></div>',
+                '</form>'
+            ];
+            var $body = $modal.find('.modal-body');
+            $body.empty();
+            var html = log.concat(reg);
+            $body.html(html.join(" "));
+            $body.find('section h3').on('click', function() {
+                $(this).parent('section').find('form').toggle('slow');
+            });
+
+            $modal.modal({
+                backdrop: 'static'
+            });
         }
     };
     jQuery(document).ready(
@@ -302,7 +373,7 @@ var dutils = dutils || {};
                     url: magazzino,
                     success: function onSuccess(response) {
                         var rows = db.queryAll('instore');
-                        
+
                         var sku = [],
                             i = 0;
                         $(response).find("prodotto").each(function() {
@@ -385,6 +456,10 @@ var dutils = dutils || {};
             $('#cartModal .modal-footer button').eq(0).on('click', function() {
                 $('html').removeClass('modal-open');
                 cart.close($('#cartModal'));
+            });
+            $('#cartModal .modal-footer button').eq(1).on('click', function() {
+                $('#cartModal').modal('hide');
+                cart.login($('#myModal'));
             });
             $('#myModal .modal-footer button').eq(1).on('click', function() {
                 $('#myModal').modal('hide');

@@ -49,7 +49,16 @@
         #layout > .flex(1, 1, 0.000001px);
     }
 }
-
+.clickable{
+    &{
+        padding: 8px;
+        background-color: inherit;
+        .transition(background-color, 0.0s, 0.28s, cubic-beizer(0.4, 0, 0.2, 1));   
+    }
+    &:hover{
+        background-color: #ccc;    
+    }
+}
 .fit{
     position: absolute;
     top: 0;
