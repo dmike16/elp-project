@@ -51,6 +51,51 @@ var dutils = dutils || {};
         }
     };
 }(dutils));
+;(function(exports) {
+    var geoloc = null;
+    if ("geolocation" in navigator) {
+        geoloc = navigator.geolocation;
+    } else {
+        throw new Error("Your Broswer doesn't support HTML5 geolocation");
+    }
+    exports.location = function location(config) {
+        if (arguments.length > 1) {
+            throw new Error("Invalid argument");
+        }
+        if (typeof arguments[0] === 'Object') {
+            var position = [geoloc.getCurrentPosition, geoloc.WatchPosition];
+            var use = 0;
+
+            if (config.watchPosition === true) {
+                use = 1;
+            }
+            var options = config.options || null,
+                success = config.success || function(pos) {},
+                error = config.error || function(error) {
+                    switch (error) {
+                        case 'PERMISSION_DENIED':
+                            console.error("Position not enabled");
+                            break;
+                        case 'POSITION_UNAVAIBLE':
+                            console.error("Acquisition failed");
+                            break;
+                        case 'TIMEOUT':
+                            console.error("Timeout has expired");
+                            break;
+                        default:
+                            break;
+                    }
+                };
+            return position[use](success, error, options);
+
+        } else if (Number.isInteger(arguments[0])) {
+            return geoloc.clearWatch(config);
+        } else {
+            throw new Error("Type not supported");
+        }
+
+    };
+}(dutils));
 ;(function() {
     "use strict";
 
@@ -59,8 +104,16 @@ var dutils = dutils || {};
 
         if (db.isNew()) {
             db.createTable('instore', ['sku', 'title', 'descr', 'offer', 'image', 'qty']);
-            //db.createTable('users', ['name', 'last_name', 'passwd', 'email', 'code','date','address']);
-
+            db.createTable('users', ['name', 'last_name', 'passwd', 'email', 'code','date','address']);
+            db.insert('users',{
+                name: 'Michele',
+                last_name: 'Cipolla',
+                passwd: 'return',
+                email: 'cipmiky@gmail.com',
+                code: 'xxxx',
+                date: 'xxxx',
+                address: 'xxxx'
+            });
             db.commit();
         }
 
@@ -324,22 +377,22 @@ var dutils = dutils || {};
                 '<section> <h3 class="clickable" style="cursor:pointer;"> Registrazione</h3>',
                 '<form class="form-horizontal" name="modal-reg" id="modal-reg"style="display:none;" action="#" method="post">',
                 '<div class="row"><div class="has-feedback col-sm-6"><label for="reg-name" class="sr-only">Nome</label><input id="reg-name" name="reg-name" class="form-control" type="text" required placeholder="Nome"/>',
-                '<span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span></div>',
+                '<span class="glyphicon glyphicon-ok form-control-feedback sr-only" aria-hidden="true"></span></div>',
                 '<div class="has-feedback col-sm-6"><label for="reg-surname" class="sr-only">Cognome</label><input id="reg-surname" name="reg-surname" class="form-control" type="text" required placeholder="Cognome"/>',
-                '<span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span></div></div>',
+                '<span class="glyphicon glyphicon-ok form-control-feedback sr-only" aria-hidden="true"></span></div></div>',
                 '<div class="row"><div class="has-feedback col-sm-6"><label for="reg-email" class="sr-only">Email</label><input id="reg-email" name="reg-email" class="form-control" type="email" required placeholder="Email"/>',
-                '<span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span></div>',
+                '<span class="glyphicon glyphicon-ok form-control-feedback sr-only" aria-hidden="true"></span></div>',
                 '<div class="has-feedback col-sm-6"><label for="reg-passw" class="sr-only">Password</label><input id="reg-passw" name="reg-passw" class="form-control" type="password" required placeholder="Password"/>',
-                '<span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span></div></div>',
+                '<span class="glyphicon glyphicon-ok form-control-feedback sr-only" aria-hidden="true"></span></div></div>',
                 '<div class="row"><div class="col-sm-6"><label for="reg-birth" class="sr-only">Nascita</label><input id="reg-birth" name="reg-birth" class="form-control" type="date" placeholder="Data Nascita"/>',
                 '</div>',
-                '<div class="has-feedback col-sm-6"><div class="input-group"><label for="reg-ind" class="sr-only">Indirizzo</label><input id="reg-ind" name="reg-ind" class="form-control" type="text" placeholder="Indirizzo"/>',
-                '<span class="input-group-addon">@</span></div></div>',
-                '</div><div class="row"><div class="col-sm-offset-3 col-sm-2"><label for="reg-n" class="sr-only">N</label><input id="reg-n" name="reg-n" class="form-control" type="text" placeholder="Civico"/>',
-                '</div><div class="col-sm-3"><label for="reg-c" class="sr-only">Citta</label><input id="reg-c" name="reg-c" class="form-control" type="text" placeholder="Citta"/>',
-                '</div><div class="col-sm-2"><label for="reg-pr" class="sr-only">Provincia</label><input id="reg-pr" name="reg-pr" class="form-control" type="text" placeholder="Pr"/>',
-                '</div><div class="col-sm-2"><label for="reg-cap" class="sr-only">Cap</label><input id="reg-cap" name="reg-cap" class="form-control" type="text" placeholder="Cap"/>',
-                '</div></div>',
+                '<div class="has-feedback col-sm-6"><div class="input-group"><label for="reg-ind" class="sr-only">Indirizzo</label><i class="input-group-addon"><i class="fa fa-compass"></i></i><input id="reg-ind" name="reg-ind" class="form-control" type="text" placeholder="Indirizzo"/>',
+                '</div><span class="glyphicon glyphicon-ok form-control-feedback sr-only" aria-hidden="true"></span></div>',
+                '</div><div class="row"><div class="has-feedback col-sm-3"><label for="reg-n" class="sr-only">N</label><input id="reg-n" name="reg-n" class="form-control" type="text" placeholder="Civico"/>',
+                '<span class="glyphicon glyphicon-ok form-control-feedback sr-only" aria-hidden="true"></span></div><div class="has-feedback col-sm-3"><label for="reg-c" class="sr-only">Citta</label><input id="reg-c" name="reg-c" class="form-control" type="text" placeholder="Citta"/>',
+                '<span class="glyphicon glyphicon-ok form-control-feedback sr-only" aria-hidden="true"></span></div><div class="has-feedback col-sm-3"><label for="reg-pr" class="sr-only">Provincia</label><input id="reg-pr" name="reg-pr" class="form-control" type="text" placeholder="Pr"/>',
+                '<span class="glyphicon glyphicon-ok form-control-feedback sr-only" aria-hidden="true"></span></div><div class="has-feedback col-sm-3"><label for="reg-cap" class="sr-only">Cap</label><input id="reg-cap" name="reg-cap" class="form-control" type="text" placeholder="Cap"/>',
+                '<span class="glyphicon glyphicon-ok form-control-feedback sr-only" aria-hidden="true"></span></div></div>',
                 '<div class="row"><div class="col-sm-offset-6 col-sm-6">',
                 '<button type="submit" class="btn-rb"> Invia </button></div>',
                 '</form>'
@@ -352,9 +405,205 @@ var dutils = dutils || {};
                 $(this).parent('section').find('form').toggle('slow');
             });
 
+            var $inputs = $body.find('section #modal-reg input');
+            $inputs.on('focus',function(e){
+                var $span = $(this).parent().find('span');
+                if($span.hasClass('sr-only')){
+                    return;
+                }
+                $span.addClass('sr-only');
+            });
+            $inputs.on('blur',function(e){
+                var $span = $(this).parent().find('span');
+                if($span.parent().hasClass('has-success')){
+                    $span.removeClass('sr-only');
+                }
+                return;
+            })
+            $inputs.eq(0).on('keyup',function(){
+                var $this = $(this);
+                var $parent = $(this).parent();
+
+                if($this.val().length < 3){
+                    if($parent.hasClass('has-error')){
+                        return;
+                    }
+                    $parent.addClass('has-error');
+                    $parent.removeClass('has-success');
+                } else{
+                    if($parent.hasClass('has-success')){
+                        return;
+                    }
+                    $parent.removeClass('has-error');
+                    $parent.addClass('has-success');
+                }
+            });
+             $inputs.eq(1).on('keyup',function(){
+                var $this = $(this);
+                var $parent = $(this).parent();
+
+                if($this.val().length < 3){
+                    if($parent.hasClass('has-error')){
+                        return;
+                    }
+                    $parent.addClass('has-error');
+                    $parent.removeClass('has-success');
+                } else{
+                    if($parent.hasClass('has-success')){
+                        return;
+                    }
+                    $parent.removeClass('has-error');
+                    $parent.addClass('has-success');
+                }
+            });
+              $inputs.eq(2).on('keyup',function(){
+                var $parent = $(this).parent();
+
+                if(this.validity.typeMismatch){
+                    if($parent.hasClass('has-error')){
+                        return;
+                    }
+                    $parent.addClass('has-error');
+                    $parent.removeClass('has-success');
+                } else{
+                    if($parent.hasClass('has-success')){
+                        return;
+                    }
+                    $parent.removeClass('has-error');
+                    $parent.addClass('has-success');
+                }
+            });
+              $inputs.eq(3).on('keyup',function(){
+                var $this = $(this);
+                var $parent = $(this).parent();
+
+                if($this.val().length === 0){
+                    if($parent.hasClass('has-error')){
+                        return;
+                    }
+                    $parent.addClass('has-error');
+                    $parent.removeClass('has-success');
+                } else{
+                    if($parent.hasClass('has-success')){
+                        return;
+                    }
+                    $parent.removeClass('has-error');
+                    $parent.addClass('has-success');
+                }
+            });
+              $inputs.eq(4).on('keyup',function(){
+                var $this = $(this);
+                var $parent = $(this).parent();
+
+                if($this.val().length === 0){
+                    if($parent.hasClass('has-error')){
+                        return;
+                    }
+                    $parent.addClass('has-error');
+                    $parent.removeClass('has-success');
+                } else{
+                    if($parent.hasClass('has-success')){
+                        return;
+                    }
+                    $parent.removeClass('has-error');
+                    $parent.addClass('has-success');
+                }
+            });
+              $inputs.eq(5).on('keyup',function(){
+                var $this = $(this);
+                var $parent = $(this).parent();
+
+                if($this.val().length === 0){
+                    if($parent.hasClass('has-error')){
+                        return;
+                    }
+                    $parent.addClass('has-error');
+                    $parent.removeClass('has-success');
+                } else{
+                    if($parent.hasClass('has-success')){
+                        return;
+                    }
+                    $parent.removeClass('has-error');
+                    $parent.addClass('has-success');
+                }
+            });
+              $inputs.eq(6).on('keyup',function(){
+                var $this = $(this);
+                var $parent = $(this).parent();
+
+                if($this.val().length === 0){
+                    if($parent.hasClass('has-error')){
+                        return;
+                    }
+                    $parent.addClass('has-error');
+                    $parent.removeClass('has-success');
+                } else{
+                    if($parent.hasClass('has-success')){
+                        return;
+                    }
+                    $parent.removeClass('has-error');
+                    $parent.addClass('has-success');
+                }
+            });
+              $inputs.eq(7).on('keyup',function(){
+                var $this = $(this);
+                var $parent = $(this).parent();
+
+                if($this.val().length === 0){
+                    if($parent.hasClass('has-error')){
+                        return;
+                    }
+                    $parent.addClass('has-error');
+                    $parent.removeClass('has-success');
+                } else{
+                    if($parent.hasClass('has-success')){
+                        return;
+                    }
+                    $parent.removeClass('has-error');
+                    $parent.addClass('has-success');
+                }
+            });
+              $inputs.eq(8).on('keyup',function(){
+                var $this = $(this);
+                var $parent = $(this).parent();
+
+                if($this.val().length === 0){
+                    if($parent.hasClass('has-error')){
+                        return;
+                    }
+                    $parent.addClass('has-error');
+                    $parent.removeClass('has-success');
+                } else{
+                    if($parent.hasClass('has-success')){
+                        return;
+                    }
+                    $parent.removeClass('has-error');
+                    $parent.addClass('has-success');
+                }
+            });
+              $inputs.eq(9).on('keyup',function(){
+                var $this = $(this);
+                var $parent = $(this).parent();
+
+                if($this.val().length === 0){
+                    if($parent.hasClass('has-error')){
+                        return;
+                    }
+                    $parent.addClass('has-error');
+                    $parent.removeClass('has-success');
+                } else{
+                    if($parent.hasClass('has-success')){
+                        return;
+                    }
+                    $parent.removeClass('has-error');
+                    $parent.addClass('has-success');
+                }
+            });
+
             $modal.modal({
                 backdrop: 'static'
             });
+
         }
     };
     jQuery(document).ready(
@@ -458,6 +707,7 @@ var dutils = dutils || {};
                 cart.close($('#cartModal'));
             });
             $('#cartModal .modal-footer button').eq(1).on('click', function() {
+                $('html').addClass('modal-open');
                 $('#cartModal').modal('hide');
                 cart.login($('#myModal'));
             });
