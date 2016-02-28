@@ -52,6 +52,8 @@ var dutils = dutils || {};
     };
 }(dutils));
 ;(function(exports) {
+	"use strict";
+	
     if (!("geolocation" in navigator)) {
         throw new Error("Your Broswer doesn't support HTML5 geolocation");
     }
@@ -96,7 +98,15 @@ var dutils = dutils || {};
 
     };
 }(dutils));
-;(function() {
+;(function(exports){
+	"use strict";
+
+	exports.b64Encoding = function(str){
+		return btoa(encodeURIComponent(str).replace(/%([0-9A-F]){2}/,function(match,p1){
+			return String.fromCharCode('0x' +p1);
+		}));
+	};
+}(dutils));;(function() {
     "use strict";
 
     function initStoreDB(name) {
@@ -832,6 +842,9 @@ var dutils = dutils || {};
                 $('form[name="login"]').css('display','none');
                 $('#logOut').css('display', 'block');
             }
+            var enc = dutils.b64Encoding('return');
+            console.log(enc);
+            console.log(atob(enc));
         }
     );
 }());

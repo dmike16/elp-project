@@ -1,4 +1,6 @@
 (function(exports) {
+	"use strict";
+	
     if (!("geolocation" in navigator)) {
         throw new Error("Your Broswer doesn't support HTML5 geolocation");
     }

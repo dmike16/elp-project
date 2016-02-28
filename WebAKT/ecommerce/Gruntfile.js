@@ -16,7 +16,7 @@ module.exports = function(grunt){
 				separator: ';'
 			},
 			dist:{
-				src: ['js/small-cookie.js','js/location.js','js/store.js'],
+				src: ['js/small-cookie.js','js/location.js','js/base64.js','js/store.js'],
 				dest: 'js/build.js'
 			}
 		}
