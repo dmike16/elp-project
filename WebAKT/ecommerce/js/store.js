@@ -6,8 +6,8 @@
 
         if (db.isNew()) {
             db.createTable('instore', ['sku', 'title', 'descr', 'offer', 'image', 'qty']);
-            db.createTable('users', ['name', 'last_name', 'passwd', 'email', 'code','date','address']);
-            db.insert('users',{
+            db.createTable('users', ['name', 'last_name', 'passwd', 'email', 'code', 'date', 'address']);
+            db.insert('users', {
                 name: 'Michele',
                 last_name: 'Cipolla',
                 passwd: 'return',
@@ -288,7 +288,7 @@
                 '<span class="glyphicon glyphicon-ok form-control-feedback sr-only" aria-hidden="true"></span></div></div>',
                 '<div class="row"><div class="col-sm-6"><label for="reg-birth" class="sr-only">Nascita</label><input id="reg-birth" name="reg-birth" class="form-control" type="date" placeholder="Data Nascita"/>',
                 '</div>',
-                '<div class="has-feedback col-sm-6"><div class="input-group"><label for="reg-ind" class="sr-only">Indirizzo</label><i class="input-group-addon"><i class="fa fa-compass"></i></i><input id="reg-ind" name="reg-ind" class="form-control" type="text" placeholder="Indirizzo"/>',
+                '<div class="has-feedback col-sm-6"><div class="input-group"><label for="reg-ind" class="sr-only">Indirizzo</label><i class="input-group-addon" style="cursor:pointer;"><i class="fa fa-compass"></i></i><input id="reg-ind" name="reg-ind" class="form-control" type="text" placeholder="Indirizzo"/>',
                 '</div><span class="glyphicon glyphicon-ok form-control-feedback sr-only" aria-hidden="true"></span></div>',
                 '</div><div class="row"><div class="has-feedback col-sm-3"><label for="reg-n" class="sr-only">N</label><input id="reg-n" name="reg-n" class="form-control" type="text" placeholder="Civico"/>',
                 '<span class="glyphicon glyphicon-ok form-control-feedback sr-only" aria-hidden="true"></span></div><div class="has-feedback col-sm-3"><label for="reg-c" class="sr-only">Citta</label><input id="reg-c" name="reg-c" class="form-control" type="text" placeholder="Citta"/>',
@@ -308,198 +308,227 @@
             });
 
             var $inputs = $body.find('section #modal-reg input');
-            $inputs.on('focus',function(e){
+            $inputs.on('focus', function(e) {
                 var $span = $(this).parent().find('span');
-                if($span.hasClass('sr-only')){
+                if ($span.hasClass('sr-only')) {
                     return;
                 }
                 $span.addClass('sr-only');
             });
-            $inputs.on('blur',function(e){
+            $inputs.on('blur', function(e) {
                 var $span = $(this).parent().find('span');
-                if($span.parent().hasClass('has-success')){
+                if ($span.parent().hasClass('has-success')) {
                     $span.removeClass('sr-only');
                 }
                 return;
             })
-            $inputs.eq(0).on('keyup',function(){
+            $inputs.eq(0).on('keyup', function() {
                 var $this = $(this);
                 var $parent = $(this).parent();
 
-                if($this.val().length < 3){
-                    if($parent.hasClass('has-error')){
+                if ($this.val().length < 3) {
+                    if ($parent.hasClass('has-error')) {
                         return;
                     }
                     $parent.addClass('has-error');
                     $parent.removeClass('has-success');
-                } else{
-                    if($parent.hasClass('has-success')){
+                } else {
+                    if ($parent.hasClass('has-success')) {
                         return;
                     }
                     $parent.removeClass('has-error');
                     $parent.addClass('has-success');
                 }
             });
-             $inputs.eq(1).on('keyup',function(){
+            $inputs.eq(1).on('keyup', function() {
                 var $this = $(this);
                 var $parent = $(this).parent();
 
-                if($this.val().length < 3){
-                    if($parent.hasClass('has-error')){
+                if ($this.val().length < 3) {
+                    if ($parent.hasClass('has-error')) {
                         return;
                     }
                     $parent.addClass('has-error');
                     $parent.removeClass('has-success');
-                } else{
-                    if($parent.hasClass('has-success')){
+                } else {
+                    if ($parent.hasClass('has-success')) {
                         return;
                     }
                     $parent.removeClass('has-error');
                     $parent.addClass('has-success');
                 }
             });
-              $inputs.eq(2).on('keyup',function(){
+            $inputs.eq(2).on('keyup', function() {
                 var $parent = $(this).parent();
 
-                if(this.validity.typeMismatch){
-                    if($parent.hasClass('has-error')){
+                if (this.validity.typeMismatch) {
+                    if ($parent.hasClass('has-error')) {
                         return;
                     }
                     $parent.addClass('has-error');
                     $parent.removeClass('has-success');
-                } else{
-                    if($parent.hasClass('has-success')){
+                } else {
+                    if ($parent.hasClass('has-success')) {
                         return;
                     }
                     $parent.removeClass('has-error');
                     $parent.addClass('has-success');
                 }
             });
-              $inputs.eq(3).on('keyup',function(){
+            $inputs.eq(3).on('keyup', function() {
                 var $this = $(this);
                 var $parent = $(this).parent();
 
-                if($this.val().length === 0){
-                    if($parent.hasClass('has-error')){
+                if ($this.val().length === 0) {
+                    if ($parent.hasClass('has-error')) {
                         return;
                     }
                     $parent.addClass('has-error');
                     $parent.removeClass('has-success');
-                } else{
-                    if($parent.hasClass('has-success')){
+                } else {
+                    if ($parent.hasClass('has-success')) {
                         return;
                     }
                     $parent.removeClass('has-error');
                     $parent.addClass('has-success');
                 }
             });
-              $inputs.eq(4).on('keyup',function(){
+            $inputs.eq(4).on('keyup', function() {
                 var $this = $(this);
                 var $parent = $(this).parent();
 
-                if($this.val().length === 0){
-                    if($parent.hasClass('has-error')){
+                if ($this.val().length === 0) {
+                    if ($parent.hasClass('has-error')) {
                         return;
                     }
                     $parent.addClass('has-error');
                     $parent.removeClass('has-success');
-                } else{
-                    if($parent.hasClass('has-success')){
+                } else {
+                    if ($parent.hasClass('has-success')) {
                         return;
                     }
                     $parent.removeClass('has-error');
                     $parent.addClass('has-success');
                 }
             });
-              $inputs.eq(5).on('keyup',function(){
+            $inputs.eq(5).on('keyup', function() {
                 var $this = $(this);
                 var $parent = $(this).parent();
 
-                if($this.val().length === 0){
-                    if($parent.hasClass('has-error')){
+                if ($this.val().length === 0) {
+                    if ($parent.hasClass('has-error')) {
                         return;
                     }
                     $parent.addClass('has-error');
                     $parent.removeClass('has-success');
-                } else{
-                    if($parent.hasClass('has-success')){
+                } else {
+                    if ($parent.hasClass('has-success')) {
                         return;
                     }
                     $parent.removeClass('has-error');
                     $parent.addClass('has-success');
                 }
             });
-              $inputs.eq(6).on('keyup',function(){
+            $inputs.eq(6).on('keyup', function() {
                 var $this = $(this);
                 var $parent = $(this).parent();
 
-                if($this.val().length === 0){
-                    if($parent.hasClass('has-error')){
+                if ($this.val().length === 0) {
+                    if ($parent.hasClass('has-error')) {
                         return;
                     }
                     $parent.addClass('has-error');
                     $parent.removeClass('has-success');
-                } else{
-                    if($parent.hasClass('has-success')){
+                } else {
+                    if ($parent.hasClass('has-success')) {
                         return;
                     }
                     $parent.removeClass('has-error');
                     $parent.addClass('has-success');
                 }
             });
-              $inputs.eq(7).on('keyup',function(){
+            $inputs.eq(7).on('keyup', function() {
                 var $this = $(this);
                 var $parent = $(this).parent();
 
-                if($this.val().length === 0){
-                    if($parent.hasClass('has-error')){
+                if ($this.val().length === 0) {
+                    if ($parent.hasClass('has-error')) {
                         return;
                     }
                     $parent.addClass('has-error');
                     $parent.removeClass('has-success');
-                } else{
-                    if($parent.hasClass('has-success')){
+                } else {
+                    if ($parent.hasClass('has-success')) {
                         return;
                     }
                     $parent.removeClass('has-error');
                     $parent.addClass('has-success');
                 }
             });
-              $inputs.eq(8).on('keyup',function(){
+            $inputs.eq(8).on('keyup', function() {
                 var $this = $(this);
                 var $parent = $(this).parent();
 
-                if($this.val().length === 0){
-                    if($parent.hasClass('has-error')){
+                if ($this.val().length === 0) {
+                    if ($parent.hasClass('has-error')) {
                         return;
                     }
                     $parent.addClass('has-error');
                     $parent.removeClass('has-success');
-                } else{
-                    if($parent.hasClass('has-success')){
+                } else {
+                    if ($parent.hasClass('has-success')) {
                         return;
                     }
                     $parent.removeClass('has-error');
                     $parent.addClass('has-success');
                 }
             });
-              $inputs.eq(9).on('keyup',function(){
+            $inputs.eq(9).on('keyup', function() {
                 var $this = $(this);
                 var $parent = $(this).parent();
 
-                if($this.val().length === 0){
-                    if($parent.hasClass('has-error')){
+                if ($this.val().length === 0) {
+                    if ($parent.hasClass('has-error')) {
                         return;
                     }
                     $parent.addClass('has-error');
                     $parent.removeClass('has-success');
-                } else{
-                    if($parent.hasClass('has-success')){
+                } else {
+                    if ($parent.hasClass('has-success')) {
                         return;
                     }
                     $parent.removeClass('has-error');
                     $parent.addClass('has-success');
                 }
+            });
+
+            $body.find('section #modal-reg .input-group i.input-group-addon').on('click', function() {
+                dutils.location({
+                    success: function(pos) {
+                        var geocader = new google.maps.Geocoder();
+                        var latlng = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
+                        var $addr = $(this).siblings('#reg-ind');
+
+                        geocader.geocode({
+                            'location': latlng
+                        }, function(resutl, status) {
+                            if (status == google.maps.GeocoderStatus.OK) {
+                                if (resutl[0]) {
+                                    if(resutl[0].types.indexOf('street_address') > -1){
+                                        console.log(resutl[0].formatted_address);                                      
+                                    }
+                                }
+                            }else {
+                                console.log(error);
+                            }
+                        });
+                    },
+                    options: {
+                        enableHighAccuracy: false,
+                        maximumAge: 3000,
+                        timeout: 27000
+                    }
+                });
             });
 
             $modal.modal({
