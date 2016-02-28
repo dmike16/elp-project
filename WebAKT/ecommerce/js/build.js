@@ -67,7 +67,7 @@ var dutils = dutils || {};
             var options = config.options || null,
                 success = config.success || function(pos) {},
                 error = config.error || function(error) {
-                    console.log("On Error");
+
                     switch (error) {
                         case 'PERMISSION_DENIED':
                             console.log("Position not enabled");
@@ -79,6 +79,7 @@ var dutils = dutils || {};
                             console.log("Timeout has expired");
                             break;
                         default:
+                            console.log("Error In get Location");
                             break;
                     }
                 };
@@ -143,6 +144,21 @@ var dutils = dutils || {};
             }
 
         }
+    }
+
+    function signIn(db, user_name, passwd) {
+        var rows = db.queryAll('users', {
+            query: {
+                email: user_name,
+                passwd: passwd
+            }
+        });
+
+        if (rows.length === 1) {
+            return true;
+        }
+
+        return false;
     }
 
     var cart = {
@@ -355,7 +371,7 @@ var dutils = dutils || {};
             $btns.removeClass('disabled');
             cart.active($('aside .center #cart'), db);
         },
-        login: function registration($modal) {
+        login: function registration($modal, db) {
             var log = [
                 '<section> <h3 class="clickable" style="cursor:pointer;"> Login</h3>',
                 '<form name="modal-login" id="modal-login" class="form-horizontal" action="#" method="post">',
@@ -402,6 +418,28 @@ var dutils = dutils || {};
             $body.html(html.join(" "));
             $body.find('section h3').on('click', function() {
                 $(this).parent('section').find('form').toggle('slow');
+            });
+            $body.find('section #modal-reg button').on('click', function(e) {
+                e.preventDefault();
+
+                var $body = $('#myModal .modal-body');
+                var $inputs = $body.find('section #modal-reg input');
+                var row = {
+                    name: $inputs.eq(0).val(),
+                    last_name: $inputs.eq(1).val(),
+                    email: $inputs.eq(2).val(),
+                    passwd: $inputs.eq(3).val(),
+                    code: 'xxxx',
+                    date: $inputs.eq(4).val(),
+                    address: [$inputs.eq(5).val(), $inputs.eq(6).val(), $inputs.eq(7).val(), $inputs.eq(8).val(), $inputs.eq(9).val()].join(",")
+                };
+                if ((db.queryAll('users', { query: { email: row.email } })).length !== 0) {
+                    $body.append('<div class="alert alert-warning">Utente gia registrato. Fai il Login</div>');
+                    return;
+                }
+                $body.find('.alert.alert-warning').remove();
+                db.insert('users', row);
+
             });
 
             var $inputs = $body.find('section #modal-reg input');
@@ -600,20 +638,46 @@ var dutils = dutils || {};
             });
 
             $body.find('section #modal-reg .input-group i.input-group-addon').on('click', function() {
+
                 dutils.location({
                     success: function(pos) {
                         var geocader = new google.maps.Geocoder();
                         var latlng = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
-                        var $addr = $(this).siblings('#reg-ind');
-                        console.log("On success");
+
+
                         geocader.geocode({
                             'location': latlng
                         }, function(resutl, status) {
                             if (status == google.maps.GeocoderStatus.OK) {
                                 if (resutl[0]) {
-                                    console.log(resutl[0]);
+                                    if (resutl[0].types.indexOf('street_address') > -1) {
+                                        console.log(resutl[0].address_components);
+                                        var $form = $('#myModal #modal-reg');
+                                        for (var i = 0, len = resutl[0].address_components.length; i < len; i++) {
+                                            switch (resutl[0].address_components[i].types[0]) {
+                                                case 'route':
+
+                                                    $form.find('#reg-ind').val(resutl[0].address_components[i].long_name);
+                                                    break;
+                                                case 'street_number':
+                                                    $form.find('#reg-n').val(resutl[0].address_components[i].long_name);
+                                                    break;
+                                                case 'locality':
+                                                    $form.find('#reg-c').val(resutl[0].address_components[i].long_name);
+                                                    break;
+                                                case 'administrative_area_level_2':
+                                                    $form.find('#reg-pr').val(resutl[0].address_components[i].short_name);
+                                                    break;
+                                                case 'postal_code':
+                                                    $form.find('#reg-cap').val(resutl[0].address_components[i].long_name);
+                                                    break;
+                                                default:
+                                                    break;
+                                            }
+                                        }
+                                    }
                                 }
-                            }else {
+                            } else {
                                 console.log(error);
                             }
                         });
@@ -735,13 +799,39 @@ var dutils = dutils || {};
             $('#cartModal .modal-footer button').eq(1).on('click', function() {
                 $('html').addClass('modal-open');
                 $('#cartModal').modal('hide');
-                cart.login($('#myModal'));
+                if ($.cookie('sigin')) {
+                    console.log('Open Summary');
+                } else {
+                    cart.login($('#myModal'), db);
+                }
             });
             $('#myModal .modal-footer button').eq(1).on('click', function() {
                 $('#myModal').modal('hide');
                 cart.open(db);
             });
+            $('form[name="login"] button').on('click', function(e) {
+                e.preventDefault();
 
+                var $form = $('form[name="login"]');
+                var $inputs = $form.find('input');
+
+                if (signIn(db, $inputs.eq(0).val(), $inputs.eq(1).val())) {
+                    $form.css('display', 'none');
+                    $('#logOut').css('display', 'block');
+                    $.cookie('sigin', 'true');
+                }
+            });
+
+            $('#logOut').on('click', function() {
+                $(this).css('display', 'none');
+                $('form[name="login"]').css('display', 'block');
+                $.removeCookie('sigin');
+            });
+
+            if($.cookie('sigin')){
+                $('form[name="login"]').css('display','none');
+                $('#logOut').css('display', 'block');
+            }
         }
     );
 }());
