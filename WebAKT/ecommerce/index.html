@@ -220,44 +220,42 @@
             </div>
         </footer>
     </div>
-<!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <!--button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button-->
-        <h4 class="modal-title" id="myModalLabel"></h4>
-      </div>
-      <div class="modal-body">
-        
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn-rb">Chiudi</button>
-        <button type="button" class="btn-rb"></button>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- Modal -->
-<div class="modal fade" id="cartModal" tabindex="-1" role="dialog" aria-labelledby="cartModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="cartModalLabel">Carello</h4>
-      </div>
-      <div class="modal-body">
-        <div id="cart-ele" class="layout wrap orizontal ">
-            
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <!--button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button-->
+                    <h4 class="modal-title" id="myModalLabel"></h4>
+                </div>
+                <div class="modal-body">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-rb">Chiudi</button>
+                    <button type="button" class="btn-rb"></button>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn-rb">Continua</button>
-        <button type="button" class="btn-rb">Paga</button>
-      </div>
     </div>
-  </div>
-</div>
+    <!-- Modal -->
+    <div class="modal fade" id="cartModal" tabindex="-1" role="dialog" aria-labelledby="cartModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="cartModalLabel">Carello</h4>
+                </div>
+                <div class="modal-body">
+                    <div id="cart-ele" class="layout wrap orizontal ">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-rb">Continua</button>
+                    <button type="button" class="btn-rb">Paga</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <script type="text/javascript" src="js/injection.js"></script>
     <script type="text/javascript" src="js/jquery-2.2.0.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
@@ -265,7 +263,15 @@
     <script type="text/javascript" src="js/jquery.cookie.js"></script>
     <script type="text/javascript" src="js/localstoragedb.min.js"></script>
     <script type="text/javascript" src="js/build.js"></script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?region=IT&key=AIzaSyA8h_Cyh8Zl2NFtFcEvj4P9t32cXUXaad8&signed_in=true">
+    <!--script async defer src="https://maps.googleapis.com/maps/api/js?region=IT&key=AIzaSyA8h_Cyh8Zl2NFtFcEvj4P9t32cXUXaad8&signed_in=true">
+    </script-->
+    <script type="text/javascript">
+    loadScript('https://maps.googleapis.com/maps/api/js?region=IT&key=' +
+        atob('QUl6YVN5QThoX0N5aDhabDJORnRGY0V2ajRQOXQzMmNYVVhhYWQ4') + '&signed_in=true',
+        function() {
+            console.log('Maps Uploaded');
+        });
+        //corsScriptRequest('GET','https://maps.googleapis.com/maps/api/js?region=IT&key=AIzaSyA8h_Cyh8Zl2NFtFcEvj4P9t32cXUXaad8&signed_in=true');
     </script>
 </body>
 
