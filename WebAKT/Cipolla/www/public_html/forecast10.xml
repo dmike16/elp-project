@@ -1,0 +1,994 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<response>
+	<version>0.1</version>
+	<termsofService>http://www.wunderground.com/weather/api/d/terms.html</termsofService>
+	<features>
+		<feature>forecast10day</feature>
+	</features>
+	<forecast>
+		<txt_forecast>
+		<date>08:24 CET</date>
+		<forecastdays>
+		<forecastday>
+		<period>0</period>
+		<icon>tstorms</icon>
+		<icon_url>http://icons.wxug.com/i/c/k/tstorms.gif</icon_url>
+		<title>Lunedì</title>
+		<fcttext><![CDATA[Ventoso, con temporali. Max: 57º F. Venti da SSE, da 20 a 30 miglia all'ora. Prob. pioggia: 100%. Occasionalmente si possono avere raffiche di vento oltre 40 miglia all'ora.]]></fcttext>
+		<fcttext_metric><![CDATA[Temporali in intensificazione nel pomeriggio, tempo ventoso. Max: 14º C. Venti da SSE, da 30 a 50 km/h. Prob. pioggia: 100%. Occasionalmente si possono avere raffiche di vento oltre 65 km/h.]]></fcttext_metric>
+		<pop>100</pop>
+		</forecastday>
+		<forecastday>
+		<period>1</period>
+		<icon>nt_chancerain</icon>
+		<icon_url>http://icons.wxug.com/i/c/k/nt_chancerain.gif</icon_url>
+		<title>Lunedì notte</title>
+		<fcttext><![CDATA[Acquazzoni mattutini. Possibili tuoni. Min: 47º F. Venti da ESE, da 15 a 25 miglia all'ora. Prob. pioggia: 100%.]]></fcttext>
+		<fcttext_metric><![CDATA[Acquazzoni mattutini. Possibili tuoni. Min: 8º C. Venti da E, da 15 a 30 km/h. Prob. pioggia: 90%.]]></fcttext_metric>
+		<pop>100</pop>
+		</forecastday>
+		<forecastday>
+		<period>2</period>
+		<icon>clear</icon>
+		<icon_url>http://icons.wxug.com/i/c/k/clear.gif</icon_url>
+		<title>Martedì</title>
+		<fcttext><![CDATA[Quasi sereno. Max: 64º F. Venti da N, da 10 a 15 miglia all'ora.]]></fcttext>
+		<fcttext_metric><![CDATA[Poco nuvoloso. Max: 18º C. Venti da N, da 15 a 25 km/h.]]></fcttext_metric>
+		<pop>0</pop>
+		</forecastday>
+		<forecastday>
+		<period>3</period>
+		<icon>nt_partlycloudy</icon>
+		<icon_url>http://icons.wxug.com/i/c/k/nt_partlycloudy.gif</icon_url>
+		<title>Martedì notte</title>
+		<fcttext><![CDATA[Poco nuvoloso. Min: 43º F. Venti da N, da 5 a 10 miglia all'ora.]]></fcttext>
+		<fcttext_metric><![CDATA[Quasi sereno. Min: 6º C. Venti da N, da 10 a 15 km/h.]]></fcttext_metric>
+		<pop>0</pop>
+		</forecastday>
+		<forecastday>
+		<period>4</period>
+		<icon>partlycloudy</icon>
+		<icon_url>http://icons.wxug.com/i/c/k/partlycloudy.gif</icon_url>
+		<title>Mercoledì</title>
+		<fcttext><![CDATA[Poco nuvoloso. Max: 61º F. Venti da , da 5 a 10 miglia all'ora.]]></fcttext>
+		<fcttext_metric><![CDATA[Poco nuvoloso. Max: 17º C. Venti da , da 10 a 15 km/h.]]></fcttext_metric>
+		<pop>0</pop>
+		</forecastday>
+		<forecastday>
+		<period>5</period>
+		<icon>nt_chancerain</icon>
+		<icon_url>http://icons.wxug.com/i/c/k/nt_chancerain.gif</icon_url>
+		<title>Mercoledì notte</title>
+		<fcttext><![CDATA[Acquazzoni a tarda notte. Min: 51º F. Venti da SSO, da 15 a 25 miglia all'ora. Prob. pioggia: 50%.]]></fcttext>
+		<fcttext_metric><![CDATA[Acquazzoni a tarda notte. Min: 11º C. Venti da SSO, da 25 a 40 km/h. Prob. pioggia: 50%.]]></fcttext_metric>
+		<pop>50</pop>
+		</forecastday>
+		<forecastday>
+		<period>6</period>
+		<icon>chancerain</icon>
+		<icon_url>http://icons.wxug.com/i/c/k/chancerain.gif</icon_url>
+		<title>Giovedì</title>
+		<fcttext><![CDATA[Acquazzoni in mattinata. Max: 56º F. Venti da NO, da 15 a 25 miglia all'ora. Prob. pioggia: 40%.]]></fcttext>
+		<fcttext_metric><![CDATA[Acquazzoni in mattinata. Max: 14º C. Venti da NO, da 25 a 40 km/h. Prob. pioggia: 30%.]]></fcttext_metric>
+		<pop>40</pop>
+		</forecastday>
+		<forecastday>
+		<period>7</period>
+		<icon>nt_clear</icon>
+		<icon_url>http://icons.wxug.com/i/c/k/nt_clear.gif</icon_url>
+		<title>Giovedì notte</title>
+		<fcttext><![CDATA[Quasi sereno. Min: 40º F. Venti da NNE, da 10 a 15 miglia all'ora.]]></fcttext>
+		<fcttext_metric><![CDATA[Quasi sereno. Min: 5º C. Venti da NNE, da 10 a 15 km/h.]]></fcttext_metric>
+		<pop>20</pop>
+		</forecastday>
+		<forecastday>
+		<period>8</period>
+		<icon>partlycloudy</icon>
+		<icon_url>http://icons.wxug.com/i/c/k/partlycloudy.gif</icon_url>
+		<title>Venerdì</title>
+		<fcttext><![CDATA[Poco nuvoloso. Max: 61º F. Venti da N in rotazione a SO da 10 a 15 miglia all'ora.]]></fcttext>
+		<fcttext_metric><![CDATA[Poco nuvoloso. Max: 16º C. Venti da N in rotazione a SO da 15 a 25 km/h.]]></fcttext_metric>
+		<pop>20</pop>
+		</forecastday>
+		<forecastday>
+		<period>9</period>
+		<icon>nt_chancerain</icon>
+		<icon_url>http://icons.wxug.com/i/c/k/nt_chancerain.gif</icon_url>
+		<title>Venerdì notte</title>
+		<fcttext><![CDATA[Acquazzoni. Min: 52º F. Venti da S, da 10 a 15 miglia all'ora. Prob. pioggia: 50%.]]></fcttext>
+		<fcttext_metric><![CDATA[Acquazzoni. Min: 11º C. Venti da S, da 15 a 25 km/h. Prob. pioggia: 50%.]]></fcttext_metric>
+		<pop>50</pop>
+		</forecastday>
+		<forecastday>
+		<period>10</period>
+		<icon>chancerain</icon>
+		<icon_url>http://icons.wxug.com/i/c/k/chancerain.gif</icon_url>
+		<title>Sabato</title>
+		<fcttext><![CDATA[Acquazzoni in mattinata. Max: 62º F. Venti da S, da 15 a 25 miglia all'ora. Prob. pioggia: 40%.]]></fcttext>
+		<fcttext_metric><![CDATA[Acquazzoni in mattinata. Max: 16º C. Venti da S, da 25 a 40 km/h. Prob. pioggia: 40%.]]></fcttext_metric>
+		<pop>40</pop>
+		</forecastday>
+		<forecastday>
+		<period>11</period>
+		<icon>nt_chancerain</icon>
+		<icon_url>http://icons.wxug.com/i/c/k/nt_chancerain.gif</icon_url>
+		<title>Sabato notte</title>
+		<fcttext><![CDATA[Acquazzoni a tarda notte. Min: 51º F. Venti da S, da 10 a 20 miglia all'ora. Prob. pioggia: 30%.]]></fcttext>
+		<fcttext_metric><![CDATA[Acquazzoni a tarda notte. Min: 11º C. Venti da S, da 15 a 30 km/h. Prob. pioggia: 30%.]]></fcttext_metric>
+		<pop>30</pop>
+		</forecastday>
+		<forecastday>
+		<period>12</period>
+		<icon>chancerain</icon>
+		<icon_url>http://icons.wxug.com/i/c/k/chancerain.gif</icon_url>
+		<title>Domenica</title>
+		<fcttext><![CDATA[Acquazzoni in mattinata. Max: 60º F. Venti da SSO, da 10 a 15 miglia all'ora. Prob. pioggia: 40%.]]></fcttext>
+		<fcttext_metric><![CDATA[Acquazzoni in mattinata. Max: 16º C. Venti da SSO, da 15 a 25 km/h. Prob. pioggia: 40%.]]></fcttext_metric>
+		<pop>40</pop>
+		</forecastday>
+		<forecastday>
+		<period>13</period>
+		<icon>nt_rain</icon>
+		<icon_url>http://icons.wxug.com/i/c/k/nt_rain.gif</icon_url>
+		<title>Domenica notte</title>
+		<fcttext><![CDATA[Pioggia. Min: 48º F. Venti da SE variabili. Prob. pioggia: 70%. Piovosità di circa ~ 0.25 pollice.]]></fcttext>
+		<fcttext_metric><![CDATA[Pioggia. Min: 9º C. Venti da SE variabili. Prob. pioggia: 70%. Piovosità di circa ~ 6 mm.]]></fcttext_metric>
+		<pop>70</pop>
+		</forecastday>
+		<forecastday>
+		<period>14</period>
+		<icon>rain</icon>
+		<icon_url>http://icons.wxug.com/i/c/k/rain.gif</icon_url>
+		<title>Lunedì</title>
+		<fcttext><![CDATA[Pioggia. Max: 55º F. Venti da , da 5 a 10 miglia all'ora. Prob. pioggia: 70%. Piovosità di circa ~ 0.5 pollice.]]></fcttext>
+		<fcttext_metric><![CDATA[Pioggia. Max: 13º C. Venti da , da 10 a 15 km/h. Prob. pioggia: 70%. Piovosità di circa ~ 12 mm.]]></fcttext_metric>
+		<pop>70</pop>
+		</forecastday>
+		<forecastday>
+		<period>15</period>
+		<icon>nt_chancerain</icon>
+		<icon_url>http://icons.wxug.com/i/c/k/nt_chancerain.gif</icon_url>
+		<title>Lunedì notte</title>
+		<fcttext><![CDATA[Acquazzoni. Min: 46º F. Venti da SSE, da 5 a 10 miglia all'ora. Prob. pioggia: 60%.]]></fcttext>
+		<fcttext_metric><![CDATA[Acquazzoni. Min: 8º C. Venti da SSE, da 10 a 15 km/h. Prob. pioggia: 60%.]]></fcttext_metric>
+		<pop>60</pop>
+		</forecastday>
+		<forecastday>
+		<period>16</period>
+		<icon>chancerain</icon>
+		<icon_url>http://icons.wxug.com/i/c/k/chancerain.gif</icon_url>
+		<title>Martedì</title>
+		<fcttext><![CDATA[Deboli piogge. Max: 56º F. Venti da SSO, da 10 a 15 miglia all'ora. Prob. pioggia: 60%.]]></fcttext>
+		<fcttext_metric><![CDATA[Deboli piogge. Max: 14º C. Venti da SSO, da 10 a 15 km/h. Prob. pioggia: 60%.]]></fcttext_metric>
+		<pop>60</pop>
+		</forecastday>
+		<forecastday>
+		<period>17</period>
+		<icon>nt_chancerain</icon>
+		<icon_url>http://icons.wxug.com/i/c/k/nt_chancerain.gif</icon_url>
+		<title>Martedì notte</title>
+		<fcttext><![CDATA[Acquazzoni mattutini. Min: 45º F. Venti da SE, da 5 a 10 miglia all'ora. Prob. pioggia: 60%.]]></fcttext>
+		<fcttext_metric><![CDATA[Acquazzoni mattutini. Min: 7º C. Venti da SE, da 10 a 15 km/h. Prob. pioggia: 60%.]]></fcttext_metric>
+		<pop>60</pop>
+		</forecastday>
+		<forecastday>
+		<period>18</period>
+		<icon>partlycloudy</icon>
+		<icon_url>http://icons.wxug.com/i/c/k/partlycloudy.gif</icon_url>
+		<title>Mercoledì</title>
+		<fcttext><![CDATA[Poco nuvoloso. Max: 60º F. Venti da , da 5 a 10 miglia all'ora.]]></fcttext>
+		<fcttext_metric><![CDATA[Poco nuvoloso. Max: 16º C. Venti da , da 10 a 15 km/h.]]></fcttext_metric>
+		<pop>20</pop>
+		</forecastday>
+		<forecastday>
+		<period>19</period>
+		<icon>nt_chancerain</icon>
+		<icon_url>http://icons.wxug.com/i/c/k/nt_chancerain.gif</icon_url>
+		<title>Mercoledì notte</title>
+		<fcttext><![CDATA[Acquazzoni a tarda notte. Min: 46º F. Venti da ESE, da 5 a 10 miglia all'ora. Prob. pioggia: 50%.]]></fcttext>
+		<fcttext_metric><![CDATA[Acquazzoni a tarda notte. Min: 8º C. Venti da ESE, da 10 a 15 km/h. Prob. pioggia: 50%.]]></fcttext_metric>
+		<pop>50</pop>
+		</forecastday>
+		</forecastdays>
+		</txt_forecast>
+		<simpleforecast>
+		<forecastdays>
+		<forecastday>
+		<date>
+  <epoch>1456768800</epoch>
+  <pretty_short>19:00 CET</pretty_short>
+  <pretty>07:00 PM CET del 29 Febbraio 2016</pretty>
+  <day>29</day>
+  <month>2</month>
+  <year>2016</year>
+  <yday>59</yday>
+  <hour>19</hour>
+  <min>00</min>
+  <sec>0</sec>
+  <isdst>0</isdst>
+  <monthname>Febbraio</monthname>
+  <monthname_short>Feb</monthname_short>
+  <weekday_short>Lun</weekday_short>
+  <weekday>Lunedì</weekday>
+  <ampm>PM</ampm>
+  <tz_short>CET</tz_short>
+  <tz_long>Europe/Rome</tz_long>
+</date>
+					<period>1</period>
+					<high>
+						<fahrenheit>57</fahrenheit>
+						<celsius>14</celsius>
+					</high>
+					<low>
+						<fahrenheit>47</fahrenheit>
+						<celsius>8</celsius>
+					</low>
+					<conditions>Temporale</conditions>
+					
+					<icon>tstorms</icon>
+					<icon_url>http://icons.wxug.com/i/c/k/tstorms.gif</icon_url>
+					<skyicon></skyicon>
+					<pop>100</pop>
+					<qpf_allday>
+						<in>0.56</in>
+						<mm>14</mm>
+					</qpf_allday>
+					<qpf_day>
+						<in>0.34</in>
+						<mm>9</mm>
+					</qpf_day>
+					<qpf_night>
+						<in>0.22</in>
+						<mm>6</mm>
+					</qpf_night>
+					<snow_allday>
+						<in>0.0</in>
+						<cm>0.0</cm>
+					</snow_allday>
+					<snow_day>
+						<in>0.0</in>
+						<cm>0.0</cm>
+					</snow_day>
+					<snow_night>
+						<in>0.0</in>
+						<cm>0.0</cm>
+					</snow_night>
+					<maxwind>
+						<mph>30</mph>
+						<kph>48</kph>
+						<dir>SSE</dir>
+						<degrees>163</degrees>
+					</maxwind>
+					<avewind>
+						<mph>23</mph>
+						<kph>37</kph>
+						<dir>SSE</dir>
+						<degrees>163</degrees>
+					</avewind>
+					<avehumidity>73</avehumidity>
+					<maxhumidity>0</maxhumidity>
+					<minhumidity>0</minhumidity>
+				</forecastday>
+				
+				<forecastday>
+					<date>
+  <epoch>1456855200</epoch>
+  <pretty_short>19:00 CET</pretty_short>
+  <pretty>07:00 PM CET del 01 Marzo 2016</pretty>
+  <day>1</day>
+  <month>3</month>
+  <year>2016</year>
+  <yday>60</yday>
+  <hour>19</hour>
+  <min>00</min>
+  <sec>0</sec>
+  <isdst>0</isdst>
+  <monthname>Marzo</monthname>
+  <monthname_short>Mar</monthname_short>
+  <weekday_short>Mar</weekday_short>
+  <weekday>Martedì</weekday>
+  <ampm>PM</ampm>
+  <tz_short>CET</tz_short>
+  <tz_long>Europe/Rome</tz_long>
+</date>
+					<period>2</period>
+					<high>
+						<fahrenheit>64</fahrenheit>
+						<celsius>18</celsius>
+					</high>
+					<low>
+						<fahrenheit>43</fahrenheit>
+						<celsius>6</celsius>
+					</low>
+					<conditions>Sereno</conditions>
+					
+					<icon>clear</icon>
+					<icon_url>http://icons.wxug.com/i/c/k/clear.gif</icon_url>
+					<skyicon></skyicon>
+					<pop>0</pop>
+					<qpf_allday>
+						<in>0.00</in>
+						<mm>0</mm>
+					</qpf_allday>
+					<qpf_day>
+						<in>0.00</in>
+						<mm>0</mm>
+					</qpf_day>
+					<qpf_night>
+						<in>0.00</in>
+						<mm>0</mm>
+					</qpf_night>
+					<snow_allday>
+						<in>0.0</in>
+						<cm>0.0</cm>
+					</snow_allday>
+					<snow_day>
+						<in>0.0</in>
+						<cm>0.0</cm>
+					</snow_day>
+					<snow_night>
+						<in>0.0</in>
+						<cm>0.0</cm>
+					</snow_night>
+					<maxwind>
+						<mph>15</mph>
+						<kph>24</kph>
+						<dir>N</dir>
+						<degrees>350</degrees>
+					</maxwind>
+					<avewind>
+						<mph>11</mph>
+						<kph>18</kph>
+						<dir>N</dir>
+						<degrees>350</degrees>
+					</avewind>
+					<avehumidity>64</avehumidity>
+					<maxhumidity>0</maxhumidity>
+					<minhumidity>0</minhumidity>
+				</forecastday>
+				
+				<forecastday>
+					<date>
+  <epoch>1456941600</epoch>
+  <pretty_short>19:00 CET</pretty_short>
+  <pretty>07:00 PM CET del 02 Marzo 2016</pretty>
+  <day>2</day>
+  <month>3</month>
+  <year>2016</year>
+  <yday>61</yday>
+  <hour>19</hour>
+  <min>00</min>
+  <sec>0</sec>
+  <isdst>0</isdst>
+  <monthname>Marzo</monthname>
+  <monthname_short>Mar</monthname_short>
+  <weekday_short>Mer</weekday_short>
+  <weekday>Mercoledì</weekday>
+  <ampm>PM</ampm>
+  <tz_short>CET</tz_short>
+  <tz_long>Europe/Rome</tz_long>
+</date>
+					<period>3</period>
+					<high>
+						<fahrenheit>61</fahrenheit>
+						<celsius>16</celsius>
+					</high>
+					<low>
+						<fahrenheit>51</fahrenheit>
+						<celsius>11</celsius>
+					</low>
+					<conditions>Parzialmente nuvoloso</conditions>
+					
+					<icon>partlycloudy</icon>
+					<icon_url>http://icons.wxug.com/i/c/k/partlycloudy.gif</icon_url>
+					<skyicon></skyicon>
+					<pop>0</pop>
+					<qpf_allday>
+						<in>0.02</in>
+						<mm>1</mm>
+					</qpf_allday>
+					<qpf_day>
+						<in>0.00</in>
+						<mm>0</mm>
+					</qpf_day>
+					<qpf_night>
+						<in>0.02</in>
+						<mm>1</mm>
+					</qpf_night>
+					<snow_allday>
+						<in>0.0</in>
+						<cm>0.0</cm>
+					</snow_allday>
+					<snow_day>
+						<in>0.0</in>
+						<cm>0.0</cm>
+					</snow_day>
+					<snow_night>
+						<in>0.0</in>
+						<cm>0.0</cm>
+					</snow_night>
+					<maxwind>
+						<mph>10</mph>
+						<kph>16</kph>
+						<dir>NO</dir>
+						<degrees>309</degrees>
+					</maxwind>
+					<avewind>
+						<mph>8</mph>
+						<kph>13</kph>
+						<dir>NO</dir>
+						<degrees>309</degrees>
+					</avewind>
+					<avehumidity>64</avehumidity>
+					<maxhumidity>0</maxhumidity>
+					<minhumidity>0</minhumidity>
+				</forecastday>
+				
+				<forecastday>
+					<date>
+  <epoch>1457028000</epoch>
+  <pretty_short>19:00 CET</pretty_short>
+  <pretty>07:00 PM CET del 03 Marzo 2016</pretty>
+  <day>3</day>
+  <month>3</month>
+  <year>2016</year>
+  <yday>62</yday>
+  <hour>19</hour>
+  <min>00</min>
+  <sec>0</sec>
+  <isdst>0</isdst>
+  <monthname>Marzo</monthname>
+  <monthname_short>Mar</monthname_short>
+  <weekday_short>Gio</weekday_short>
+  <weekday>Giovedì</weekday>
+  <ampm>PM</ampm>
+  <tz_short>CET</tz_short>
+  <tz_long>Europe/Rome</tz_long>
+</date>
+					<period>4</period>
+					<high>
+						<fahrenheit>56</fahrenheit>
+						<celsius>13</celsius>
+					</high>
+					<low>
+						<fahrenheit>40</fahrenheit>
+						<celsius>4</celsius>
+					</low>
+					<conditions>Possibilità di pioggia</conditions>
+					
+					<icon>chancerain</icon>
+					<icon_url>http://icons.wxug.com/i/c/k/chancerain.gif</icon_url>
+					<skyicon></skyicon>
+					<pop>40</pop>
+					<qpf_allday>
+						<in>0.02</in>
+						<mm>1</mm>
+					</qpf_allday>
+					<qpf_day>
+						<in>0.02</in>
+						<mm>1</mm>
+					</qpf_day>
+					<qpf_night>
+						<in>0.00</in>
+						<mm>0</mm>
+					</qpf_night>
+					<snow_allday>
+						<in>0.0</in>
+						<cm>0.0</cm>
+					</snow_allday>
+					<snow_day>
+						<in>0.0</in>
+						<cm>0.0</cm>
+					</snow_day>
+					<snow_night>
+						<in>0.0</in>
+						<cm>0.0</cm>
+					</snow_night>
+					<maxwind>
+						<mph>25</mph>
+						<kph>40</kph>
+						<dir>NO</dir>
+						<degrees>306</degrees>
+					</maxwind>
+					<avewind>
+						<mph>19</mph>
+						<kph>31</kph>
+						<dir>NO</dir>
+						<degrees>306</degrees>
+					</avewind>
+					<avehumidity>55</avehumidity>
+					<maxhumidity>0</maxhumidity>
+					<minhumidity>0</minhumidity>
+				</forecastday>
+				
+				<forecastday>
+					<date>
+  <epoch>1457114400</epoch>
+  <pretty_short>19:00 CET</pretty_short>
+  <pretty>07:00 PM CET del 04 Marzo 2016</pretty>
+  <day>4</day>
+  <month>3</month>
+  <year>2016</year>
+  <yday>63</yday>
+  <hour>19</hour>
+  <min>00</min>
+  <sec>0</sec>
+  <isdst>0</isdst>
+  <monthname>Marzo</monthname>
+  <monthname_short>Mar</monthname_short>
+  <weekday_short>Ven</weekday_short>
+  <weekday>Venerdì</weekday>
+  <ampm>PM</ampm>
+  <tz_short>CET</tz_short>
+  <tz_long>Europe/Rome</tz_long>
+</date>
+					<period>5</period>
+					<high>
+						<fahrenheit>61</fahrenheit>
+						<celsius>16</celsius>
+					</high>
+					<low>
+						<fahrenheit>52</fahrenheit>
+						<celsius>11</celsius>
+					</low>
+					<conditions>Parzialmente nuvoloso</conditions>
+					
+					<icon>partlycloudy</icon>
+					<icon_url>http://icons.wxug.com/i/c/k/partlycloudy.gif</icon_url>
+					<skyicon></skyicon>
+					<pop>20</pop>
+					<qpf_allday>
+						<in>0.12</in>
+						<mm>3</mm>
+					</qpf_allday>
+					<qpf_day>
+						<in>0.00</in>
+						<mm>0</mm>
+					</qpf_day>
+					<qpf_night>
+						<in>0.12</in>
+						<mm>3</mm>
+					</qpf_night>
+					<snow_allday>
+						<in>0.0</in>
+						<cm>0.0</cm>
+					</snow_allday>
+					<snow_day>
+						<in>0.0</in>
+						<cm>0.0</cm>
+					</snow_day>
+					<snow_night>
+						<in>0.0</in>
+						<cm>0.0</cm>
+					</snow_night>
+					<maxwind>
+						<mph>15</mph>
+						<kph>24</kph>
+						<dir>O</dir>
+						<degrees>266</degrees>
+					</maxwind>
+					<avewind>
+						<mph>11</mph>
+						<kph>18</kph>
+						<dir>O</dir>
+						<degrees>266</degrees>
+					</avewind>
+					<avehumidity>55</avehumidity>
+					<maxhumidity>0</maxhumidity>
+					<minhumidity>0</minhumidity>
+				</forecastday>
+				
+				<forecastday>
+					<date>
+  <epoch>1457200800</epoch>
+  <pretty_short>19:00 CET</pretty_short>
+  <pretty>07:00 PM CET del 05 Marzo 2016</pretty>
+  <day>5</day>
+  <month>3</month>
+  <year>2016</year>
+  <yday>64</yday>
+  <hour>19</hour>
+  <min>00</min>
+  <sec>0</sec>
+  <isdst>0</isdst>
+  <monthname>Marzo</monthname>
+  <monthname_short>Mar</monthname_short>
+  <weekday_short>Sab</weekday_short>
+  <weekday>Sabato</weekday>
+  <ampm>PM</ampm>
+  <tz_short>CET</tz_short>
+  <tz_long>Europe/Rome</tz_long>
+</date>
+					<period>6</period>
+					<high>
+						<fahrenheit>62</fahrenheit>
+						<celsius>17</celsius>
+					</high>
+					<low>
+						<fahrenheit>51</fahrenheit>
+						<celsius>11</celsius>
+					</low>
+					<conditions>Possibilità di pioggia</conditions>
+					
+					<icon>chancerain</icon>
+					<icon_url>http://icons.wxug.com/i/c/k/chancerain.gif</icon_url>
+					<skyicon></skyicon>
+					<pop>40</pop>
+					<qpf_allday>
+						<in>0.04</in>
+						<mm>1</mm>
+					</qpf_allday>
+					<qpf_day>
+						<in>0.03</in>
+						<mm>1</mm>
+					</qpf_day>
+					<qpf_night>
+						<in>0.02</in>
+						<mm>1</mm>
+					</qpf_night>
+					<snow_allday>
+						<in>0.0</in>
+						<cm>0.0</cm>
+					</snow_allday>
+					<snow_day>
+						<in>0.0</in>
+						<cm>0.0</cm>
+					</snow_day>
+					<snow_night>
+						<in>0.0</in>
+						<cm>0.0</cm>
+					</snow_night>
+					<maxwind>
+						<mph>25</mph>
+						<kph>40</kph>
+						<dir>S</dir>
+						<degrees>189</degrees>
+					</maxwind>
+					<avewind>
+						<mph>19</mph>
+						<kph>31</kph>
+						<dir>S</dir>
+						<degrees>189</degrees>
+					</avewind>
+					<avehumidity>68</avehumidity>
+					<maxhumidity>0</maxhumidity>
+					<minhumidity>0</minhumidity>
+				</forecastday>
+				
+				<forecastday>
+					<date>
+  <epoch>1457287200</epoch>
+  <pretty_short>19:00 CET</pretty_short>
+  <pretty>07:00 PM CET del 06 Marzo 2016</pretty>
+  <day>6</day>
+  <month>3</month>
+  <year>2016</year>
+  <yday>65</yday>
+  <hour>19</hour>
+  <min>00</min>
+  <sec>0</sec>
+  <isdst>0</isdst>
+  <monthname>Marzo</monthname>
+  <monthname_short>Mar</monthname_short>
+  <weekday_short>Dom</weekday_short>
+  <weekday>Domenica</weekday>
+  <ampm>PM</ampm>
+  <tz_short>CET</tz_short>
+  <tz_long>Europe/Rome</tz_long>
+</date>
+					<period>7</period>
+					<high>
+						<fahrenheit>60</fahrenheit>
+						<celsius>16</celsius>
+					</high>
+					<low>
+						<fahrenheit>48</fahrenheit>
+						<celsius>9</celsius>
+					</low>
+					<conditions>Possibilità di pioggia</conditions>
+					
+					<icon>chancerain</icon>
+					<icon_url>http://icons.wxug.com/i/c/k/chancerain.gif</icon_url>
+					<skyicon></skyicon>
+					<pop>40</pop>
+					<qpf_allday>
+						<in>0.34</in>
+						<mm>9</mm>
+					</qpf_allday>
+					<qpf_day>
+						<in>0.06</in>
+						<mm>2</mm>
+					</qpf_day>
+					<qpf_night>
+						<in>0.28</in>
+						<mm>7</mm>
+					</qpf_night>
+					<snow_allday>
+						<in>0.0</in>
+						<cm>0.0</cm>
+					</snow_allday>
+					<snow_day>
+						<in>0.0</in>
+						<cm>0.0</cm>
+					</snow_day>
+					<snow_night>
+						<in>0.0</in>
+						<cm>0.0</cm>
+					</snow_night>
+					<maxwind>
+						<mph>15</mph>
+						<kph>24</kph>
+						<dir>SSO</dir>
+						<degrees>200</degrees>
+					</maxwind>
+					<avewind>
+						<mph>10</mph>
+						<kph>16</kph>
+						<dir>SSO</dir>
+						<degrees>200</degrees>
+					</avewind>
+					<avehumidity>66</avehumidity>
+					<maxhumidity>0</maxhumidity>
+					<minhumidity>0</minhumidity>
+				</forecastday>
+				
+				<forecastday>
+					<date>
+  <epoch>1457373600</epoch>
+  <pretty_short>19:00 CET</pretty_short>
+  <pretty>07:00 PM CET del 07 Marzo 2016</pretty>
+  <day>7</day>
+  <month>3</month>
+  <year>2016</year>
+  <yday>66</yday>
+  <hour>19</hour>
+  <min>00</min>
+  <sec>0</sec>
+  <isdst>0</isdst>
+  <monthname>Marzo</monthname>
+  <monthname_short>Mar</monthname_short>
+  <weekday_short>Lun</weekday_short>
+  <weekday>Lunedì</weekday>
+  <ampm>PM</ampm>
+  <tz_short>CET</tz_short>
+  <tz_long>Europe/Rome</tz_long>
+</date>
+					<period>8</period>
+					<high>
+						<fahrenheit>55</fahrenheit>
+						<celsius>13</celsius>
+					</high>
+					<low>
+						<fahrenheit>46</fahrenheit>
+						<celsius>8</celsius>
+					</low>
+					<conditions>Pioggia</conditions>
+					
+					<icon>rain</icon>
+					<icon_url>http://icons.wxug.com/i/c/k/rain.gif</icon_url>
+					<skyicon></skyicon>
+					<pop>70</pop>
+					<qpf_allday>
+						<in>0.56</in>
+						<mm>14</mm>
+					</qpf_allday>
+					<qpf_day>
+						<in>0.43</in>
+						<mm>11</mm>
+					</qpf_day>
+					<qpf_night>
+						<in>0.13</in>
+						<mm>3</mm>
+					</qpf_night>
+					<snow_allday>
+						<in>0.0</in>
+						<cm>0.0</cm>
+					</snow_allday>
+					<snow_day>
+						<in>0.0</in>
+						<cm>0.0</cm>
+					</snow_day>
+					<snow_night>
+						<in>0.0</in>
+						<cm>0.0</cm>
+					</snow_night>
+					<maxwind>
+						<mph>10</mph>
+						<kph>16</kph>
+						<dir>S</dir>
+						<degrees>179</degrees>
+					</maxwind>
+					<avewind>
+						<mph>8</mph>
+						<kph>13</kph>
+						<dir>S</dir>
+						<degrees>179</degrees>
+					</avewind>
+					<avehumidity>78</avehumidity>
+					<maxhumidity>0</maxhumidity>
+					<minhumidity>0</minhumidity>
+				</forecastday>
+				
+				<forecastday>
+					<date>
+  <epoch>1457460000</epoch>
+  <pretty_short>19:00 CET</pretty_short>
+  <pretty>07:00 PM CET del 08 Marzo 2016</pretty>
+  <day>8</day>
+  <month>3</month>
+  <year>2016</year>
+  <yday>67</yday>
+  <hour>19</hour>
+  <min>00</min>
+  <sec>0</sec>
+  <isdst>0</isdst>
+  <monthname>Marzo</monthname>
+  <monthname_short>Mar</monthname_short>
+  <weekday_short>Mar</weekday_short>
+  <weekday>Martedì</weekday>
+  <ampm>PM</ampm>
+  <tz_short>CET</tz_short>
+  <tz_long>Europe/Rome</tz_long>
+</date>
+					<period>9</period>
+					<high>
+						<fahrenheit>56</fahrenheit>
+						<celsius>13</celsius>
+					</high>
+					<low>
+						<fahrenheit>45</fahrenheit>
+						<celsius>7</celsius>
+					</low>
+					<conditions>Possibilità di pioggia</conditions>
+					
+					<icon>chancerain</icon>
+					<icon_url>http://icons.wxug.com/i/c/k/chancerain.gif</icon_url>
+					<skyicon></skyicon>
+					<pop>60</pop>
+					<qpf_allday>
+						<in>0.30</in>
+						<mm>8</mm>
+					</qpf_allday>
+					<qpf_day>
+						<in>0.25</in>
+						<mm>6</mm>
+					</qpf_day>
+					<qpf_night>
+						<in>0.05</in>
+						<mm>1</mm>
+					</qpf_night>
+					<snow_allday>
+						<in>0.0</in>
+						<cm>0.0</cm>
+					</snow_allday>
+					<snow_day>
+						<in>0.0</in>
+						<cm>0.0</cm>
+					</snow_day>
+					<snow_night>
+						<in>0.0</in>
+						<cm>0.0</cm>
+					</snow_night>
+					<maxwind>
+						<mph>15</mph>
+						<kph>24</kph>
+						<dir>SSO</dir>
+						<degrees>204</degrees>
+					</maxwind>
+					<avewind>
+						<mph>10</mph>
+						<kph>16</kph>
+						<dir>SSO</dir>
+						<degrees>204</degrees>
+					</avewind>
+					<avehumidity>75</avehumidity>
+					<maxhumidity>0</maxhumidity>
+					<minhumidity>0</minhumidity>
+				</forecastday>
+				
+				<forecastday>
+					<date>
+  <epoch>1457546400</epoch>
+  <pretty_short>19:00 CET</pretty_short>
+  <pretty>07:00 PM CET del 09 Marzo 2016</pretty>
+  <day>9</day>
+  <month>3</month>
+  <year>2016</year>
+  <yday>68</yday>
+  <hour>19</hour>
+  <min>00</min>
+  <sec>0</sec>
+  <isdst>0</isdst>
+  <monthname>Marzo</monthname>
+  <monthname_short>Mar</monthname_short>
+  <weekday_short>Mer</weekday_short>
+  <weekday>Mercoledì</weekday>
+  <ampm>PM</ampm>
+  <tz_short>CET</tz_short>
+  <tz_long>Europe/Rome</tz_long>
+</date>
+					<period>10</period>
+					<high>
+						<fahrenheit>60</fahrenheit>
+						<celsius>16</celsius>
+					</high>
+					<low>
+						<fahrenheit>46</fahrenheit>
+						<celsius>8</celsius>
+					</low>
+					<conditions>Parzialmente nuvoloso</conditions>
+					
+					<icon>partlycloudy</icon>
+					<icon_url>http://icons.wxug.com/i/c/k/partlycloudy.gif</icon_url>
+					<skyicon></skyicon>
+					<pop>20</pop>
+					<qpf_allday>
+						<in>0.04</in>
+						<mm>1</mm>
+					</qpf_allday>
+					<qpf_day>
+						<in>0.00</in>
+						<mm>0</mm>
+					</qpf_day>
+					<qpf_night>
+						<in>0.04</in>
+						<mm>1</mm>
+					</qpf_night>
+					<snow_allday>
+						<in>0.0</in>
+						<cm>0.0</cm>
+					</snow_allday>
+					<snow_day>
+						<in>0.0</in>
+						<cm>0.0</cm>
+					</snow_day>
+					<snow_night>
+						<in>0.0</in>
+						<cm>0.0</cm>
+					</snow_night>
+					<maxwind>
+						<mph>10</mph>
+						<kph>16</kph>
+						<dir>OSO</dir>
+						<degrees>246</degrees>
+					</maxwind>
+					<avewind>
+						<mph>8</mph>
+						<kph>13</kph>
+						<dir>OSO</dir>
+						<degrees>246</degrees>
+					</avewind>
+					<avehumidity>69</avehumidity>
+					<maxhumidity>0</maxhumidity>
+					<minhumidity>0</minhumidity>
+				</forecastday>
+				
+			</forecastdays>
+		</simpleforecast>
+	</forecast>
+
+	
+	
+		
+	
+
+    
+    
+    
+	
+  
+	
+	
+	
+	
+	
+    
+    
+
+
+    
+    
+    
+    
+</response>
+	

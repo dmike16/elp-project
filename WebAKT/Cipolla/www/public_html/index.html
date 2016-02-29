@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+    <title>ForeCast</title>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.min.css" />
+    <link rel="stylesheet" type="text/css" href="fonts/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="css/forecast.css">
+</head>
+
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="row">
+                <div class="col-md-4 col-sm-3">
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <h1 class="title">Previsioni Meteo</h1>
+                    <h2 class="subtitle">Fino a Dieci Giorni</h2>
+                </div>
+                <div class="col-md-4 col-sm-3">
+                </div>
+            </div>
+        </header>
+        <section class="grid">
+            <div id="placeHolder" class="row">
+                <div class="col-md-5 col-sm-4"></div>
+                <div class="col-md-2 col-sm-4">
+                    <div class="center">
+                        <div class="spin">
+                            <div class="spin-over">
+                            </div>
+                            <div class="spin-bar">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-5 col-sm-4"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-3 col-sm-2"></div>
+                <div class="col-md-6 col-sm-8">
+                    <div class="center">
+                        <button id="position" class="btn btn-primary">
+                            <i class="fa fa-compass"></i> Posizione
+                        </button>
+                    </div>
+                    <div class="col-md-3 col-sm-2"></div>
+                </div>
+        </section>
+        <footer class="footer">
+            <div class="row">
+                <div class="col-xs-4 col-md-4">
+                    <p class="text-center">
+                        <a href="#">&copy; Copiright</a> &nbsp;
+                        <a href="#">Legal Note</a>
+                    </p>
+                </div>
+                <div class="col-xs-4 col-md-4">
+                    <div class="exspand-s">
+                    </div>
+                </div>
+                <div class="col-xs-4 col-md-4">
+                </div>
+            </div>
+        </footer>
+        </div>
+        <script type="text/javascript" src="js/injection.js"></script>
+        <script type="text/javascript">
+        loadScript('js/jquery-2.2.0.min.js', function() {
+            loadScript('js/bootstrap.min.js', function() {
+                loadScript('js/forecast.js', function() {});
+            });
+        });
+        </script>
+</body>
+
+</html>
