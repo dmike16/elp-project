@@ -1,0 +1,62 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>Form Veicolo</title>
+</head>
+<body>
+	<section>
+		<h1>Form Veicoli</h1>
+		<form action="vec" method="post">
+			<p>
+				<label for="targa">Targa</label> <input name="targa" id="targa"
+					type="text" />
+			</p>
+			<p>
+				<label for="imm">Immatricolazione</label> <input name="imm" id="imm"
+					type="data" /> <span> (dd/mm/yyy)</span>
+			</p>
+			<p>
+				<label for="cilindrata">Cilindrata</label> <input name="cilindrata"
+					id="cilindrata" type="number" />
+			</p>
+			<p>
+				<label for="kw">Kw</label> <input name="kw" id="kw" type="number" />
+			</p>
+			<p>
+				<label for="posti">Posti</label> <input name="posti" id="posti"
+					type="number" min="2" max="7" />
+			</p>
+			<p>
+				<label for="velocita">Velocita</label> <input name="velocita" id="velocita"
+					type="number"/>
+			</p>
+			<p>
+				<label for="comb">Combustibile</label> <select name="comb"
+					id="comb ">
+					<option value="benzina">Benzina</option>
+					<option value="diesel">Gasol</option>
+					<option value="gpl">Benz/Gpl</option>
+				</select>
+			</p>
+
+			<fieldset>
+				<legend>Categoria</legend>
+				<label><input type="radio" name="cat" id="cat1" value="01" />01</label>
+				<label><input type="radio" name="cat" id="cat2" value="02" />02</label>
+				<label><input type="radio" name="cat" id="cat3" value="03" />03</label>
+				<label><input type="radio" name="cat" id="cat4" value="04" />04</label>
+			</fieldset>
+
+			<p>
+				<button type="submit">submit</button>
+			</p>
+			<p>
+				<button type="reset">Reset</button>
+			</p>
+		</form>
+	</section>
+
+</body>
+
+</html>
