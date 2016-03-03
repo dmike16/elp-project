@@ -28,7 +28,7 @@
                         <manifest>
                             <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
                             <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
-                            <mainClass>d.mike.example.AppTest</mainClass>
+                            <mainClass>d.mike.example.CurrentThread</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

@@ -1,0 +1,18 @@
+version = '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+
+jar{
+	baseName = 'thread'
+	manifest{
+		attributes("Implementation-Title":"Thread",
+			"Implementation-Version":version,
+			"Main-Class":"d.mike.example.CurrentThread")
+	}
+}
+
+task wrapper(type:Wrapper){
+	description 'Configure the Gradle Wrapper'
+	gradleVersion = '2.3'
+}
