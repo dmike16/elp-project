@@ -13,8 +13,8 @@
  *
  *  *************************************
  */
-project.group = 'my-app'
-project.version = '1.0'
+project.group = 'Example'
+project.version = '1.0-SNAPSHOT'
 
 //***
 // Define common stuff in the subproject
@@ -22,6 +22,10 @@ project.version = '1.0'
 subprojects {
     apply plugin: "java"
     apply plugin: "eclipse"
+	
+	sourceCompatibility= 1.8
+	targetCompatibility= 1.8
+
     repositories {
         mavenCentral()
     }

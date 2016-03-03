@@ -1,0 +1,2 @@
+rootProject.name = 'sampleApp'
+include 'utils','web'
