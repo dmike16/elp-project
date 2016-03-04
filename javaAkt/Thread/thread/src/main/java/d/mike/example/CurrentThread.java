@@ -1,6 +1,8 @@
 package d.mike.example;
 
-class NewThread implements Runnable{
+import java.io.Serializable;
+
+class NewThread implements Runnable, Serializable{
 	private String name;
 	Thread t;
 

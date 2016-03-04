@@ -1,6 +1,12 @@
 package utils;
 
-public class Book {
+import java.io.Serializable;
+
+public class Book implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int id;
 	private String title;
 	private String author;
@@ -27,5 +33,21 @@ public class Book {
 	}
 	public void setAuthor(String author) {
 		this.author = author;
+	}
+	@Override 
+	public boolean equals(Object obj){
+		if(obj != null && obj.getClass().equals(this.getClass())){
+			Book tmp = (Book)obj;
+			if(tmp.getId() == this.getId()){
+				return true;
+			}
+			return false;
+		}
+		
+		return false;
+	}
+	@Override
+	public int hashCode(){
+		return id;
 	}
 }
