@@ -91,7 +91,18 @@ public class FormServlet extends HttpServlet {
     	
     	order.setName(request.getParameter("name"));
     	order.setAddress(request.getParameter("address"));
-    	order .setCountry(request.getParameter("country"));
+    	order.setCountry(request.getParameter("country"));
+    	order.setDelivery(request.getParameter("deliveryMethod"));
+    	order.setPayment(request.getParameter("paymentMethod"));
+    	
+    	String[] comment = request.getParameterValues("instruction");
+    	order.setComment(String.join("\n", comment));
+    	order.setSpot((request.getParameter("catalogRequest") != null));
+    	
+    	request.setAttribute("order", order);
+    	RequestDispatcher disp = request.getRequestDispatcher("/WEB-INF/jsp/order.jsp");
+    	disp.forward(request, response);
+    	
         /*response.setContentType("text/html");
         PrintWriter writer = response.getWriter();
         writer.println("<html>");
