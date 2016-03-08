@@ -1,0 +1,18 @@
+
+apply plugin: 'java'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+jar{
+    baseName = 'veicolo'
+    version = '0.0.1'
+    manifest{
+        attributes('Implementation-Title':'holdingObject',
+        'Implementation-Version':version)
+    }
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+}

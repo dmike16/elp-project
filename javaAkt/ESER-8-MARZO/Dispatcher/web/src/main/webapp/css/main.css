@@ -1,0 +1,31 @@
+#group{
+	display: block;
+	width: 100%;
+	position: relative;
+}
+#group h1{
+	margin:0;
+	text-align: center;
+	font-size: 32px;
+}
+
+#group fieldset{
+	margin: 0 auto;
+	width: 85%;
+	font-size: 16px;
+	background-color: #ccc;
+}
+#group legend{
+	color: red;
+	font-size: 20px;
+	text-transform: uppercase;
+}
+#group fieldset > p{
+	padding-left: 10px;
+}
+#group fieldset  input{
+	margin-left: 32px;
+}
+input[error="true"]{
+	border: 2px solid red;
+}
