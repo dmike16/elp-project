@@ -18,8 +18,6 @@
 				</ul>
 			</c:if>
 			<form action="store_veicolo.action" method="post">
-				<fieldset>
-					<legend>Dati</legend>
 					<p>
 						<label for="targa">
 							Targa: <input name="targa" id="targa" type="text" value="${requestScope.form.targa}" required/>
@@ -36,6 +34,38 @@
 						</label>
 					</p>
 					<p>
+						<label for="cilindrata">
+							Cilindrata: <input name="cilindrata" id="cilindrata" type="number" value="${requestScope.form.cilindrata}" />
+						</label>
+					</p>
+					<p>
+						<label for="velocita">
+							Velocita: <input name="velocita" id="velocita" type="number" value="${requestScope.form.velocita}" />
+						</label>
+					</p>
+					<p>
+						<label for="posti">
+							Posti: <input name="posti" id="posti" type="number" min="0" max="7" value="${requestScope.form.posti}" />
+						</label>
+					</p>
+					<p>
+						<label for="categoria">
+							Categoria: <input name="categoria" id="categoria" type="text" value="${requestScope.form.cat}" />
+						</label>
+					</p>
+					<fieldset>
+						<legend>Combustibile</legend>
+						<label>benz</label>
+							<input name="combustibile" id="combustibile" type="radio" value="01" />
+						<label>diesel</label>
+							<input name="combustibile" id="combustibile" type="radio" value="02" />
+						<label>benz/gpl</label>
+							<input name="combustibile" id="combustibile" type="radio" value="03" />
+						<label>metano</label>
+							<input name="combustibile" id="combustibile" type="radio" value="04" />
+					</fieldset>
+					
+					<p>
 						<label for="imm">
 							Immatricolazione: <input name="imm" id="imm" type="date" value="${requestScope.form.immatricolazione}"/> (yyy-mm-dd)
 						</label>
@@ -43,7 +73,9 @@
 					<p>
 						<button type="submit">Invia</button>
 					</p>
-				</fieldset>
+					<p>
+						<button type="reset">Cancella</button>
+					</p>
 			</form>
 		</section>
 	</body>

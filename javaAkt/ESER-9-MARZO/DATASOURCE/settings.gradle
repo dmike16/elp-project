@@ -1,0 +1,2 @@
+rootProject.name = 'Articoli'
+include 'utils','web'

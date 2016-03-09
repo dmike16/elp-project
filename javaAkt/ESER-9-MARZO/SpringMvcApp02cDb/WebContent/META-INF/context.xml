@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Context>
+	<Resource 
+		name="jdbc/hr" 
+		auth="Container" 
+		type="javax.sql.DataSource"
+		maxActive="100" 
+		maxIdle="30" 
+		maxWait="10000" 
+		driverClassName="oracle.jdbc.OracleDriver"
+		url="jdbc:oracle:thin:@localhost:1521:XE" 
+		username="HR"
+		password="hr" 
+		/>
+	<Resource 
+		name="jdbc/system" 
+		auth="Container" 
+		type="javax.sql.DataSource"
+		maxActive="100" 
+		maxIdle="30" 
+		maxWait="10000" 
+		driverClassName="oracle.jdbc.OracleDriver"
+		url="jdbc:oracle:thin:@localhost:1521:XE" 
+		username="SYSTEM"
+		password="arnaldo" 
+		/>
+</Context>

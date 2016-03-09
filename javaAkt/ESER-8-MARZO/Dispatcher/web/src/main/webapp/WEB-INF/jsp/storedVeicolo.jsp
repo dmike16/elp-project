@@ -12,6 +12,11 @@
 				<li>Modello: ${requestScope['veicolo'].modello}</li>
 				<li>Kw: ${requestScope['veicolo'].kw} kw</li>
 				<li>Immatricolazione: ${requestScope.veicolo.immatricolazione}</li>
+				<li>Categoria: ${requestScope.veicolo.cat}</li>
+				<li>Combustibile: ${requestScope.veicolo.comb}</li>
+				<li>Cilindrata: ${requestScope.veicolo.cilindrata}</li>
+				<li>Velocita: ${requestScope.veicolo.velocita}</li>
+				<li>Posti: ${requestScope.veicolo.posti}</li>
 			</ul>
 			<p><a href="aggiungi_veicolo.action">Aggiungi Veicolo</a></p>
 		</section>
