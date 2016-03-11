@@ -20,15 +20,19 @@
 			<form action="sell.action" method="post">
 				<p>
 					<label for="code">Codice</label>
-					<input name="code" id="codice" type="text" required/>
+					<select name="code" id="code">
+						<c:forEach items="${requestScope.codes}" var="code">
+							<option value="${code.key}" selected="${code.key eq requestScope.vendita.code}">${code.key}</option>
+						</c:forEach>
+					</select>
 				</p>
 				<p>
-					<label for="qty">Quantità</label>
-					<input name="qty" id="qty" type="number"/>
+					<label for="qty">Quantita</label>
+					<input name="qty" id="qty" type="number" value="${requestScope.vendita.qty}"/>
 				</p>
 				<p>
-					<label for="bill">Prezzo</label>
-					<input name="bill" id="bill" type="text"/>
+					<label for="bill">Numero Ricevuta</label>
+					<input name="bill" id="bill" type="text" value="${requestScope.vendita.bill}"/>
 				</p>
 				
 				<p>

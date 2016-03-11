@@ -20,20 +20,20 @@
 			<form action="upload.action" method="post">
 				<p>
 					<label for="code">Codice</label>
-					<input name="code" id="codice" type="text" required/>
+					<input name="code" id="codice" type="text" required value="${requestScope.articolo.code}"/>
 				</p>
 				<p>
 					<label for="describe">Descrizione</label>
-					<textarea name="describe" id="describe" maxlength="20" rows="4" cols="10">MAX 20 CHAR</textarea>
+					<textarea name="describe" id="describe" maxlength="20" rows="4" cols="10">${requestScope.articolo.describe}</textarea>
 					
 				</p>
 				<p>
 					<label for="instock">Giacenza</label>
-					<input name="instock" id="instock" type="number"/>
+					<input name="instock" id="instock" type="number" value="${requestScope.articolo.instock}"/>
 				</p>
 				<p>
 					<label for="price">Prezzo</label>
-					<input name="price" id="price" type="number"/>
+					<input name="price" id="price" value="${requestScope.articolo.price}"/>
 				</p>
 				
 				<p>

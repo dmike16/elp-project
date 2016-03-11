@@ -2,8 +2,8 @@ REM =====================
 REM Articoli + Vendite
 REM =====================
 
+DROP TABLE Vendite_due;
 DROP TABLE Articoli_Due;
-DROP TABLE Vendite_Due;
 
 CREATE TABLE Articoli_Due(
 	CODICE			VARCHAR2(8),
@@ -18,6 +18,5 @@ CREATE TABLE Vendite_Due(
 	NRICEVUTA		VARCHAR2(5),
 	QTAVEN			NUMBER(3),
 	CONSTRAINT num_ric PRIMARY KEY(NRICEVUTA,CODICE),
-	CONSTRAINT codice_ric FOREIGN KEY(CODICE) REFERENCES Articoli_Due,
-	CONSTRAINT ric_number UNIQUE(NRICEVUTA)
+	CONSTRAINT codice_ric FOREIGN KEY(CODICE) REFERENCES Articoli_Due
 );

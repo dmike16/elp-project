@@ -2,6 +2,7 @@ group 'util'
 version '1.0'
 
 apply plugin: 'java'
+apply plugin: 'eclipse'
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
@@ -14,6 +15,14 @@ jar{
 			'Implementation-Title':'util',
 			'Implementation-Version': version)
 	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies{
+	compile 'javax.servlet:javax.servlet-api:3.1.0'
 }
 
 task Wrapper(type: Wrapper){

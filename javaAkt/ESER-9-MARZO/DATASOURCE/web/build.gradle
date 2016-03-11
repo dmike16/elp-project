@@ -16,15 +16,13 @@ version = rootProject.version
 		 "Implementation-Version": version)
 	 })
  }
-
+ 
 def ENV = System.getenv()
 
 repositories{
 	flatDir{
-		dirs  ENV['HOME']+'/oracle/util', ENV['HOME'] + '/oracle/sqldeveloper/jdbc/lib'
-	}
+		dirs  ENV['HOME']+'/oracle/util'}
 }
-
 
 dependencies{
 	compile project(':utils')
@@ -35,8 +33,7 @@ dependencies{
 		exclude group: 'javax.servlet.jsp', module:'jsp-api'
 		exclude group: 'javax.servlet.jsp.jslt', module: 'jslt-api'
 	}
-	compile([name:'ojdbc6'])
-	
+	compile([name:'dutil-1.0']) 	
 }
 
 //***
