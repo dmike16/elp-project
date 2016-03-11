@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk1.8.0">
+		<attributes>
+			<attribute name="owner.project.facets" value="java"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/Apache Tomcat v8.0">
+		<attributes>
+			<attribute name="owner.project.facets" value="jst.web"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+	<classpathentry kind="lib" path="/home/dmike/.gradle/caches/modules-2/files-2.1/javax.servlet/javax.servlet-api/3.1.0/3cd63d075497751784b2fa84be59432f4905bf7c/javax.servlet-api-3.1.0.jar"/>
+	<classpathentry kind="lib" path="/home/dmike/.gradle/caches/modules-2/files-2.1/javax.servlet.jsp.jstl/jstl-api/1.2/f9a034c1ca1f79c03bb461805a688f944544d138/jstl-api-1.2.jar" sourcepath="/home/dmike/.gradle/caches/modules-2/files-2.1/javax.servlet.jsp.jstl/jstl-api/1.2/b7b976db29290621db582b38c1db9c22ff439f89/jstl-api-1.2-sources.jar"/>
+	<classpathentry kind="lib" path="/home/dmike/.gradle/caches/modules-2/files-2.1/javax.servlet.jsp.jstl/javax.servlet.jsp.jstl-api/1.2.1/f072f63ab1689e885ac40c221df3e6bb3e64a84a/javax.servlet.jsp.jstl-api-1.2.1.jar" sourcepath="/home/dmike/.gradle/caches/modules-2/files-2.1/javax.servlet.jsp.jstl/javax.servlet.jsp.jstl-api/1.2.1/f3259305572297af85c02de2c0d39002bead2874/javax.servlet.jsp.jstl-api-1.2.1-sources.jar"/>
+	<classpathentry kind="lib" path="/home/dmike/.gradle/caches/modules-2/files-2.1/org.glassfish.web/javax.servlet.jsp.jstl/1.2.2/5b2e83ef42b4eef0a7e41d43bb1d4b835f59ac7a/javax.servlet.jsp.jstl-1.2.2.jar" sourcepath="/home/dmike/.gradle/caches/modules-2/files-2.1/org.glassfish.web/javax.servlet.jsp.jstl/1.2.2/88f20e2e00fb058ae6dba12e7e59e348ef19115c/javax.servlet.jsp.jstl-1.2.2-sources.jar"/>
+	<classpathentry kind="output" path="build/classes"/>
+</classpath>
