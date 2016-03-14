@@ -15,6 +15,10 @@ public class Main {
 		empl.getAddr().setNumber("71");
 		
 		System.out.println(empl);
+		
+		Employes empls = context.getBean("employees", Employes.class);
+		
+		System.out.println(empls);
 
 	}
 }	
