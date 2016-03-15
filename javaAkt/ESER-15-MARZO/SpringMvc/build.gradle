@@ -1,0 +1,65 @@
+/*
+ *  **************************************
+ *
+ *  Gradle build Script for Main project
+ *  structure:
+ *  
+ *  {rootProject}
+ *            |
+ *            |_____{javaproject[optional]}     
+ *            |                            
+ *            |_____{webApp project}[depedsOn:{javaproject}]
+ *
+ *
+ *  *************************************
+ */
+project.group = 'spring-mvc'
+project.version = '1.0-SNAPSHOT'
+
+apply plugin: "eclipse"
+//***
+// Define common stuff in the subproject
+//***
+subprojects {
+    apply plugin: "java"
+    apply plugin: "eclipse"
+	
+	sourceCompatibility= 1.8
+	targetCompatibility= 1.8
+
+    repositories {
+        mavenCentral()
+    }
+    
+    task dmikeJavadocs(type: Javadoc) {
+        description 'Create JavaDos Documentaion'
+        source = sourceSets.main.allJava
+    }
+}
+
+//***
+// Find the location of the WebContainer to deploy the app
+//***
+def ENV = System.getenv()
+if (ENV[tomcat]){
+    ext.WebContainerHome = ENV[tomcat] + "/webapps"
+} else if(ENV[glassfish]) {
+    ext.WebContainerHome = ENV[glassfish] + "/domains/domain1/autodeploy"
+} else {
+    ext.WebContainerHome = ''
+    println "--------------------------------------------------------"
+    println " Warning...If want to use the deploy task"
+    println "need to export  $tomcat or $glassfish"
+    println "--------------------------------------------------------"
+}
+
+//***
+// Tasks Wrapper of type Wrapper
+// Build the script to use the gradle wrapper.
+// After it there'll be a file gradle.wrapper that will build the project
+// without the necessity of local gradle installation
+//***
+task Wrapper(type: Wrapper){
+    description "Configure the Gradle Wrapper"
+    gradleVersion = '2.3'
+}
