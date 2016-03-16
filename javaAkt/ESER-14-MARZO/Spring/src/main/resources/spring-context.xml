@@ -1,42 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans
-       http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
-       
-       <bean name="employee" class="example.Employee">
-       		<property name="name" value="Mario"/>
-       		<property name="addr">
-       			<ref bean="address1"/>
-       		</property>
-       </bean>
-       
-       <bean name="fillEmployee" class="example.Employee" scope="prototype">
-       		<property name="name" value="jhon"/>
-       		<property name="addr" ref="address"/>
-       </bean>
-       
-       <bean id="employees" class="example.Employes">
-       		<property name="emps">
-       			<list>
-       				<ref bean="fillEmployee" />
-       				<ref bean="employee" />
-       			</list>
-       		</property>	
-       		<property name="pair">
-       			<map>
-       				<entry key="uno">
-       					<ref bean="fillEmployee"/>
-       				</entry>
-       			</map>
-       		</property>
-       </bean>
-       <bean name="address" class="example.Address"/>
-       <bean id="address1" class="example.Address">
-       		<property name="city" value="New York"/>
-       		<property name="name" value="St.Street"/>
-       		<property name="number" value="657"/>
-       </bean>
-      
-       
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<context:annotation-config/>
+
+	<bean name="employee" class="example.Employee">
+		<property name="name" value="Mario" />
+	</bean>
+
+	<bean name="fillEmployee" class="example.Employee" scope="prototype">
+		<property name="name" value="jhon" />
+		<property name="addr" ref="address" />
+	</bean>
+
+	<bean id="employees" class="example.Employes">
+		<property name="emps">
+			<list>
+				<ref bean="fillEmployee" />
+				<ref bean="employee" />
+			</list>
+		</property>
+		<property name="pair">
+			<map>
+				<entry key="uno">
+					<ref bean="fillEmployee" />
+				</entry>
+			</map>
+		</property>
+	</bean>
+	<bean name="address" class="example.Address" primary="true"/>
+	<bean id="address1" class="example.Address">
+		<qualifier value="main"/>
+		<property name="city" value="New York" />
+		<property name="name" value="St.Street" />
+		<property name="number" value="657" />
+	</bean>
+
+
 </beans>       

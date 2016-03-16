@@ -1,7 +1,14 @@
 package example;
 
+import javax.annotation.Resource;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+
 public class Employee {
 	private String name;
+	/*@Autowired
+	@Qualifier("main")*/
 	private Address addr;
 	public String getName() {
 		return name;
@@ -12,6 +19,7 @@ public class Employee {
 	public Address getAddr() {
 		return addr;
 	}
+	@Resource(name="address1")
 	public void setAddr(Address addr) {
 		this.addr = addr;
 	}

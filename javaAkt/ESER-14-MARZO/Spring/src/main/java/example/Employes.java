@@ -3,9 +3,13 @@ package example;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 public class Employes {
+	@Autowired
 	private List<Employee> emps;
 	private Map<String,Employee> pair;
+	
 	public List<Employee> getEmps() {
 		return emps;
 	}
