@@ -681,4 +681,8 @@
   if (validator.validate(data)){
     console.log(validator.messages.join("\n"));
   }
+
+ var btn =  document.body.querySelector("button[type=submit]");
+ ToolTip().insert(btn,"Submit Form");
+  console.log(btn);
 }());
