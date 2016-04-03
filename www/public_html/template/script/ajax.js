@@ -48,3 +48,30 @@
         }
     }
 }());
+// Ajaxk old Style
+(function(){
+    function sendRequest(url,payload){
+        var img = new Image();
+        img.src = url + '?' + payload;
+    }
+
+    function rate(rating){
+        var transport = "image";
+        var url = "setrating.php";
+        var payload = 'rating='+encodeURIComponent(rating);
+        payload += '&transport='+encodeURIComponent(transport);
+        sendRequest(url,payload);
+        var result = document.querySelector('#result');
+        var ratingForm = document.querySelector('#ratingForm');
+        ratingForm.style.display = "none";
+        result.textContent = 'Thank for your voting';
+        result.style.display = "block";
+    }
+
+    var input = document.querySelectorAll('input[name=rating]');
+    for(var i = 0,len = input.length; i < len; i++){
+        input[i].addEventListener('click',function(){
+            rate(this.value);
+        },false);
+    }
+}());

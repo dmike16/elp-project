@@ -2,6 +2,10 @@
 	$theFile = "rating.txt";
 	$totalsFile = "totals.txt";
 
+	if(is_readable($theFile)) echo 'readable ';
+	if(is_writable($theFile)) echo 'writable ';
+
+	var_dump(ini_get('allow_url_fopen'));
 
 	if(isset($_REQUEST['rating'])){
 		$rating = $_REQUEST['rating'];
