@@ -21,7 +21,15 @@
       <input type="radio" name="rating" value="5"/> 5
       ]<em>Love it</em>
     </form>
-    <div id="result" style="display:none;"> &nbsp;</div>    
+     
+    <form name="imageForm" action="imagegenerator.php">
+      <p>
+        <label>
+          Enter your name: <input name="username" id="username" type="text" size="20" maxlength="20" />
+        </label>
+        <button id="generate" type="submit">Generate</button>
+    </form>
+    <div id="result" style="display:none;"> &nbsp;</div>
     <script type="text/javascript" src="script/ajax.js"></script>
   </body>
 </html

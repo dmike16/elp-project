@@ -53,7 +53,7 @@
         }
     }
 }());
-// Ajaxk old Style one way comunication
+// Ajaxk old Style one way comunica
 (function() {
     function sendRequest(url, payload, method) {
         switch (method) {
@@ -162,4 +162,64 @@
             rate(this.value, 'cookie');
         }, false);
     }
+}());
+
+//Ajax two-way comunication old style
+(function(){
+    function sendRequest(url, payload, target, timeout){
+        var request = new Image();
+        var timer;
+
+        request.onerror = function(){
+            cancelRequest(target,"Server Error",request,timer);
+        };
+        request.onload = function(){
+            handleResponse(target,request,timer);
+        };
+        request.src = url + '?' + payload;
+        networkTimeout = function(){
+            cancelRequest(target,"Server timeout",request,timer);
+        };
+        timer = setTimeout(networkTimeout,timeout*1000); 
+    }
+    function cancelRequest(target,message,request,timer){
+        if(timer){
+            clearTimeout(timer);
+        }
+        request.onload = null;
+        target.innerHTML = message;
+    }
+    function handleResponse(target,newImage,timer){
+        if(timer){
+            clearTimeout(timer);
+        }
+        target.innerHTML = 'Here is your custom image <br/>';
+        target.appendChild(newImage);
+    }
+    function getImage(username){
+        var url = 'imagegenerator.php';
+        var timeStamp =(new Date()).getTime();
+        var timeout = 5;
+        var payload = 'username=' + encodeURIComponent(username);
+        payload += "&timestamp=" + encodeURIComponent(timeStamp);
+
+        var target = document.querySelector('#result');
+        target.innerHTML = '&nbsp';
+        target.style.display="block";
+      
+
+        var status = document.createElement('img');
+        status.id = 'progressBar';
+        status.width = "80";
+        status.height = "80";
+        status.src = 'progress.gif';
+        target.appendChild(status);
+
+        sendRequest(url,payload,target,timeout);
+        return false;
+
+    }
+    document.imageForm.onsubmit = function(){
+        return getImage(this.username.value);
+    };
 }());
