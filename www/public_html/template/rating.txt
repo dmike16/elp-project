@@ -1,3 +1,14 @@
+0	 downgrade	 ::1 @ Apr 09 16 03:09:46 PM 
+0	 downgrade	 ::1 @ Apr 09 16 03:09:09 PM 
+0	 downgrade	 ::1 @ Apr 09 16 03:07:20 PM 
+5	 post	 ::1 @ Apr 09 16 02:59:53 PM 
+1	 window	 ::1 @ Apr 09 16 02:58:20 PM 
+1	 window	 ::1 @ Apr 09 16 02:38:12 PM 
+5	 link	 ::1 @ Apr 09 16 02:36:51 PM 
+3	 script	 ::1 @ Apr 09 16 02:32:03 PM 
+4	 iframe	 ::1 @ Apr 09 16 02:27:57 PM 
+1	 image	 ::1 @ Apr 09 16 02:27:27 PM 
+3	 image	 ::1 @ Apr 09 16 02:17:57 PM 
 4	 image	 127.0.0.1 @ Apr 03 16 06:02:09 PM 
 2	 image	 127.0.0.1 @ Apr 03 16 06:01:34 PM 
 3	 human-typed	 127.0.0.1 @ Apr 03 16 05:40:50 PM 
