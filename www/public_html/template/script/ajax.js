@@ -53,13 +53,34 @@
         }
     }
 }());
-// Ajaxk old Style one way comunica
+// Ajaxk old Style 
 (function() {
-    function sendRequest(url, payload, method) {
+    "use strict";
+
+    function sendRequest(url, payload, method, target, status, timeout) {
+        target.innerHTML = '&nbsp';
+        if (status.show) {
+            var statusImage = document.createElement('img');
+            statusImage.id = 'progressBar';
+            statusImage.border = status.border;
+            statusImage.src = 'progress.gif';
+        }
+        var timer;
+
         switch (method) {
             case 'image':
-                var img = new Image();
-                img.src = url + '?rating=' + payload['rating'] + '&transport=' + payload['transport'];
+                var request = new Image();
+                request.onerror = function() {
+                    cancelRequest(target, 'Server Error', request, timer);
+                };
+                request.onload = function() {
+                    handleResponse(target, timer);
+                };
+                request.src = url + '?rating=' + payload['rating'] + '&transport=' + payload['transport'] +
+                '&timestamp='+payload['timestamp'] + '&response='+payload['response'];
+                timer = setTimeout(function() {
+                    cancelRequest(target, "Network timeout", request, timer);
+                }, 1000 * timeout);
                 break;
             case 'iframe':
                 var ifr = document.createElement('iframe');
@@ -85,16 +106,59 @@
                 var ifrForm = makeIframeForm(ifrPost, url, payload);
                 ifrForm.submit();
                 break;
-                case 'cookie':
-                    for(var key in payload){
-                        document.cookie = key +'=' + payload[key] +' ; path=/';
-                    }
-                    window.location = url;
+            case 'cookie':
+                for (var key in payload) {
+                    document.cookie = key + '=' + payload[key] + ' ; path=/';
+                }
+                window.location = url;
                 break;
             default:
                 window.location = url + '?rating=' + payload['rating'] + '&transport=' + payload['transport'];
         }
 
+    }
+
+    function cancelRequest(target, message, request, timer) {
+        if (timer) {
+            clearTimeout(timer);
+        }
+        request.onload = null;
+        target.innerHTML = message;
+    }
+
+    function handleResponse(target, timer) {
+        if (timer) {
+            clearTimeout(timer);
+        }
+
+        var results = (function readCookie(name) {
+            var nameEQ = name + '=';
+            var ca = document.cookie.split(';');
+            for (var i = 0, len = ca.length; i < len; i++) {
+                var c = ca[i];
+                while (c.charAt(0) === '') {
+                    c = c.substring(1, c.length);
+                }
+                if (c.indexOf(nameEQ) === 0) {
+                    return c.substring(nameEQ.length, c.length);
+                }
+            }
+        }("PollResults"));
+
+        var rating = 0,
+            avg = 0,
+            total = 0;
+
+        var rs = results.split('a');
+        if(rs.length === 3){
+            rating = rs[0];
+            avg = rs[1];
+            total = rs[2];
+        }
+        target.setAttribute("style","display:block;");
+        target.innerHTML = target.innerHTML = "Thank you for voting.  You rated this a <strong>" + rating + "</strong>.  There are <strong>" + total + "</strong> total votes.  The average is <strong>" +
+            avg + 
+            "</strong>.  You can see the ratings in the <a href='rating.txt' target='_blank'>ratings file</a>.";
     }
 
     function makeIframe() {
@@ -141,72 +205,76 @@
 
     }
 
-    function rate(rating, method) {
+    function rate(rating, method, response) {
         var transport = method;
         var url = "setrating.php";
+        var timeStamp = (new Date()).getTime();
+        var status = true;
+        var timeout = 5000;
         var payload = {
             'rating': encodeURIComponent(rating),
-            'transport': encodeURIComponent(transport)
+            'transport': encodeURIComponent(transport),
+            'timestamp': encodeURIComponent(timeStamp),
+            'response' : encodeURIComponent(response)
         };
-        sendRequest(url, payload, method);
-        var result = document.querySelector('#result');
-        var ratingForm = document.querySelector('#ratingForm');
-        ratingForm.style.display = "none";
-        result.textContent = 'Thank for your voting';
-        result.style.display = "block";
+        var target = document.querySelector('#result');
+        sendRequest(url, payload, method,target,status,timeout);
     }
 
     var input = document.querySelectorAll('input[name=rating]');
     for (var i = 0, len = input.length; i < len; i++) {
         input[i].addEventListener('click', function() {
-            rate(this.value, 'cookie');
+            rate(this.value, 'image','cookie');
         }, false);
     }
 }());
 
 //Ajax two-way comunication old style
-(function(){
-    function sendRequest(url, payload, target, timeout){
+(function() {
+    function sendRequest(url, payload, target, timeout) {
         var request = new Image();
         var timer;
 
-        request.onerror = function(){
-            cancelRequest(target,"Server Error",request,timer);
+        request.onerror = function() {
+            cancelRequest(target, "Server Error", request, timer);
         };
-        request.onload = function(){
-            handleResponse(target,request,timer);
+        request.onload = function() {
+            handleResponse(target, request, timer);
         };
         request.src = url + '?' + payload;
-        networkTimeout = function(){
-            cancelRequest(target,"Server timeout",request,timer);
+        networkTimeout = function() {
+            cancelRequest(target, "Server timeout", request, timer);
         };
-        timer = setTimeout(networkTimeout,timeout*1000); 
+        timer = setTimeout(networkTimeout, timeout * 1000);
     }
-    function cancelRequest(target,message,request,timer){
-        if(timer){
+
+    function cancelRequest(target, message, request, timer) {
+        if (timer) {
             clearTimeout(timer);
         }
         request.onload = null;
         target.innerHTML = message;
     }
-    function handleResponse(target,newImage,timer){
-        if(timer){
+
+    function handleResponse(target, newImage, timer) {
+        if (timer) {
             clearTimeout(timer);
         }
         target.innerHTML = 'Here is your custom image <br/>';
         target.appendChild(newImage);
     }
-    function getImage(username){
+
+    function getImage(username) {
         var url = 'imagegenerator.php';
-        var timeStamp =(new Date()).getTime();
+        var timeStamp = (new Date()).getTime();
         var timeout = 5;
         var payload = 'username=' + encodeURIComponent(username);
         payload += "&timestamp=" + encodeURIComponent(timeStamp);
 
         var target = document.querySelector('#result');
         target.innerHTML = '&nbsp';
-        target.style.display="block";
-      
+        target.style.display = "block";
+
 
         var status = document.createElement('img');
         status.id = 'progressBar';
@@ -215,11 +283,11 @@
         status.src = 'progress.gif';
         target.appendChild(status);
 
-        sendRequest(url,payload,target,timeout);
+        sendRequest(url, payload, target, timeout);
         return false;
 
     }
-    document.imageForm.onsubmit = function(){
+    document.imageForm.onsubmit = function() {
         return getImage(this.username.value);
     };
 }());

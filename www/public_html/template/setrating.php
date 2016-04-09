@@ -1,32 +1,38 @@
 <?php 
+	if(isset($_REQUEST['delay']) && is_numeric($_REQUEST['delay'])){
+		sleep($_REQUEST['dealy']);
+	}
 	$theFile = "rating.txt";
 	$totalsFile = "totals.txt";
 
-	if(is_readable($theFile)) echo 'readable ';
-	if(is_writable($theFile)) echo 'writable ';
-
-	var_dump(ini_get('allow_url_fopen'));
-
-	if(isset($_REQUEST['rating'])){
-		$rating = $_REQUEST['rating'];
-	}else{
+	$rating = htmlentities(substr(urldecode(gpc("rating")), 0,1024));
+	$comment = htmlentities(substr(urldecode(gpc("comment")), 0,1024));
+	$transport = htmlentities(substr(urldecode(gpc("transport")), 0,1024));
+	$response = htmlentities(substr(urldecode(gpc("response")), 0,1024));
+	$error = htmlentities(substr(urldecode(gpc("error")), 0,1024));
+	$callback = htmlentities(substr(urldecode(gpc("callback")), 0,1024));
+	if($rating == ""){
 		$rating = 0;
 	}
-
-	if(isset($_REQUEST['transport'])){
-		$transport = $_REQUEST['transport'];
-	}else{
+	if($transport == ""){
 		$transport = "downgrade";
+	}
+	if($response == ""){
+		$response = "none";
+	}
+	if($error != ""){
+		if($error == "404"){
+			header("HTTP/1.1 404 Not Found\n\n");
+		}else{
+			header("HTTP/1.1 500 Internal Server Error\n\n");
+		}
 	}
 
 	$userIP = $_SERVER['REMOTE_ADDR'];
 	$currentTime = date("M d y h:i:s A");
 
 	$filehandle = fopen($theFile, "rb");
-	if(is_readable($theFile)){
-		print bella;
-	}
-	if(is_writable($theFile)) echo 'writable ';
+	
 	if ($filehandle)
 	{
 		$data = fread($filehandle, filesize($theFile));
@@ -51,6 +57,7 @@
 		die('error'.' '.$theFile);
 	}
 	
+	$votes = $total = $avg = 0;
 	$filehandle = fopen($totalsFile, "rb");
 	if ($filehandle)
 	{
@@ -77,8 +84,44 @@
 		die('Failed to write file');
 	}
 
+	if($votes != 0){
+		$avg = round(($total/$votes),2);
+	}
+
 	header("Cache-Control: no-cache");
 	header("Pragma: no-cache");
-	header("HTTP/1.1 204 No Content\n\n");
-	exit();
+	if($transport != "downgrade"){
+		$message = "";
+		if($response == "none"){
+			header("HTTP/1.1 204 No Content\n\n");
+			exit();
+		}else if($response == "cookie"){
+			$results = $rating."a".$avg."a".$votes;
+			$filename = "pixel.gif";
+			$fp = fopen($filename, 'rb');
+			header("Content-Type: image/gif");
+			header("Content-Length: ".filesize($filename));
+			setcookie("PollResults",$results,time()+3600,"/","localhost");
+			fpassthru($fp);
+			exit();
+		}
+	}
+
+	function gpc($name){
+		if(isset($_GET[$name])){
+			return $_GET[$name];
+		}elseif (isset($_POST[$name])) {
+			return $_POST[name];
+		}elseif (isset($_COOKIE[$name])) {
+			return $_COOKIE[$name];
+		}else{
+			return "";
+		}
+	}
+	class ResponseDate{
+		public $avg = 0;
+		public $rating = 0;
+		public $votes = 0;
+		public $total = 0;
+	}
 ?>
