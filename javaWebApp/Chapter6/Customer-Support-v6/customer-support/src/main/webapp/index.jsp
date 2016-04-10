@@ -1,0 +1,1 @@
+<c:redirect uri="/tickets.action"/>
