@@ -46,11 +46,12 @@ pvmcm.creator.user
 
 #File Created
 arch/
+buld/
+target/
 
 #IntelliJ IDEA file
 *.iml
 .idea/
-build/
 
 #ctags file
 tags

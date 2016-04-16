@@ -1,5 +1,6 @@
 package org.dmike;
 
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -10,6 +11,7 @@ import java.io.IOException;
 
 /**
  * Created by andrea on 10/04/16.
+ * @author dmike
  */
 public class DispatcherServlet extends HttpServlet {
 
@@ -31,11 +33,12 @@ public class DispatcherServlet extends HttpServlet {
         throws ServletException,IOException
     {
         String view = controllerCaller(request,response);
-        if(view.indexOf("redirect:") > -1){
-            int index = view.indexOf("redirect:")+1;
-            response.sendRedirect(
-                    view.substring(index,view.length()).trim());
+        System.out.println("Viewww--" + view);
+        if(view.contains("redirect:")){
+            int index = view.lastIndexOf(":")+ 1;
+            response.sendRedirect(view.substring(index,view.length()).trim());
         }else{
+            System.out.println(addPrefixSuffix(view));
             request.getRequestDispatcher(addPrefixSuffix(view)).forward(request,response);
         }
     }
@@ -43,14 +46,11 @@ public class DispatcherServlet extends HttpServlet {
     private String controllerCaller(HttpServletRequest request, HttpServletResponse response)
         throws ServletException,IOException
     {
-        String jsp = "index";
+        String jsp;
 
-        if(request.getSession().getAttribute("username") == null){
-            return "redirect: ticket.action?action=loginForm";
-        }
 
         String action = (request.getParameter("action") == null)? "list": request.getParameter("action");
-
+        System.out.println("action--" + action);
         switch (action){
             case "createGet":
                 jsp = (new ShowFormController()).handleRequest(request,response);
@@ -64,7 +64,7 @@ public class DispatcherServlet extends HttpServlet {
             case "view":
                 jsp = (new ViewTicketController()).handleRequest(request,response);
                 break;
-            case "loginForm":
+            case "logout":
                 jsp = (new LoginController()).handleRequest(request,response);
                 break;
             case "login":
@@ -81,12 +81,12 @@ public class DispatcherServlet extends HttpServlet {
     }
 
     private String addPrefixSuffix(String jsp){
-        ServletContext context = this.getServletContext();
+        ServletConfig config = this.getServletConfig();
 
-        String prefix = (context.getInitParameter("prefix")!= null?
-            context.getInitParameter("prefix"):"");
-        String suffix = (context.getInitParameter("suffix")!=null?
-            context.getInitParameter("suffix"): "");
+        String prefix = (config.getInitParameter("prefix")!= null?
+            config.getInitParameter("prefix"):"");
+        String suffix = (config.getInitParameter("suffix")!=null?
+            config.getInitParameter("suffix"): "");
 
         return (prefix + jsp + suffix);
     }

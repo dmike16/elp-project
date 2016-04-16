@@ -5,7 +5,7 @@
         <title>Customer Support</title>
     </head>
     <body>
-        <a href="<c:url value="/login.action?logout" />">Logout</a>
+        <a href="<c:url value="/login.action?action=logout&logout" />">Logout</a>
         <h2>Tickets</h2>
         <p>
             <a href="<c:url value="/tickets.action">

@@ -1,1 +1,1 @@
-<c:redirect uri="/tickets.action"/>
+<c:redirect url="/tickets.action"/>
