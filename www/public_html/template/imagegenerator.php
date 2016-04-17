@@ -39,7 +39,7 @@
 	header("Cache-Control: no-cache");
 	header("Pragma: no-cache");
 	header ("Content-type: image/png");
-
+	
 	$imageHandle = imagecreate(600, 80) or die("Cannot create image");
 	$backColor = imagecolorallocate($imageHandle, $r, $g, $b);
 	$textColor = imagecolorallocate($imageHandle, 3, 3, 3);
