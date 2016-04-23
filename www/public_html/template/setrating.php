@@ -104,6 +104,22 @@
 			setcookie("PollResults",$results,time()+3600,"/","localhost");
 			fpassthru($fp);
 			exit();
+		}else if($response == 'script' && $callback != ''){
+			$message = "";
+			if($transport != 'script'){
+				$message = "<script>";
+				if($transport == 'iframe'){
+					$message .= "window.parent.";
+				}
+			}
+			$timer = $_REQUEST['timer'];
+			$message .= "$callback('$rating','$votes','$avg',$timer);";
+			if($transport != "script"){
+				$message .= "</script>";
+			}else{
+				print $message;
+				exit;
+			}
 		}
 	}
 

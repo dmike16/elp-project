@@ -77,7 +77,7 @@
                     handleResponse(target, timer);
                 };
                 request.src = url + '?rating=' + payload['rating'] + '&transport=' + payload['transport'] +
-                '&timestamp='+payload['timestamp'] + '&response='+payload['response'];
+                    '&timestamp=' + payload['timestamp'] + '&response=' + payload['response'];
                 timer = setTimeout(function() {
                     cancelRequest(target, "Network timeout", request, timer);
                 }, 1000 * timeout);
@@ -89,8 +89,12 @@
                 ifr.src = url + '?rating=' + payload['rating'] + '&transport=' + payload['transport'];
                 break;
             case 'script':
+                timer = setTimeout(function() {
+                    cancelRequest(script, "Network Timeout", null, timer);
+                }, 1000 * timeout);
+
                 var script = document.createElement('script');
-                script.src = url + '?rating=' + payload['rating'] + '&transport=' + payload['transport'];
+                script.src = url + '?rating=' + payload['rating'] + '&transport=' + payload['transport'] + '&response=' + payload['response'] + '&callback=' + payload['callback'] + '&timer=' + timer;
                 script.type = 'text/javascript';
                 document.body.appendChild(script);
                 break;
@@ -122,7 +126,9 @@
         if (timer) {
             clearTimeout(timer);
         }
-        request.onload = null;
+        if (request != null) {
+            request.onload = null;
+        }
         target.innerHTML = message;
     }
 
@@ -150,14 +156,14 @@
             total = 0;
 
         var rs = results.split('a');
-        if(rs.length === 3){
+        if (rs.length === 3) {
             rating = rs[0];
             avg = rs[1];
             total = rs[2];
         }
-        target.setAttribute("style","display:block;");
+        target.setAttribute("style", "display:block;");
         target.innerHTML = target.innerHTML = "Thank you for voting.  You rated this a <strong>" + rating + "</strong>.  There are <strong>" + total + "</strong> total votes.  The average is <strong>" +
-            avg + 
+            avg +
             "</strong>.  You can see the ratings in the <a href='rating.txt' target='_blank'>ratings file</a>.";
     }
 
@@ -205,7 +211,7 @@
 
     }
 
-    function rate(rating, method, response) {
+    function rate(rating, method, response, callback) {
         var transport = method;
         var url = "setrating.php";
         var timeStamp = (new Date()).getTime();
@@ -215,16 +221,19 @@
             'rating': encodeURIComponent(rating),
             'transport': encodeURIComponent(transport),
             'timestamp': encodeURIComponent(timeStamp),
-            'response' : encodeURIComponent(response)
+            'response': encodeURIComponent(response)
         };
+        if (typeof callback != 'undefined') {
+            payload['callback'] = callback;
+        }
         var target = document.querySelector('#result');
-        sendRequest(url, payload, method,target,status,timeout);
+        sendRequest(url, payload, method, target, status, timeout);
     }
 
     var input = document.querySelectorAll('input[name=rating]');
     for (var i = 0, len = input.length; i < len; i++) {
         input[i].addEventListener('click', function() {
-            rate(this.value, 'image','cookie');
+            rate(this.value, 'script', 'script', 'requestComplete');
         }, false);
     }
 }());
@@ -291,3 +300,101 @@
         return getImage(this.username.value);
     };
 }());
+
+function requestComplete(rating, total, avg, timer) {
+    if (timer) {
+        clearTimeout(timer);
+    }
+    var target = document.querySelector('#result');
+    target.innerHTML = target.innerHTML = "Thank you for voting.  You rated this a <strong>" + rating + "</strong>.  There are <strong>" + total + "</strong> total votes.  The average is <strong>" +
+        avg +
+        "</strong>.  You can see the ratings in the <a href='rating.txt' target='_blank'>ratings file</a>.";
+    target.style.display = "block";
+}
+//File upload with hidden iframe
+(function(exp){
+    var g_fileCount = 1;
+    var g_fileList = [];
+
+    function showAttachFile(){
+        if(g_fileCount > 10){
+            alert("You have reach the maximun number of file");
+            return;
+        }
+
+        var fileList = document.querySelector("#fileList");
+        
+        var fileDiv = document.createElement("div");
+        fileDiv.id = "fileDiv" + g_fileCount;
+
+        var uploadFile = document.createElement("input");
+        uploadFile.type = "file";
+        uploadFile.size = "40";
+        uploadFile.id = "inputFile" + g_fileCount;
+        uploadFile.name = "inputFile" + g_fileCount;
+
+        fileDiv.appendChild(uploadFile);
+
+        var deleteButton = document.createElement("button");
+        deleteButton.innerHTML = "x";
+        deleteButton.addEventListener("click",function removeFile(e){
+            e.preventDefault();
+            removeAttachFile(fileDiv,uploadFile);
+            return false;
+        },false);
+        fileDiv.appendChild(deleteButton);
+        fileList.appendChild(fileDiv);
+
+        g_fileList.push(uploadFile);
+        g_fileCount++;
+    }
+
+    function removeAttachFile(div,input){
+        for(var i = 0, len = g_fileList.length; i < len; i++){
+            if(g_fileList[i].id === input.id){
+                g_fileList.splice(i,1);
+                i--;
+                len--;
+                g_fileCount--;
+            }
+        }
+        div.parentNode.removeChild(div);
+    }
+
+    function showStatus(){
+        var target = document.querySelector('#result');
+        target.innerHTML = '&nbsp';
+        target.style.display = "block";
+
+
+        var status = document.createElement('img');
+        status.id = 'progressBar';
+        status.width = "80";
+        status.height = "80";
+        status.src = 'progress.gif';
+        target.appendChild(status);
+
+        document.querySelector('#uploadResult').style.visibility = 'visible';
+    }
+    function showResult(){
+        g_fileList = [];
+        g_fileCount = 1;
+
+        document.querySelector('#result').style.display="none";
+        document.querySelector('#fileList').innerHTML = "";
+
+        return true;
+
+    }
+    document.querySelector('#attchButton').addEventListener('click',function(e){
+        e.preventDefault();
+        showAttachFile();
+        
+        return false;
+    },false);
+    document.querySelector('#uploadResult').addEventListener('load',
+        showResult,false);
+    document.forms['upload'].onsubmit = function(){
+        return showStatus();
+    }
+}(window));

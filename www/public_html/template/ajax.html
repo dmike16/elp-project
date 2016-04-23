@@ -29,7 +29,15 @@
         </label>
         <button id="generate" type="submit">Generate</button>
     </form>
+    <h3>File Upload</h3>
+    <form name="upload" action="fileupload.php" method="post" enctype="multipart/form-data" target="uploadresult">
+    <button id="attchButton">Attach File</button>
+    <div id="fileList"></div>
+    <button type="submit">Uopload</button>
+    </form>
     <div id="result" style="display:none;"> &nbsp;</div>
+    <iframe id="uploadResult" name="uploadresult" width="400" height="150"
+    frameborder="0" style="visibility:hidden;"></iframe>
     <script type="text/javascript" src="script/ajax.js"></script>
   </body>
 </html

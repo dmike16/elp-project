@@ -46,4 +46,5 @@
 	imagestring($imageHandle, 31, 5, 5, $message1, $textColor);
 	imagestring($imageHandle, 31, 5, 41, $message2, $textColor);
 	imagepng($imageHandle);
+	imagedestroy($imageHandle);
 ?>
