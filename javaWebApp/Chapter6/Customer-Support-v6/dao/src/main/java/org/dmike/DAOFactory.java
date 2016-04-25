@@ -8,6 +8,7 @@ public abstract class DAOFactory {
     public static final int POJO= 1;
 
     public abstract CustomerDAO getCustomerDAO();
+    public abstract TicketDAO getTicketDAO();
 
     public static DAOFactory getDAOFactory(int type){
         switch (type) {

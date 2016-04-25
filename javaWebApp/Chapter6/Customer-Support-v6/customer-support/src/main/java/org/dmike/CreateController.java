@@ -4,7 +4,10 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -14,29 +17,43 @@ import java.util.Map;
 public class CreateController implements Controller {
     @Override
     public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HttpSession session = request.getSession();
-
-        if(session.getAttribute("username")!= null){
-            return "redirect: ticket.action";
+        if(request.getSession().getAttribute("username") == null){
+            return "redirect: login.jsp";
         }
-        String resp;
+        String jsp;
+        Ticket ticket = new Ticket();
+        ticket.setCustomerName(((Customer)request.getSession().getAttribute("username")).getUsername());
+        ticket.setSubject(request.getParameter("subject"));
+        ticket.setComment(request.getParameter("comment"));
 
-        Customer cust = new Customer();
-        cust.setUsername(request.getParameter("username"));
-        cust.setPassword(request.getParameter("password"));
-
-        Map<String,String> errors = new HashMap<>();
-        CustomerModel model = new CustomerModel();
-        System.out.println(cust.getUsername());
-        if(model.checkUserCredentials(cust,errors)){
-            session.setAttribute("username",cust);
-            request.changeSessionId();
-            resp = "redirect: ticket.action";
-        }else{
-            request.setAttribute("errors",errors);
-            resp = "login";
+        Part file = request.getPart("attachment");
+        if(file != null && file.getSize() > 0){
+            Attachment attachment = upload(file);
+            if(attachment != null){
+                ticket.addAttachment(attachment);
+            }
         }
 
-        return resp;
+        int id = (new TicketModel()).store(ticket);
+        jsp = "redirect: view.action?action=view&ticketId="+id;
+       return jsp;
+    }
+
+    private Attachment upload(Part file) throws IOException {
+        InputStream input = file.getInputStream();
+        ByteArrayOutputStream output = new ByteArrayOutputStream();
+
+        int read;
+        final byte[] bytes = new byte[1024];
+
+        while((read = input.read(bytes)) != -1){
+            output.write(bytes,0,read);
+        }
+
+        Attachment attachment = new Attachment();
+        attachment.setName(file.getSubmittedFileName());
+        attachment.setContents(output.toByteArray());
+
+        return attachment;
     }
 }

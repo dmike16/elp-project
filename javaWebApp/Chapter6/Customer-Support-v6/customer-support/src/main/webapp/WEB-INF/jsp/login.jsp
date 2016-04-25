@@ -19,12 +19,12 @@
         </c:url>">
             <p>
                 <label for="username">Username</label>
-                <input id="username" name="username" type="text"/>
+                <input id="username" name="username" type="text" value="${fn:escapeXml(inValue)}"/>
                 <span>${errors.username}</span>
             </p>
             <p>
                 <label for="password">Password</label>
-                <input id="password" name="password" type="password"/>
+                <input id="password" name="password" type="password" />
                 <span>${errors.password}</span>
             </p>
             <button type="submit" >Login</button>

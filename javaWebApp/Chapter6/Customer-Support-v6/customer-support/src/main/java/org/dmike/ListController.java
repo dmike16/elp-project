@@ -7,6 +7,7 @@ import java.io.IOException;
 
 /**
  * Created by andrea on 10/04/16.
+ * @author dmike
  */
 public class ListController implements Controller {
     @Override
@@ -16,6 +17,8 @@ public class ListController implements Controller {
 
             return "redirect: login.jsp";
         }
+
+        request.setAttribute("ticketDataBase",(new TicketModel()).retrive());
 
         return "listTickets";
     }

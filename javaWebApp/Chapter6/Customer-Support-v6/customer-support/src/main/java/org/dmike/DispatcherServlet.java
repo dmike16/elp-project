@@ -1,7 +1,6 @@
 package org.dmike;
 
 import javax.servlet.ServletConfig;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -33,7 +32,7 @@ public class DispatcherServlet extends HttpServlet {
         throws ServletException,IOException
     {
         String view = controllerCaller(request,response);
-        System.out.println("Viewww--" + view);
+
         if(view.contains("redirect:")){
             int index = view.lastIndexOf(":")+ 1;
             response.sendRedirect(view.substring(index,view.length()).trim());
@@ -50,7 +49,7 @@ public class DispatcherServlet extends HttpServlet {
 
 
         String action = (request.getParameter("action") == null)? "list": request.getParameter("action");
-        System.out.println("action--" + action);
+
         switch (action){
             case "createGet":
                 jsp = (new ShowFormController()).handleRequest(request,response);
@@ -59,16 +58,16 @@ public class DispatcherServlet extends HttpServlet {
                 jsp = (new CreateController()).handleRequest(request,response);
                 break;
             case "download":
-                jsp=(new CreateController()).handleRequest(request,response);
+                jsp=(new DownloadController()).handleRequest(request,response);
                 break;
             case "view":
                 jsp = (new ViewTicketController()).handleRequest(request,response);
                 break;
             case "logout":
-                jsp = (new LoginController()).handleRequest(request,response);
+                jsp = (new LogoutController()).handleRequest(request,response);
                 break;
             case "login":
-                jsp = (new CreateController()).handleRequest(request,response);
+                jsp = (new LoginController()).handleRequest(request,response);
                 break;
             case "list":
             default:

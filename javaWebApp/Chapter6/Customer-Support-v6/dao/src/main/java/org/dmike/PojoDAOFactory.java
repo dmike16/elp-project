@@ -9,4 +9,5 @@ class PojoDAOFactory extends DAOFactory {
     public CustomerDAO getCustomerDAO() {
         return new PojoCustomerDAO();
     }
+    public TicketDAO getTicketDAO(){return new PojoTicketDAO();}
 }

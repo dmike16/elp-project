@@ -10,17 +10,21 @@ import java.io.IOException;
  * Created by andrea on 10/04/16.
  * @author dmike
  */
-public class ShowFormController implements Controller {
+public class LogoutController implements Controller {
     @Override
     public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
-        String jsp;
-        if(session.getAttribute("username")== null){
-            jsp = "redirect: login.jsp";
-        }else{
-            jsp = "ticketForm";
+        String resp;
+
+        if(request.getParameter("logout") != null){
+            session.invalidate();
+            resp = "redirect: login.jsp";
+        }else if(session.getAttribute("username") != null){
+            resp = "redirect: tickets.action";
+        }else {
+            resp = "login";
         }
 
-        return jsp;
+        return resp;
     }
 }
