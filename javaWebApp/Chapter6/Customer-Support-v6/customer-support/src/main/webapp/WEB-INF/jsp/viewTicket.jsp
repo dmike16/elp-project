@@ -5,13 +5,7 @@
   Time: 23:03
   To change this template use File | Settings | File Templates.
 --%>
-<!DOCTYPE HTML>
-<html>
-<head>
-    <meta charset="UTF-8"/>
-    <title>Customer Support</title>
-</head>
-<body>
+<template:main pageTitle="Custom-Support">
     <a href="<c:url value="/login.action?action=logout&logout"/>">Logout</a>
     <section>
         <h2>Ticket ${ticketId}: ${ticket.subject}</h2>
@@ -33,5 +27,4 @@
         </c:if>
         <a href="<c:url value="/tickets.action"/>">Return to list tickets</a>
     </section>
-</body>
-</html>
+</template:main>

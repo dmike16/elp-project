@@ -5,13 +5,7 @@
   Time: 17.12
   To change this template use File | Settings | File Templates.
 --%>
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8"/>
-    <title>Customer Support</title>
-</head>
-<body>
+<template:main pageTitle="Custom Support">
     <section>
         <h2>Login</h2>
         <form method="post" action = "<c:url value="login.action">
@@ -31,6 +25,4 @@
 
         </form>
     </section>
-
-</body>
-</html>
+</template:main>

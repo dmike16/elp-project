@@ -5,13 +5,7 @@
   Time: 17:18
   To change this template use File | Settings | File Templates.
 --%>
-<!DOCTYPE HTML>
-<html>
-<head>
-    <meta charset="UTF-8"/>
-    <title>Customer Support</title>
-</head>
-<body>
+<template:main pageTitle="Customer-Support">
     <a href="<c:url value="/login.action?logout&action=logout"/>">Logout</a>
     <section>
         <h2>Create Ticket</h2>
@@ -34,6 +28,4 @@
             <button type="submit">Create</button>
         </form>
     </section>
-
-</body>
-</html>
+</template:main>
