@@ -5,11 +5,20 @@ import org.apache.taglibs.standard.tag.common.core.Util;
 import org.apache.taglibs.standard.tag.common.fmt.SetLocaleSupport;
 import org.apache.taglibs.standard.tag.common.fmt.TimeZoneSupport;
 
+import javax.servlet.jsp.JspException;
+import javax.servlet.jsp.JspTagException;
 import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.Tag;
 import javax.servlet.jsp.tagext.TagSupport;
+import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
+import java.util.TimeZone;
+import java.util.function.Function;
 
 /**
  * Created by dmike on 30/04/16.
@@ -22,12 +31,16 @@ public class FormatDateTag extends TagSupport {
     }
 
     @Override
-    public int doStartTag(){
+    public int doStartTag()
+     throws JspException
+    {
         return Tag.SKIP_BODY;
     }
 
     @Override
-    public int doEndTag(){
+    public int doEndTag()
+        throws JspException
+    {
         if(this.value == null){
             if(var != null){
                 pageContext.removeAttribute(var,scope);
@@ -35,7 +48,47 @@ public class FormatDateTag extends TagSupport {
             }
         }
 
+        String formatted = " ";
+        Locale locale = this.getLocale();
+
+        if(locale != null){
+            if(this.timeZone == null){
+                this.timeZone = this.getTimeZone();
+            }
+            if(this.timeZone == null){
+                this.timeZone = TimeZone.getDefault();
+            }
+
+            if(this.value instanceof Date){
+                formatted = this.formatDate((Date)value,locale);
+
+            }else if(this.value instanceof Calendar){
+                formatted = this.formatDate(((Calendar)value).getTime(),locale);
+
+            }else{
+                throw new JspTagException("Unsupported date type " + this.value.getClass().getCanonicalName() + ".");
+            }
+        }else{
+            formatted = this.value.toString();
+        }
+
+        if(this.var != null){
+            this.pageContext.setAttribute(this.var,formatted,this.scope);
+        }else{
+            try{
+                this.pageContext.getOut().write(formatted);
+            }catch (IOException e){
+                throw new JspTagException(e.toString(),e);
+            }
+        }
+
         return Tag.EVAL_PAGE;
+    }
+
+    @Override
+    public void release(){
+        super.release();
+        this.init();
     }
 
     public Object getValue() {
@@ -46,8 +99,8 @@ public class FormatDateTag extends TagSupport {
         this.value = value;
     }
 
-    public Type getType() {
-        return type;
+    public String getType() {
+        return type.name().toLowerCase();
     }
 
     public void setType(String type) {
@@ -70,6 +123,34 @@ public class FormatDateTag extends TagSupport {
         this.scope = Util.getScope(scope);
     }
 
+    public String getPattern() {
+        return pattern;
+    }
+
+    public void setPattern(String pattern) {
+        this.pattern = StringUtils.isBlank(pattern)?null:pattern;
+    }
+
+    private Locale getLocale()
+        throws JspException
+    {
+        try{
+            return (Locale) __GET_LOCALE.invoke(null,this.pageContext,this,true,true);
+        }catch(IllegalAccessException | InvocationTargetException e){
+            throw new JspException(e.toString(),e);
+        }
+    }
+
+    private TimeZone getTimeZone()
+        throws JspException
+    {
+        try{
+            return (TimeZone)__GET_TIME_ZONE.invoke(null,this.pageContext,this);
+        }catch(IllegalAccessException | InvocationTargetException e){
+            throw new JspException(e.toString(),e);
+        }
+    }
+
     private void init(){
         this.type = Type.DATE;
         this.var = null;
@@ -79,10 +160,26 @@ public class FormatDateTag extends TagSupport {
         DATE, TIME, BOTH
     }
 
+    private String formatDate(Date value,Locale locale){
+        if(this.pattern != null){
+            SimpleDateFormat format = new SimpleDateFormat(this.pattern,locale);
+            format.setTimeZone(this.timeZone);
+            return format.format(value);
+        }
+
+        Function<Date,String> dateFormat = null;
+        Function<Date,String> timeFormat = null;
+
+
+        return "";
+    }
+
     private Object value;
     private Type type;
     private String var;
     private int scope;
+    private TimeZone timeZone;
+    private String pattern;
 
     private static final Method __GET_LOCALE;
     private static final Method __GET_TIME_ZONE;

@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <template:main pageTitle="Custom Support">
+    <p><dm:formatDate value="${date}" type="date" pattern="yyyy/MM/dd"/></p>
     <section>
         <h2>Login</h2>
         <form method="post" action = "<c:url value="login.action">

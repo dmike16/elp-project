@@ -54,7 +54,7 @@ target/
 .idea/
 
 #ctags file
-tags
+#tags
 
 # Mac Stuff
 _build/
