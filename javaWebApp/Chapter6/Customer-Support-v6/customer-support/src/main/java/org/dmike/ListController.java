@@ -15,7 +15,7 @@ public class ListController implements Controller {
 
         if(request.getSession().getAttribute("username") == null){
 
-            return "redirect: login.jsp";
+            return "login";
         }
 
         request.setAttribute("ticketDataBase",(new TicketModel()).retrive());

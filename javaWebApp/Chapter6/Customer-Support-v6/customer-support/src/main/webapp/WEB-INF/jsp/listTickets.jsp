@@ -1,13 +1,12 @@
-<template:main pageTitle="Custom Support">
-    <a href="<c:url value="/login.action?logout&action=logout" />">Logout</a>
-    <h2>Tickets</h2>
+<%--@elvariable id="ticketDataBase" type="java.util.Map"--%>
+<template:basic pageTitle="Custom Support" bodyTitle="Tickets">
     <p>
         <a href="<c:url value="/tickets.action">
              <c:param name="action" value="createGet"/>
              </c:url>"> Create Tickets</a>
     </p>
     <c:choose>
-        <c:when test="${ticketsDataBase.isEmpty()}">
+        <c:when test="${ticketDataBase.isEmpty()}">
             <p>There are no tickets in the system</p>
         </c:when>
         <c:otherwise>
@@ -23,4 +22,4 @@
             </ul>
         </c:otherwise>
     </c:choose>
-</template:main>
+</template:basic>

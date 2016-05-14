@@ -7,6 +7,7 @@ import java.io.IOException;
 
 /**
  * Created by andrea on 10/04/16.
+ * @author dmike
  */
 public class ViewTicketController implements Controller {
     @Override

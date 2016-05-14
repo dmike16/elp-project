@@ -5,10 +5,11 @@
   Time: 23:03
   To change this template use File | Settings | File Templates.
 --%>
-<template:main pageTitle="Custom-Support">
+<%--@elvariable id="ticketId" type="java.lang.String"--%>
+<%--@elvariable id="ticket" type="org.dmike.Ticket"--%>
+<template:basic pageTitle="Custom-Support" bodyTitle="Ticket #${ticketId}: ${ticket.subject}">
     <a href="<c:url value="/login.action?action=logout&logout"/>">Logout</a>
-    <section>
-        <h2>Ticket ${ticketId}: ${ticket.subject}</h2>
+    <div>
         <p>
             <i>Customer Name - ${ticket.customerName}</i>
         </p>
@@ -25,6 +26,5 @@
                 </c:forEach>
             </ul>
         </c:if>
-        <a href="<c:url value="/tickets.action"/>">Return to list tickets</a>
-    </section>
-</template:main>
+    </div>
+</template:basic>

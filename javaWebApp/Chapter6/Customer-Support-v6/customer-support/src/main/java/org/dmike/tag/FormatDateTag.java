@@ -13,6 +13,7 @@ import javax.servlet.jsp.tagext.TagSupport;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -44,8 +45,8 @@ public class FormatDateTag extends TagSupport {
         if(this.value == null){
             if(var != null){
                 pageContext.removeAttribute(var,scope);
-                return Tag.EVAL_PAGE;
             }
+            return Tag.EVAL_PAGE;
         }
 
         String formatted = " ";
@@ -170,8 +171,31 @@ public class FormatDateTag extends TagSupport {
         Function<Date,String> dateFormat = null;
         Function<Date,String> timeFormat = null;
 
+        if(Type.DATE == this.type || this.type == Type.BOTH){
+            DateFormat format = DateFormat.getDateInstance(DateFormat.SHORT,locale);
+            format.setTimeZone(this.timeZone);
+            dateFormat = format::format;
+        }
+        if(this.type == Type.TIME || this.type == Type.BOTH){
+            DateFormat format = DateFormat.getTimeInstance(DateFormat.SHORT,locale);
+            format.setTimeZone(this.timeZone);
+            timeFormat = format::format;
+        }
 
-        return "";
+        return this.formatDate(dateFormat,timeFormat,value);
+    }
+
+    private <T> String formatDate(Function<T,String> dateFormat,
+                                  Function<T,String> timeFormat, T value){
+        String formatted = "";
+        if(dateFormat != null){
+            formatted += dateFormat.apply(value);
+        }
+        if(timeFormat != null){
+            formatted += timeFormat.apply(value);
+        }
+
+        return formatted;
     }
 
     private Object value;

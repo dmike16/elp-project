@@ -18,7 +18,7 @@ public class LogoutController implements Controller {
 
         if(request.getParameter("logout") != null){
             session.invalidate();
-            resp = "redirect: login.jsp";
+            resp = "redirect: index.jsp";
         }else if(session.getAttribute("username") != null){
             resp = "redirect: tickets.action";
         }else {

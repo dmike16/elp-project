@@ -5,10 +5,12 @@
   Time: 17.12
   To change this template use File | Settings | File Templates.
 --%>
-<template:main pageTitle="Custom Support">
-    <p><dm:formatDate value="${date}" type="date" pattern="yyyy/MM/dd"/></p>
+<%--@elvariable id="errors" type="java.util.Map"--%>
+<%--@elvariable id="date" type="java.util.Date"--%>
+<%--@elvariable id="inValue" type="java.lang.String"--%>
+<template:loggedOut pageTitle="Custom Support" bodyTitle="Log In">
+    <p><dm:formatDate value="${date}" type="date" /></p>
     <section>
-        <h2>Login</h2>
         <form method="post" action = "<c:url value="login.action">
             <c:param name="action" value="login"/>
         </c:url>">
@@ -26,4 +28,4 @@
 
         </form>
     </section>
-</template:main>
+</template:loggedOut>
