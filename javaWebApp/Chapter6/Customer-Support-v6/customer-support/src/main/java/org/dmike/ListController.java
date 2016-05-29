@@ -13,10 +13,6 @@ public class ListController implements Controller {
     @Override
     public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        if(request.getSession().getAttribute("username") == null){
-
-            return "login";
-        }
 
         request.setAttribute("ticketDataBase",(new TicketModel()).retrive());
 

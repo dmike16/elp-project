@@ -9,6 +9,7 @@
 
 
 
+
     <servlet>
         <servlet-name>Dispatcher</servlet-name>
         <servlet-class>org.dmike.DispatcherServlet</servlet-class>
@@ -20,6 +21,7 @@
             <param-name>suffix</param-name>
             <param-value>.jsp</param-value>
         </init-param>
+        <async-supported>true</async-supported>
         <multipart-config>
             <file-size-threshold>5242880</file-size-threshold>
             <max-file-size>20971520</max-file-size>
@@ -31,6 +33,10 @@
         <servlet-name>Dispatcher</servlet-name>
         <url-pattern>*.action</url-pattern>
     </servlet-mapping>
+
+    <listener>
+        <listener-class>org.dmike.listeners.Configurator</listener-class>
+    </listener>
 
     <jsp-config>
         <jsp-property-group>

@@ -15,11 +15,9 @@ public class ShowFormController implements Controller {
     public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         String jsp;
-        if(session.getAttribute("username")== null){
-            jsp = "redirect: login.jsp";
-        }else{
+
             jsp = "ticketForm";
-        }
+
 
         return jsp;
     }

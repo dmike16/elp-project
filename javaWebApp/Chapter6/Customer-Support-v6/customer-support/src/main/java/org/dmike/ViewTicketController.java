@@ -12,9 +12,7 @@ import java.io.IOException;
 public class ViewTicketController implements Controller {
     @Override
     public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        if(request.getSession().getAttribute("username") == null){
-            return "redirect: login.jsp";
-        }
+
         String idString = request.getParameter("ticketId");
         Ticket ticket = null;
         String jsp;
