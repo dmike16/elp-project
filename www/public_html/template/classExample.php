@@ -55,4 +55,60 @@ echo '<p> Your id is'.$al->getId().' </p>';
 
 $ct = new Construct(4,"Jhon");
 echo '<p> Your id is'.$ct->getId().' user '.$ct->getUser().' </p>';
+
+class Implement extends AbstractClass{
+	protected function getValue(){
+		return "ConcreteClass";
+	}
+ }
+
+ $impl = new Implement();
+ $impl->printOut();
+
+ class Base{
+ 	public function sayHello(){
+ 		echo 'Hello';
+ 	}
+ }
+
+ trait SayWorld{
+ 	public function sayHello(){
+ 		parent::sayHello();
+ 		echo '--World!';
+ 	}
+ }
+
+ class MyHello extends Base{
+ 	use SayWorld;
+ }
+
+ $ooo = new MyHello();
+ $ooo->sayHello();
+
+ class SomeClass{}
+ interface SomeInterface{}
+ trait SomeTrait{}
+
+ /**
+ 	PHP 7
+ var_dump(new class(10) extends SomeClass implements SomeInterface{
+ 	private $num;
+ 	public function __constructor($num)
+ 	{
+ 		$this->num = $num;
+ 	}
+
+ 	use SomeTrait;
+ });*/
+
+ $overLoad = new PropMethodTest();
+ $overLoad->a = 1;
+ echo $overLoad->a."<br/>";
+ var_dump(isset($overLoad->a));
+ unset($overLoad->a);
+
+ echo $overLoad->declared."<br/>";
+ $overLoad->runTest("hrlll");
+ PropMethodTest::runTest("jijij");
+
  ?>
