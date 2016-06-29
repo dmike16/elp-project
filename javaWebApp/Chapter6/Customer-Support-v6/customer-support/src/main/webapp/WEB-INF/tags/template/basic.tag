@@ -13,6 +13,11 @@
         <a href="<c:url value="tickets.action">
         <c:param name="action" value="createGet"/>
         </c:url>">Create Ticket</a><br/>
+        <a href="javascript:void 0;"
+           onclick="newChat();">Chat with Support</a><br />
+        <a href="<c:url value="/chat.action">
+            <c:param name="action" value="listChat" />
+        </c:url>">View Chat Requests</a><br />
         <a href="<c:url value="/login.action?action=logout&logout"/>">Logout</a>
     </jsp:attribute>
     <jsp:body>

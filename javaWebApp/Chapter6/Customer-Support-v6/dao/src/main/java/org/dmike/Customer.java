@@ -28,6 +28,11 @@ public class Customer implements Serializable{
         this.password = password;
     }
 
+    @Override
+    public String toString(){
+        return username;
+    }
+
     private String username;
     private String password;
     private static final long serialVersionUID = -5917832102169808022L;

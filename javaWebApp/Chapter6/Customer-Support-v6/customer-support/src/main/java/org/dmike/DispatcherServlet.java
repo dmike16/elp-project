@@ -69,6 +69,12 @@ public class DispatcherServlet extends HttpServlet {
             case "login":
                 jsp = (new LoginController()).handleRequest(request,response);
                 break;
+            case "listChat":
+                jsp = (new ChatListController()).handleRequest(request,response);
+                break;
+            case "postChat":
+                jsp = (new ChatController()).handleRequest(request,response);
+                break;
             case "list":
             default:
                 jsp = (new ListController()).handleRequest(request,response);
