@@ -19,6 +19,7 @@ function inserMainScript(url,callback){
         script=null;
 }
 
+/*
 inserMainScript("gesture.js",function(){
     AppInit();
-});
+});*/

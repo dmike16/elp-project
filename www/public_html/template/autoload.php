@@ -1,6 +1,7 @@
-<?php  
+<?php
 spl_autoload_register(function($name){
-	echo '<p> Want load '.$name.'</p>';
-	include $name.'.php';
+	//echo '<p> Want load '.$name.'</p>';
+	$prefix = 'class';
+	include $prefix.'/'.$name.'.php';
 });
 ?>
