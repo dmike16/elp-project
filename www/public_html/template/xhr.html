@@ -2,41 +2,34 @@
 <html>
 
 <head>
-  <meta charset="utf-8" />
-  <title>Example of XHR </title>
+        <meta charset="utf-8" />
+        <title>Example of XHR </title>
 </head>
 
 <body>
-  <form action="javascript:void(0);" name="requestForm">
-    <button type="submit" name="requestButton">Send Request</button>
-  </form>
-  <div id="responseOutput" style="display:none;"></div>
-  <script type="text/javascript" lang="javascript" src="min-instance.js"></script>
-  <script type"text/javascript" lang="javascript" src="script/escapeURIComponent.js"></script>
-  <script type="text/javascript" lang="javascript">
-    inserMainScript("script/createXHR.js", function () {
-      document.requestForm.requestButton.onclick = function sendResponse() {
-
-        var xhr;
-        if ((xhr = createXHR())) {
-          var payload = "user=" + encodeUriFixed("[!dmike16!]");
-          xhr.open("POST", "restFull.php",true);
-          xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
-          xhr.onreadystatechange = function handleResponse(){
-            if(xhr.readyState === 4 && xhr.status === 200)
-            {
-              var outPut = document.getElementById("responseOutput");
-              outPut.style.display = "";
-              outPut.innerHTML = "<h3>Response Text</h3>" + xhr.responseText;
-              xhr= null;
-            }
-          }
-          xhr.send(payload);
-
-        }
-      }
-    });
-  </script>
+        <section>
+                <h2>Login Form</h2>
+                <form action="javascript:void(0);" enctype="application/x-www-form-urlencoded" name="requestForm">
+                        <p>
+                                <label for="username">User Name:</label>
+                                <input type="text" name="username" id="username" />
+                        </p>
+                        <p>
+                                <label for="password">Password</label>
+                                <input type="password" name="password" id="password" />
+                        </p>
+                        <button type="submit" name="requestButton">Login</button>
+                </form>
+        </section>
+        <div id="responseOutput" style="display:none;"></div>
+        <script type="text/javascript" lang="javascript" src="min-instance.js"></script>
+        <script type "text/javascript" lang="javascript" src="script/escapeURIComponent.js"></script>
+        <script type="text/javascript" lang="javascript">
+                inserMainScript("script/createXHR.js", function () {
+                        inserMainScript("script/exploreXHR.js",
+                                function () {})
+                });
+        </script>
 </body>
 
 </html>
