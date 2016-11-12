@@ -10,6 +10,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<main.class>org.dmike.example.App</main.class>
+		<maven.repo.dir>/home/dmike/.m2/repository</maven.repo.dir>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -57,7 +58,7 @@
 							<mainClass>${main.class}</mainClass>
 							<addClasspath>true</addClasspath>
 							<classpathLayoutType>repository</classpathLayoutType>
-							<classpathPrefix>/Users/dmike/.m2/repository/</classpathPrefix>
+							<classpathPrefix>${maven.repo.dir}</classpathPrefix>
 						</manifest>
 					</archive>
 				</configuration>
