@@ -34,6 +34,7 @@ public class Hello {
     GreetingType g = of.createGreetingType();
     g.setText(t);
     g.setLanguage(l);
+    g.setPunctuation(of.createExclamation("!"));
     g.setIstant(this.makeIstant(istant));    
     g_liste.getGreeting().add(g);
   }
@@ -44,6 +45,7 @@ public class Hello {
     try {
       JAXBContext jbc = JAXBContext.newInstance("org.dmike.jaxb.schema");
       Marshaller m = jbc.createMarshaller();
+      m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
       m.marshal(gl, System.out);
     } catch (JAXBException e) {
       e.printStackTrace(System.err);
