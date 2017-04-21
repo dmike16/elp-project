@@ -29,7 +29,7 @@ public class AppTest{
         Assert.assertNull("Object - Not null",null);
     }
 
-    @Test public void bothContainsString(){
+    @Test(timeout = 1000) public void bothContainsString(){
         Assert.assertThat("albumen", CoreMatchers.both(CoreMatchers.containsString("a"))
         .and(CoreMatchers.containsString("b")));
     }
