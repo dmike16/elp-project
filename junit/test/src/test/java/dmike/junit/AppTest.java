@@ -3,7 +3,10 @@ package dmike.junit;
 
 import org.hamcrest.CoreMatchers;
 import org.junit.Assert;
+import org.junit.Assume;
 import org.junit.Test;
+
+import java.io.File;
 
 /**
  * Unit test for simple App.
@@ -32,5 +35,10 @@ public class AppTest{
     @Test(timeout = 1000) public void bothContainsString(){
         Assert.assertThat("albumen", CoreMatchers.both(CoreMatchers.containsString("a"))
         .and(CoreMatchers.containsString("b")));
+    }
+
+    @Test public void testAssume(){
+        Assume.assumeThat(File.separatorChar,CoreMatchers.is('/'));
+        Assert.assertFalse("Is always false",false);
     }
 }

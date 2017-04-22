@@ -1,6 +1,7 @@
 package dmike.junit;
 
 import jdk.nashorn.internal.runtime.arrays.ArrayIndex;
+import org.hamcrest.CoreMatchers;
 import org.junit.*;
 import org.junit.internal.runners.statements.ExpectException;
 import org.junit.rules.ExpectedException;
