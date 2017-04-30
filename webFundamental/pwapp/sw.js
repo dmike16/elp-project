@@ -40,6 +40,7 @@ self.addEventListener('active',(e)=>{
       }
     }));
   }));
+  return self.clients.claim();
 });
 
 self.addEventListener('fetch', (e)=> {

@@ -2,7 +2,6 @@
   'use strict';
   window.addEventListener('load', (e) => {
     if ('serviceWorker' in navigator) {
-      window.addEventListener('load', (evt) => {
         navigator.serviceWorker.register('sw.js')
           .then((reg) => {
             console.log('Service Worker registered : ', reg.scope);
@@ -24,11 +23,9 @@
           }).catch((err) => {
             console.log('Error ', err);
           });
-      });
     }else{
       console.log('No Service Worker');
     }
-
     document.querySelector('#register').addEventListener('click', (e) => {
       e.preventDefault();
       Notification.requestPermission().then((status) => {
