@@ -1,0 +1,24 @@
+{
+  "name": "hello",
+  "version": "1.0.0",
+  "description": "Example of nodejs app",
+  "main": "src/index.js",
+  "bin":{"hello":"src/cli.js"},
+  "scripts": {
+    "test": "node --harmony ./test/hello.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dmike16/elp-project.git"
+  },
+  "keywords": [
+    "helloworld",
+    "nodejs"
+  ],
+  "author": "dmike16",
+  "license": "MPL-2.0",
+  "bugs": {
+    "url": "https://github.com/dmike16/elp-project/issues"
+  },
+  "homepage": "https://github.com/dmike16/elp-project#readme"
+}
