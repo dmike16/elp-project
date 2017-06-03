@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
+<%--@elvariable id="messageStore" type="dmike.example.MessageStore" --%>
 <!DOCTYPE html>
 <html>
 <head>
