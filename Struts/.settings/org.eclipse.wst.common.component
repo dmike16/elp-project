@@ -2,10 +2,15 @@
 	<wb-module deploy-name="struts">
 		<property name="context-root" value="struts"/>
 		<wb-resource deploy-path="/WEB-INF/classes" source-path="src/main/resources"/>
-		<wb-resource deploy-path="/WEB-INF/classes" source-path="src/main/java"/>
 		<wb-resource deploy-path="/" source-path="src/main/webapp"/>
-        <wb-resource deploy-path="/WEB-INF/classes" source-path="/model/src/main/java"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/controller/src/main/java"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/model/src/main/java"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/controller/src/main/resources"/>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/resource/controller/controller">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/resource/model/model">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
 	</wb-module>
 </project-modules>
