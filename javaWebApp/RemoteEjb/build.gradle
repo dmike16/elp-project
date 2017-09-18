@@ -1,0 +1,116 @@
+/******************************************************************************
+* BuildLife Cycle of gradle script
+*   -Initialization: gradle determines which projects are going to take part
+*                     into the build, and create a object Project instance.
+*                     during this fase the settings file is executed
+*   -Configuration: gradle configures the Project objects executing the script
+*                   files
+*   -Execution: gradle determines the subset of tasks to execute
+* This script can recive notifications as the build progresses throught
+* life cycle.
+
+* Dependencies
+* Another important aspect of gradle is dependecies management. In gradle
+* dependecies are grouped into Configuration. Configuration have a name and
+* properties and can extends each other. Many plugins add new configurations and
+* we can create ours usin the ConfigurationContainer. Inside configurations we
+* can also modify dependecies conflict resolve policy.
+*  The type of dependecies are
+*     - external module
+*     - project
+*     - file
+*     - client module
+*     - gradle api
+*     - local groovy
+* A dep can have different configurations. We can also define repo where find
+* dependecies.
+*******************************************************************************/
+/******************************************************************************
+* Dsl plugins resolver is an incubating feature:
+* plugins{
+*   id <name> version <version> [apply <true/false>]
+* }
+*******************************************************************************/
+plugins{
+  id 'ear'
+  id 'eclipse-wtp'
+}
+group = gup
+/******************************************************************************
+* To use custom logger read the source code in customClass/logging
+*******************************************************************************/
+//gradle.useLogger(new org.dmike.gradle.logging.CustomEventLogger())
+/******************************************************************************
+* We can setup Configuration common to all projects
+*******************************************************************************/
+allprojects {
+/******************************************************************************
+* Realese task common to all project
+*******************************************************************************/
+  task realese(dependsOn: 'assemble') {
+    doLast{
+      logger.quiet("Realese Project $project.group $project.name $version")
+    }
+  }
+/******************************************************************************
+* Change version if the task is not realese
+*******************************************************************************/
+  gradle.taskGraph.whenReady {
+    taskGraph ->
+    if(taskGraph.hasTask(realese)){
+      version = ver
+    }else {
+      version = ver+suffix
+    }
+  }
+
+/******************************************************************************
+* Configurations container in which we can modify and create configurations
+*******************************************************************************/
+  configurations.all{
+    resolutionStrategy{
+      //Override default behavior so that the build fail on version conflit
+      failOnVersionConflict()
+    }
+  }
+}
+
+/******************************************************************************
+* We can setup Configuration common to all subprojects
+*******************************************************************************/
+subprojects{
+  /******************************************************************************
+  * Set the repo fetching origin to mavenCentral for all
+  * subprojects.
+  *******************************************************************************/
+  repositories{
+    mavenCentral()
+  }
+}
+/******************************************************************************
+* Set the dependency of the root project.
+* This ear has a deploy configuration dependency from the subproject1
+*******************************************************************************/
+dependencies{
+  deploy project(':ejb')
+}
+
+ear{
+  baseName = pName
+}
+/******************************************************************************
+* Custom task that deploy the ear on the server. The location of the server
+* is set with the variable server on the gradle.properties root file.
+*******************************************************************************/
+task deploy(type: Copy){
+  from ear.outputs
+  into server
+}
+/******************************************************************************
+* Standard gradle wrapper task that download the gradlew script, so that everyone
+* that clone the repo can build the project without having the gradle binary
+* files.
+*******************************************************************************/
+task wrapper(type: Wrapper){
+  gradleVersion = '2.0'
+}

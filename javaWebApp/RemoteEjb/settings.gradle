@@ -1,0 +1,21 @@
+/******************************************************************************
+* In a multiproject build in this file we must define the project structure
+* We have two layout:
+********************************************************************************/
+/*******************************************************************************
+*    - Hirarchical layout: include method take the project path, that is relative
+*                         to the root project dir.
+*******************************************************************************/
+include 'ejb', 'application' //,'project1:child'
+
+/******************************************************************************
+*    - Flat layout: includeFlat takes directories names that are child of the
+*                 root project
+*******************************************************************************/
+// includeFlat 'project1', 'project2'
+
+/******************************************************************************
+* In this file we can access the project descriptors that can be used to
+* modify the projects name , directories and other attribute.
+*******************************************************************************/
+//project(':project1').buildFileName = 'project1.name'

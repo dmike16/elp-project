@@ -1,0 +1,17 @@
+plugins{
+  id 'java'
+  id 'eclipse-wtp'
+  id 'application'
+}
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+mainClassName = "org.dmike.example.RemoteEJBClient"
+group = gup
+/******************************************************************************
+* Can define deps from other project with specific configuration
+*******************************************************************************/
+dependencies{
+  compile project(path:':ejb',configuration: 'api')
+  compile group: 'org.wildfly', name: 'wildfly-ejb-client-bom', version: ejbclientbom, ext: 'pom'
+  runtime files('/Users/dmike/Development/tools/wildfly/bin/client/jboss-client.jar')
+}

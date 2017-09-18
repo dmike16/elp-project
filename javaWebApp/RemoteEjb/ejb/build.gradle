@@ -1,0 +1,27 @@
+plugins{
+  id 'java'
+  id 'eclipse-wtp'
+}
+group = gup
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+/******************************************************************************
+* With Gradle we have fine controllor over dependecies thanks to configurations.
+* For example we can create a configuration and assign to it an artifact build
+* with a specific task.
+*******************************************************************************/
+configurations{
+  api
+}
+task apiJar(type: Jar){
+  baseName = 'ejb-api'
+  from sourceSets.main.output
+  include('org/dmike/example/api/**')
+}
+artifacts{
+  api apiJar
+}
+
+dependencies{
+  compile group: 'javax', name: 'javaee-api', version: javaeeapi
+}
