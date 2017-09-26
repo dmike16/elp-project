@@ -5,7 +5,7 @@
 <head>
 <meta charset="utf-8">
 <title>Struts Example</title>
-<s:head />
+<s:head id="head"/>
 </head>
 <body>
 	<h1>
@@ -22,10 +22,11 @@
 	</p>
 
 	<p>Get custom hello</p>
-	<s:form action="hello">
-		<s:textfield name="userName" label="Your Name" />
-		<s:submit value="Submit" />
-	</s:form>
+	<form action="hello.action" method="post">
+		<label for="userName"><s:text name="sayHello"/>:</label>
+		<input type="text" name="userName" id="userName"/>
+		<input value="Submit" type="submit"/>
+	</form>
 	<s:url action="registerInput" var="regInput" />
 	<p>
 		<a href="${regInput}">Go to register</a>

@@ -1,14 +1,27 @@
 package dmike.example;
 
-import com.opensymphony.xwork2.ActionSupport;
+import java.util.ArrayList;
+import java.util.List;
 
-public class PersonAction extends ActionSupport{
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import com.opensymphony.xwork2.ActionSupport;
+import com.opensymphony.xwork2.Preparable;
+
+public class PersonAction extends ActionSupport implements Preparable{
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+	private static final Logger LOG = LogManager.getLogger(PersonAction.class);
+	private String[] sports;
+	private String[] genders;
+	private List<State> states;
+	private String[] carModels;
+	private EditService service = new EditServiceInMemory();
+	private CarModelService carService = new CarModelServiceHardCoded();
 	private PersonBean personBean;
 
 	public PersonBean getPersonBean() {
@@ -19,28 +32,59 @@ public class PersonAction extends ActionSupport{
 		this.personBean = personBean;
 	}
 	
-	@Override public String execute(){
-		System.out.println("[INFO] EXECUTE");
+	
+	public String[] getSports() {
+    return sports;
+  }
+  
+  public String[] getGenders() {
+    return genders;
+  }
+  
+  public List<State> getStates(){
+    states = new ArrayList<>();
+    states.add( new State("AZ", "Arizona") );
+    states.add( new State("CA", "California") );
+    states.add( new State("FL", "Florida") );
+    states.add( new State("KS", "Kansas") );
+    states.add( new State("NY", "New York") );
+    
+    
+    return states;
+  }
+
+
+  public String[] getCarModels() {
+    return carModels;
+  }
+
+  @Override public String execute(){
+		LOG.info("[INFO] EXECUTE");
+		service.savePerson(this.getPersonBean());
 		return SUCCESS;
 	}
 	
 	@Override public String input(){
-		System.out.println("[INFO] INPUT");
+		LOG.info("[INFO] INPUT");
+		
 		return INPUT;
 	}
 	
-	@Override public void validate(){
-		if(personBean.getUserName().length() == 0){
-			addFieldError("personBean.userName", "First Name is required");
-		}
-		
-		if(personBean.getEmail().length() == 0){
-			addFieldError("personBean.email", "Email required");
-		}
-		
-		if(personBean.getAge() < 18){
-			addFieldError("personBean.age", "Age is required and must be > 18");
-		}
+	public void prepareInput(){
+	  LOG.debug("In prepareInput method..:");
+	  sports = new String[]{"footbal","basketball","soccer"};
+	  genders = new String[]{"M","F"};
 	}
+	
+	public void prepareExecute(){
+	  LOG.debug("In prepare execute method...");
+	}
+
+  @Override  public void prepare() throws Exception {
+    // TODO Auto-generated method stub
+    LOG.debug("In prepare method.....");
+    carModels = carService.getCarModels();
+    this.setPersonBean(service.getPerson());
+  }
 
 }

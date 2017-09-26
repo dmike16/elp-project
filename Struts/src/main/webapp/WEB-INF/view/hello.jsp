@@ -14,5 +14,8 @@
     <p>
     	<s:property value="messageStore"/>
     </p>
+    <p>
+    	Said hello ${helloCount} time
+    </p>
 </body>
 </html>
