@@ -47,3 +47,6 @@ pvmcm.creator.user
 #File Created
 arch/
 node_modules/
+
+#webpack
+dist/
