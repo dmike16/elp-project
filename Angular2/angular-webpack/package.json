@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "A webpack starer for Angular",
   "scripts": {
+    "start": "webpack-dev-server --config config/webpack.dev.js --inline --progress --port 8080",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "dmike",
@@ -16,6 +17,7 @@
     "@angular/platform-browser": "^4.4.3",
     "@angular/platform-browser-dynamic": "^4.4.3",
     "@angular/router": "^4.4.3",
+    "bootstrap": "^3.3.7",
     "core-js": "^2.5.1",
     "rxjs": "^5.4.3",
     "zone.js": "^0.8.17"

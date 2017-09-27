@@ -12,7 +12,7 @@ module.exports = {
   },
 
   resolve:{
-    extensions: ['.ts','.js']
+    extensions: ['.ts','.js','css']
   },
 
   module:{
@@ -38,10 +38,10 @@ module.exports = {
       {
         test: /\.css$/,
         exclude: helper.root('src','app'),
-        use: [ExtractTextPlugin.extract({
-          fallbackLoader: 'style-loader',
-          loader: 'css-loader?sourceMap'
-        })]
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: 'css-loader?sourceMap'
+        })
       },
       {
         test: /.css$/,
