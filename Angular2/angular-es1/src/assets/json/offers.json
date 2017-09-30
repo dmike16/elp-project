@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Bianco Capena",
+    "description": "Leaf rake with 48-inch wooden handle.",
+    "price": 19.95,
+    "image": "TODO"
+  },
+  {
+    "name": "Rosso Fuego Ole!",
+    "description": "15 gallon capacity rolling garden cart",
+    "price": 19.95,
+    "image": "TODO"
+  },
+  {
+    "name": "Hammer",
+    "description": "Curved claw steel hammer",
+    "price": 8.9,
+    "image": "TODO"
+  },
+  {
+    "name": "Saw",
+    "description": "15-inch steel blade hand saw",
+    "price": 11.55,
+    "image": "TODO"
+  },
+  {
+    "name": "Video Game Controller",
+    "description": "Standard two-button video game controller",
+    "price": 35.95,
+    "image": "TODO"
+  }
+]

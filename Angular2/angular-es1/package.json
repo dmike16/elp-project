@@ -3,8 +3,7 @@
   "version": "1.0.0",
   "description": "A webpack starer for Angular",
   "scripts": {
-    "build": "webpack --config config/webpack.dev.js --progress --profile --bail",
-    "start": "webpack-dev-server --config config/webpack.dev.js --inline --progress --port 4200",
+    "start": "webpack-dev-server --config config/webpack.dev.js --inline --progress --port 8080",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "dmike",
