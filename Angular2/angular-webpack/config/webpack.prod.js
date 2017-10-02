@@ -5,13 +5,15 @@ const commonConfig = require('./webpack.common.js');
 const helper = require('./helper');
 
 const ENV = process.env.NODE_ENV = process.env.ENV = 'production';
+const VERSION = '1.0.0';
+const PROJECT_NAME = 'Angular Webpack';
 
 module.exports = webpackMerge(commonConfig,{
   devtool: 'source-map',
 
   output: {
     path: helper.root('dist'),
-    publicPath: '/',
+    publicPath: '/angular-webpack/',
     filename: '[name].[chunkhash].js',
     chunkFilename: '[id].[chunkhash].chunk.js'
   },
@@ -33,7 +35,9 @@ module.exports = webpackMerge(commonConfig,{
     new ExtractTextPlugin('[name].[chunkhash].css'),
     new webpack.DefinePlugin({
       'process.env':{
-        'ENV': JSON.stringify(ENV)
+        'ENV': JSON.stringify(ENV),
+        'VERSION': JSON.stringify(VERSION),
+        'PROJECT_NAME': JSON.stringify(PROJECT_NAME)
       }
     })
   ]
