@@ -1,0 +1,12 @@
+<main>
+  <h1>{{ pageTitle }}</h1>
+  <!-- Download the image from angular documentation-->
+  <img src="../assets/images/angular.png">
+  <input type="text" [(ngModel)]="canzone">
+  <button (click)="push();">Add item test</button>
+  <ul>
+  <li class="text" *ngFor="let item of canzoni">
+    {{item.key}}-{{item.name}}
+  </li>
+</ul>
+</main>

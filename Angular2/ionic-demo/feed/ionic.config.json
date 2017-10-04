@@ -1,0 +1,7 @@
+{
+  "name": "feed",
+  "app_id": "",
+  "type": "ionic-angular",
+  "defaultBrowser": "chrome",
+  "integrations": {}
+}

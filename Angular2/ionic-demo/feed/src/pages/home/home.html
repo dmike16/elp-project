@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Feed</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-card *ngFor='let card of posts'>
+    <ion-card-content>
+      <ion-card-title>
+        {{ card.data.title }}
+      </ion-card-title>
+      <p>
+        {{ card.data.body }}
+      </p>
+    </ion-card-content>
+    <button ion-button floating (click)="delete(card.key);">
+      Remove
+    </button>
+  </ion-card>
+</ion-content>
