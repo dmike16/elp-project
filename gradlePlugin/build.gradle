@@ -21,6 +21,7 @@ plugins{
   id 'idea'
 }
 group = gup
+version = ver
 /******************************************************************************
 * Plugin standalone project dependecies
 ******************************************************************************/
@@ -37,23 +38,6 @@ dependencies {
     compile gradleApi()
     compile localGroovy()
     testCompile group: 'junit', name: 'junit', version: '4.12'
-}
-
-task realese(dependsOn: 'build') {
-  doLast{
-    logger.quiet("Realese Project $gup $project.name $version")
-  }
-}
-/******************************************************************************
-* Change version if the task is not realese
-*******************************************************************************/
-gradle.taskGraph.whenReady {
-  taskGraph ->
-  if(taskGraph.hasTask(realese)){
-    version = ver
-  }else {
-    version = ver+suffix
-  }
 }
 /*******************************************************************************
  * jar name with no version
@@ -74,12 +58,10 @@ jar{
 publishing{
   publications{
     pluginImpl(MavenPublication){
-      groupId gup
-      version version
       from components.java
-      /*pom.withXml {
+      pom.withXml {
         asNode().appendNode('description',"Custom plugin example")
-      }*/
+      }
     }
     /* Add repo to publish
     repositories{
